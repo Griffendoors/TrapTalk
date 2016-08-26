@@ -10,7 +10,7 @@ import traptalkapp.views
 # url(r'^blog/', include('blog.urls')),
 
 urlpatterns = [
-    url(r'^$', hello.views.index, name='index'),
+    url(r'^$', traptalkapp.views.index, name='index'),
     url('signup/$', views.signup, name='signup'),
     url(r'^admin/', include(admin.site.urls)),
 ]
