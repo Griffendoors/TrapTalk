@@ -1,0 +1,203 @@
+/**Whole Index Page, Background etc.**/
+.index{
+	background-color: #d1d1e0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 15px;
+}
+
+/**Main outer div**/
+#outer.index{
+	background-color: #3366ff;
+	width: 300px;
+	height: 400px;
+
+
+}
+/**Inner login div**/
+#loginBox.index{
+	top: 50;
+	background-color: #d1d1e0;
+	width: 250px;
+	height: 175px;
+
+
+
+}
+/**inner sign up div**/
+#signupBox.index{
+	top: 50;
+	background-color: #b3c6ff;
+	width: 250px;
+	height: 175px;
+
+}
+
+/**Header art**/
+#header.index{
+	 width: 300px;
+	 height: 100px;
+
+	position: absolute;
+	top: 0;
+	bottom: 300;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+
+}
+
+/**switch to login tab**/
+#loginTab.index{
+	background-color: #d1d1e0;
+	width: 120px;
+	height: 55;
+	position: absolute;
+	bottom: 135;
+	right: 130;
+	margin: auto;
+
+
+}
+/**switch to sign up tab**/
+#signupTab.index{
+	background-color: #b3c6ff;
+	width: 120px;
+	height: 55;
+	position: absolute;
+	bottom: 135;
+	left: 130;
+	margin: auto;
+
+
+}
+
+/**text inside login div**/
+#loginTab.index p{
+	text-align: center;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+
+}
+
+/**text inside sign up div**/
+#signupTab.index p{
+	text-align: center;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+
+}
+
+
+/**sign up 'username' textbox**/
+#signupBox.index #signupUN {
+	background-color: #ccd9ff;
+	border: 0;
+	height: 50;
+	width: 160;
+	border-radius: 5px;
+
+	position: absolute;
+	top: 0;
+	bottom: 60;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+
+}
+/**sign up 'password' textbox**/
+#signupBox.index #signupPW {
+	background-color: #ccd9ff;
+	border: 0;
+	height: 50;
+	width: 160;
+	border-radius: 5px;
+
+	position: absolute;
+	top: 60;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+}
+/**login 'username text box'**/
+#loginBox.index #loginUN {
+	background-color: #ccd9ff;
+	border: 0;
+	height: 50;
+	width: 160;
+	border-radius: 5px;
+
+	position: absolute;
+	top: 0;
+	bottom: 60;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+}
+/**login password text box**/
+#loginBox.index #loginPW {
+	background-color: #ccd9ff;
+	border: 0;
+	height: 50;
+	width: 160;
+	border-radius: 5px;
+
+	position: absolute;
+	top: 60;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+/**Go Button**/
+#submit.index{
+	border-radius: 10px;
+	background-color: #b3c6ff;
+	height: 30;
+	width: 100;
+	position: absolute;
+	top: 300;
+	margin: auto;
+}
+
+/**text of go button**/
+#submit.index p{
+	text-align: center;
+	height: 30;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+}
+
+
+
+
+/**
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+{% endblock %}
+*/
