@@ -11,6 +11,6 @@ import traptalkapp.views
 
 urlpatterns = [
     url(r'^$', traptalkapp.views.index, name='index'),
-    url('signup/$', views.signup, name='signup'),
+    url('signup/$', traptalkapp.views.signup, name='signup'),
     url(r'^admin/', include(admin.site.urls)),
 ]
