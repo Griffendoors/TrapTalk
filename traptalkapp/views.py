@@ -17,8 +17,11 @@ def signup(request):
   c.update(csrf(request))
   username = request.POST.get("username", "")
   password = request.POST.get("password", "")
-  print('username is : ', username)
-  print('password is : ', password)
+
+
+  all_ = User.objects.all()
+  print(all)
+
 
 #return render_to_response("a_template.html", c)
   return HttpResponse("Hello world.",c)
