@@ -15,8 +15,8 @@ def index(request):
 def signup(request):
   c = {}
   c.update(csrf(request))
-  username = request.body.username
-  password = request.body.password
+  username = request.POST.get("username", "")
+  password = request.POST.get("password", "")
   print('username is : ', username)
   print('password is : ', password)
 
