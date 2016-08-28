@@ -115,16 +115,20 @@
                 }
                 var un = document.getElementById("signupUN").value;
                 var pw = document.getElementById("signupPW").value;
+
+
             $.ajax({
+                    type: "POST",
+                    url : "https://traptalk.herokuapp.com/signup/",
+                    data: {username: un, password: pw},
+
+
                     beforeSend: function(xhr, settings) {
                         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
                             xhr.setRequestHeader("X-CSRFToken", csrftoken);
                         }
                     }
 
-                    type: "POST",
-                    url : "https://traptalk.herokuapp.com/signup/",
-                    data: {username: un, password: pw},
                     console.log("fuck");
 
                     success : function(data){
