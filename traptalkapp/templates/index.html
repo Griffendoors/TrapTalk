@@ -121,10 +121,11 @@
                             xhr.setRequestHeader("X-CSRFToken", csrftoken);
                         }
                     }
-                
+
                     type: "POST",
                     url : "https://traptalk.herokuapp.com/signup/",
                     data: {username: un, password: pw},
+                    console.log("fuck");
 
                     success : function(data){
                         alert('yes')
