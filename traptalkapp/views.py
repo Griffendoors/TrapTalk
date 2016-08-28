@@ -15,11 +15,10 @@ def index(request):
 def signup(request):
   c = {}
   c.update(csrf(request))
-  print('c: ', c)
-  print('made it to signup view')
-  print('request: ', request)
-  print('reqbody: ', request.body)
-  print('reqmethod: ', request.method)
+  username = request.body.username
+  password = request.body.password
+  print('username is : ', username)
+  print('password is : ', password)
 
 #return render_to_response("a_template.html", c)
   return HttpResponse("Hello world.",c)
