@@ -69,6 +69,7 @@
         });
 
         $('#submit').click(function(){
+            $(this).effect("highlight", {}, 3000);
             if(selected === 1){
                 var un = document.getElementById("loginUN").value;
                 var pw = document.getElementById("loginPW").value;
@@ -80,7 +81,7 @@
                     console.log(pw);
             $.ajax({
                     type: "POST",
-                    url : "http://localhost:8000/signup/",
+                    url : "https://traptalk.herokuapp.com/signup",
                     data: {username: un, password: pw},
 
                     success : function(data){

@@ -14,7 +14,9 @@ def index(request):
 
 def signup(request):
   print('made it to signup view')
-  print(request)
+  print('request: ', request)
+  print('reqbody: ', request.body)
+  print('reqmethod: ', request.method)
 
 
 
