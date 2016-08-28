@@ -6,12 +6,12 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.utils import timezone
 
-
+@csrf_protect
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render(request))
 
-
+@csrf_protect
 def signup(request):
   print('made it to signup view')
   print('request: ', request)
