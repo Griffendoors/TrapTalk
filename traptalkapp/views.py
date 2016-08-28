@@ -7,21 +7,22 @@ from django.views import generic
 from django.utils import timezone
 from django.core.context_processors import csrf
 
-@csrf_protect
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render(request))
 
-@csrf_protect
+
 def signup(request):
+  c = {}
+  c.update(csrf(request))
+  print('c: ', c)
   print('made it to signup view')
   print('request: ', request)
   print('reqbody: ', request.body)
   print('reqmethod: ', request.method)
 
-
-
-  return HttpResponse("Hello world.")
+#return render_to_response("a_template.html", c)
+  return HttpResponse("Hello world.",c)
 
 
 
