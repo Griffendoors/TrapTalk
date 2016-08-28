@@ -85,11 +85,9 @@
                 }
                 var un = document.getElementById("signupUN").value;
                 var pw = document.getElementById("signupPW").value;
-                    console.log(un);
-                    console.log(pw);
             $.ajax({
                     type: "POST",
-                    url : "https://traptalk.herokuapp.com/signup",
+                    url : "https://traptalk.herokuapp.com/signup/",
                     data: {username: un, password: pw},
 
                     success : function(data){
