@@ -75,6 +75,14 @@
                 var pw = document.getElementById("loginPW").value;
             }
             else{
+                if(document.getElementById("signupUN").value === ""){
+                    alert("Username field empty!")
+                    return;
+                }
+                if(document.getElementById("signupPW").value === ""){
+                    alert("Password field empty!")
+                    return;
+                }
                 var un = document.getElementById("signupUN").value;
                 var pw = document.getElementById("signupPW").value;
                     console.log(un);
