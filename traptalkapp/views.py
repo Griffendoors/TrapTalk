@@ -20,7 +20,7 @@ def signup(request):
 
 
   all_ = User.objects.all()
-  print(all)
+  print(all_)
 
 
 #return render_to_response("a_template.html", c)
