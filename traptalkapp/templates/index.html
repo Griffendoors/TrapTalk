@@ -98,7 +98,25 @@
             selected =2;
         });
 
+
+        $('#submit')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#b3c6ff'
+            });
+          });
+
+
+
         $('#submit').click(function(){
+
+
+
             //$( "#submit" ).toggle( "highlight" );
             if(selected === 1){
                 var un = document.getElementById("loginUN").value;
