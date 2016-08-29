@@ -53,7 +53,7 @@ def signin(request):
       'token': token,
     }
 
-    return render(request, 'Main.html', context)
+    return render_to_response('Main.html')
 
   else:
     print("wrong")
