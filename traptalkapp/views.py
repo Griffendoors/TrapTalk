@@ -28,7 +28,17 @@ def signup(request):
   return HttpResponse("Success",c)
     
   
-    
+def signin(request):
+  c = {}
+  c.update(csrf(request))
+  username = request.POST.get("username", "")
+  password = request.POST.get("password", "")
+
+  if User.objects.filter(username__exact = username).exists():
+    u = User.objects.get(username__exact = username)
+    print(u.password)
+
+
 
 #return render_to_response("a_template.html", c)
 #return render(request, 'polls/detail.html', {'user': user})
