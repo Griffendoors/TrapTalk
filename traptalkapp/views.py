@@ -19,11 +19,11 @@ def signup(request):
   password = request.POST.get("password", "")
 
 
-    try:
-        user = User.objects.get(pk=username)
-    except User.DoesNotExist:
-        raise Http404("User does not exist")
-    return HttpResponse("Hello world." % password ,c)
+  try:
+      user = User.objects.get(pk=username)
+  except User.DoesNotExist:
+      raise Http404("User does not exist")
+  return HttpResponse("Hello world." % password ,c)
     
 
 
