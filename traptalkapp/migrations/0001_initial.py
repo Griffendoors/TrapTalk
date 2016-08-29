@@ -23,4 +23,9 @@ class Migration(migrations.Migration):
                 ('token', models.CharField(max_length=255)
             ],
         ),
+        options={
+            #'db_table': 'tblclients',
+            'managed': True,
+        },
     ]
+
