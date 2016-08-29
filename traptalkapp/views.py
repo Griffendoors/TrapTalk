@@ -38,7 +38,7 @@ def signin(request):
   password = request.POST.get("password", "")
 
   if User.objects.filter(username__exact = username).exists():
-
+    #CHECK PASSWORD?
     u = User.objects.get(username__exact = username)
 
     print(u.password)
