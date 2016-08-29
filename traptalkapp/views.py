@@ -20,7 +20,7 @@ def signup(request):
 
 
   try:
-      user = User.objects.get(username__exact = username)
+      user = User.objects.get(username__exact = username)     #use exists instead
   except User.DoesNotExist:
       raise Http404("User does not exist")
   return HttpResponse("Hello world." % password ,c)
