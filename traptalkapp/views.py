@@ -43,7 +43,9 @@ def signin(request):
 
     print(u.password)
 
-    u.token = get_random_string(length=32)
+    token = get_random_string(length=32)
+
+    u.token = token
 
     template = loader.get_template('Main.html')
 
