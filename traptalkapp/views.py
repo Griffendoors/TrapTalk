@@ -22,11 +22,10 @@ def signup(request):
 
   if User.Object.filter(username__exact = username).exists():
     return HttpResponse("Username already in use.",c)
-    
-    u = User(username = username, password = password)
-    u.save()
-    return HttpResponse("Success",c)
-  else:
+
+  u = User(username = username, password = password)
+  u.save()
+  return HttpResponse("Success",c)
     
   
     
