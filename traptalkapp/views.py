@@ -19,14 +19,15 @@ def signup(request):
   password = request.POST.get("password", "")
 
 
-  user = User.objects.get(username__exact = username)
 
-  if(User.DoesNotExist):
+  if User.Object.filter(username__exact = username).exists():
+    return HttpResponse("Username already in use.",c)
+    
     u = User(username = username, password = password)
     u.save()
     return HttpResponse("Success",c)
   else:
-    return HttpResponse("Username already in use.",c)
+    
   
     
 
