@@ -52,8 +52,8 @@ def signin(request):
     }
 
     return HttpResponse(template.render(context, request))
-    
-  else
+
+  else:
     print("wrong")
 
 
