@@ -20,7 +20,7 @@ def signup(request):
 
 
   try:
-      user = User.objects.get(pk=username)
+      user = User.objects.get(User__username__exact = username)
   except User.DoesNotExist:
       raise Http404("User does not exist")
   return HttpResponse("Hello world." % password ,c)
@@ -30,6 +30,11 @@ def signup(request):
 #return render_to_response("a_template.html", c)
 #return render(request, 'polls/detail.html', {'user': user})
 
+
+#Quote.objects.filter(author__exact = name) no
+#Quote.objects.filter(author__author_name=name) yes
+#Quote.objects.filter([model]__[field]__exact = [whatever])
+#User.objects.get(User__username__exact = username)
 
 
 #def index(request):
