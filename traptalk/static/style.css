@@ -180,6 +180,22 @@
 	margin: auto;
 }
 
+/**Notfication message**/
+#notify.index p{
+	text-align: center;
+	height: 30;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+	color: red;
+}
+
+
+
 /**text of go button**/
 #submit.index p{
 	text-align: center;

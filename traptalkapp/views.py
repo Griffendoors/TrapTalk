@@ -19,14 +19,16 @@ def signup(request):
   password = request.POST.get("password", "")
 
 
-  try:
-      user = User.objects.get(username__exact = username)     #use exists instead
-  except User.DoesNotExist:
-      #raise Http404("User does not exist")
-      return HttpResponse("No User",c)
-  return HttpResponse("User.",c)
-    
+  user = User.objects.get(username__exact = username)
 
+  if(User.DoesNotExist):
+    u = User(username = username, password = password)
+    u.save()
+    return HttpResponse("Success",c)
+  else:
+    return HttpResponse("Username already in use.",c)
+  
+    
 
 #return render_to_response("a_template.html", c)
 #return render(request, 'polls/detail.html', {'user': user})

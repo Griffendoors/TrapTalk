@@ -29,6 +29,7 @@
         </form>
     </div>
     <div class = "index" id = "submit"><p>Go</p></div>
+    <div class = "index" id = "notify"><p></p></div>
 </div>
 
 <script type="text/javascript">
@@ -146,8 +147,12 @@
                     },
 
                     success : function(data){
-                        alert('yes');
-                        console.log('data: ' + data);
+                        if(data === "Username already in use."){
+                            $('#notify.p').append(data);
+                        }
+                        else{
+                            $('#notify.p').append("Sign up success, please log in.");
+                        }
 
                     },
                       error: function (request, status, error) {
