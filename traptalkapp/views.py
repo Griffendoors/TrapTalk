@@ -41,7 +41,7 @@ def signin(request):
     #CHECK PASSWORD?
     u = User.objects.get(username__exact = username)
 
-    print(u.password)
+   # good-> print(u.password)
 
     token = get_random_string(length=32)
 
@@ -53,7 +53,7 @@ def signin(request):
       'token': token,
     }
 
-    return HttpResponse(template.render(context, request))
+    return render(request, 'Main.html', context)
 
   else:
     print("wrong")
