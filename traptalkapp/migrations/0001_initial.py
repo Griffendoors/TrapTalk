@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel("Greeting"),
         migrations.CreateModel(
             name='User',
             fields=[
