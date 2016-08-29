@@ -19,12 +19,16 @@ def signup(request):
   password = request.POST.get("password", "")
 
 
-  all_ = User.objects.all()
-  print(all_)
+    try:
+        user = User.objects.get(pk=username)
+    except User.DoesNotExist:
+        raise Http404("User does not exist")
+    return HttpResponse("Hello world." % password ,c)
+    
 
 
 #return render_to_response("a_template.html", c)
-  return HttpResponse("Hello world.",c)
+#return render(request, 'polls/detail.html', {'user': user})
 
 
 
