@@ -59,10 +59,6 @@
              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
 
-        $.ajaxSetup({
-
-        });
-
 
 
         var selected = 2;
@@ -110,15 +106,54 @@
             $( this ).css({
                 'background-color': '#b3c6ff'
             });
-          });
+        });
 
 
 
         $('#submit').click(function(){
-
             if(selected === 1){
+
+                if(document.getElementById("loginUN").value === ""){
+                    alert("Username field empty!")
+                    return;
+                }
+                if(document.getElementById("loginPW").value === ""){
+                    alert("Password field empty!")
+                }
+                    
                 var un = document.getElementById("loginUN").value;
                 var pw = document.getElementById("loginPW").value;
+
+
+
+
+                $.ajax({
+                        type: "POST",
+                        url : "https://traptalk.herokuapp.com/signin/",
+                        data: {username: un, password: pw},
+
+
+                        beforeSend : function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        },
+
+                        success : function(data){
+
+
+                        },
+                          error: function (request, status, error) {
+                              alert('no');
+                           }
+                      },"json");
+
+                }
+
+
+
+
+
             }
             else{
                 if(document.getElementById("signupUN").value === ""){
@@ -133,37 +168,35 @@
                 var pw = document.getElementById("signupPW").value;
 
 
-            $.ajax({
-                    type: "POST",
-                    url : "https://traptalk.herokuapp.com/signup/",
-                    data: {username: un, password: pw},
+                $.ajax({
+                        type: "POST",
+                        url : "https://traptalk.herokuapp.com/signup/",
+                        data: {username: un, password: pw},
 
 
-                    beforeSend : function(xhr, settings) {
-                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                        }
-                    },
+                        beforeSend : function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        },
 
-                    success : function(data){
-                        if(data === "Username already in use."){
-                            $('#submit').append(data);
-                        }
-                        else{
-                            $('#submit').append("Sign up success, please log in.");
-                        }
+                        success : function(data){
+                            if(data === "Username already in use."){
+                                $('#submit').append(data);
+                            }
+                            else{
+                                $('#submit').append("Sign up success, please log in.");
+                            }
 
-                    },
-                      error: function (request, status, error) {
-                          alert('no');
-                       }
-                  },"json");
+                        },
+                          error: function (request, status, error) {
+                              alert('no');
+                           }
+                      },"json");
 
-                    
+                }
 
-            }
-
-});
+        });
 
 
 

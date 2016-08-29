@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.utils import timezone
 from django.core.context_processors import csrf
+from django.utils.crypto import get_random_string
+
+
 
 def index(request):
   template = loader.get_template('index.html')
@@ -35,8 +38,26 @@ def signin(request):
   password = request.POST.get("password", "")
 
   if User.objects.filter(username__exact = username).exists():
+
     u = User.objects.get(username__exact = username)
+
     print(u.password)
+
+    u.token = get_random_string(length=32)
+
+    template = loader.get_template('Main.html')
+
+    context = {
+      'token': token,
+    }
+
+    return HttpResponse(template.render(context, request))
+    
+  else
+    print("wrong")
+
+
+
 
 
 
