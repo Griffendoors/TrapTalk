@@ -139,14 +139,34 @@
                         },
 
                         success : function(data){
-                            alert(success);
-                            alert(data);
+                            alert('signin success function reached')
+                            alert('data: ' + data);
                             var token = sessionStorage.getItem('token');
-                            alert(token);
+                            alert('token: ' + token);
+
+                            for (var i = 0; i < data.length; i++) {
+                                for (var prop in data[i]) {
+                                    if (data[i].hasOwnProperty(prop)) {
+                                        var key = prop;
+                                        break;
+                                    }
+                                }
+                                alert('data.key: ' + key);
+                            }                            
 
                         },
                           error: function (request, status, error) {
-                              alert('no');
+                              alert('signin error function reached');
+                              alert('error status: ' + status);
+                                for (var i = 0; i < error.length; i++) {
+                                    for (var prop in error[i]) {
+                                        if (error[i].hasOwnProperty(prop)) {
+                                            var key = prop;
+                                            break;
+                                        }
+                                    }
+                                    alert('error.key: ' + key);
+                            }  
                            }
 
                       },"json");
@@ -184,12 +204,34 @@
                         },
 
                         success : function(data){
-                            alert(data);
-                            alert(data.message);
+                            alert('signup success function reached');
+                            alert('data:' + data);
+                            alert('datamsg:' + data.message);
+
+
+                            for (var i = 0; i < data.length; i++) {
+                                for (var prop in data[i]) {
+                                    if (data[i].hasOwnProperty(prop)) {
+                                        var key = prop;
+                                        break;
+                                    }
+                                }
+                                alert('data.key: ' + key);
+                            }
 
                         },
                           error: function (request, status, error) {
-                              alert('no');
+                              alert('signup error function reached');
+                              alert('error status: ' + status);
+                                for (var i = 0; i < error.length; i++) {
+                                    for (var prop in error[i]) {
+                                        if (error[i].hasOwnProperty(prop)) {
+                                            var key = prop;
+                                            break;
+                                        }
+                                    }
+                                    alert('error.key: ' + key);
+                            }  
                            }
                       },"json");
 
