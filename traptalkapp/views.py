@@ -28,13 +28,13 @@ def signup(request):
 
   if User.objects.filter(username__exact = username).exists():
     content = {'message': 'username already in use'}
-    return HttpResponse(content = content, status_code = 200)
+    return HttpResponse(content = content, status = 200)
 
 
   u = User(username = username, password = password)
   u.save()
   content = {'message': 'success'}
-  return HttpResponse(content = content, status_code= 200)
+  return HttpResponse(content = content, status = 200)
     
   
 def signin(request):
@@ -50,7 +50,7 @@ def signin(request):
 
     if(u.password != password):
       content = {'message': 'username or password incorrect'}
-      return HttpResponse(content = content, status_code= 403)
+      return HttpResponse(content = content, status= 403)
 
 
     token = get_random_string(length=50)
@@ -65,7 +65,7 @@ def signin(request):
 
   else:
     content = {'message': 'username or password incorrect'}
-    return HttpResponse(content = content, status_code= 403)
+    return HttpResponse(content = content, status = 403)
 
 
 
