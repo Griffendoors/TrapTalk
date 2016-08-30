@@ -49,7 +49,7 @@ def signin(request):
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
 
-    if(!u.password == password):
+    if(u.password != password):
       content = {'message': 'username or password incorrect'}
       return Response(content, status=status.HTTP_403_FORBIDDEN,c)
 
