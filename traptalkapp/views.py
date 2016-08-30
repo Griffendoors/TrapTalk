@@ -50,7 +50,7 @@ def signin(request):
     u = User.objects.get(username__exact = username)
 
     if(u.password != password):
-      content = {'message': 'username or password incorrect'}
+      content = {'messageFUCK': 'username or password incorrect'}
       return HttpResponse(content = content, status= 403)
 
 

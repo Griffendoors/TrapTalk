@@ -196,17 +196,12 @@
 
                         success : function(data){
                             alert('signup success function reached');
+                            alert('data: ' + data);
+                            alert('data[0]: ' + data[0]);
+                            alert('data[1]: ' + data[1]);
+                            alert('data[2]: ' + data[2]);
 
 
-                            for (var i = 0; i < data.message.length; i++) {
-                                for (var prop in data.message[i]) {
-                                    if (data.message[i].hasOwnProperty(prop)) {
-                                        var key = prop;
-                                        break;
-                                    }
-                                }
-                                alert('data.message.key: ' + key);
-                            }
 
                         },
                           error: function (request, status, error) {
