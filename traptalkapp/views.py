@@ -59,7 +59,7 @@ def signin(request):
 
     print(token)
 
-    template = loader.get_template('Main.html')
+    template = loader.get_template('main.html')
 
     request.session['token'] = token
     return redirect(template.render(request))
