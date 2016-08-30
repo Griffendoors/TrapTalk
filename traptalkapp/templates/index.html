@@ -139,11 +139,16 @@
                         },
 
                         success : function(data){
+                            alert(success);
+                            alert(data);
+                            var token = sessionStorage.getItem('token');
+                            alert(token);
 
                         },
                           error: function (request, status, error) {
                               alert('no');
                            }
+
                       },"json");
 
                 }
@@ -179,7 +184,8 @@
                         },
 
                         success : function(data){
-                            alert(data)
+                            alert(data);
+                            alert(data.message);
 
                         },
                           error: function (request, status, error) {
