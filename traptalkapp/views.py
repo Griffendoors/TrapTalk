@@ -28,7 +28,7 @@ def signup(request):
 
 
   if User.objects.filter(username__exact = username).exists():
-    content = {'message': 'username already in use'}
+    content = {'messagefuck': 'username already in use'}
     return HttpResponse(content = content, status = 200)
 
 
