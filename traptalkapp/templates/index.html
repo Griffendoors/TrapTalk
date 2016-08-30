@@ -125,7 +125,6 @@
                 var pw = document.getElementById("loginPW").value;
 
 
-                console.log("here");
 
                 $.ajax({
                         type: "POST",
@@ -180,12 +179,7 @@
                         },
 
                         success : function(data){
-                            if(data === "Username already in use."){
-                                $('#submit').append(data);
-                            }
-                            else{
-                                $('#submit').append("Sign up success, please log in.");
-                            }
+                            alert(data)
 
                         },
                           error: function (request, status, error) {

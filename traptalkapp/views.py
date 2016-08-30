@@ -8,59 +8,86 @@ from django.utils import timezone
 from django.core.context_processors import csrf
 from django.utils.crypto import get_random_string
 from django.shortcuts import render_to_response
-
+from django.http import HttpResponseForbidden
+from rest_framework import status
+from rest_framework.response import Response
 
 
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render(request))
+  #200 Returned here automatically
 
 
 def signup(request):
   c = {}
   c.update(csrf(request))
-  username = request.POST.get("username", "")
-  password = request.POST.get("password", "")
 
+  username = request.POST.get("username")
+  password = request.POST.get("password")
 
 
   if User.objects.filter(username__exact = username).exists():
-    return HttpResponse("Username already in use.",c)
+    content = {'message': 'username already in use'}
+    return Response(content, status=status.HTTP_200_OK,c)
+
 
   u = User(username = username, password = password)
   u.save()
-  return HttpResponse("Success",c)
+  content = {'message': 'success'}
+  return Response(content, status=status.HTTP_200_OK,c)
     
   
 def signin(request):
   c = {}
   c.update(csrf(request))
-  username = request.POST.get("username", "")
-  password = request.POST.get("password", "")
+
+  username = request.POST.get("username")
+  password = request.POST.get("password")
+
 
   if User.objects.filter(username__exact = username).exists():
-    #CHECK PASSWORD?
     u = User.objects.get(username__exact = username)
 
-   # good-> print(u.password)
+    if(!u.password == password):
+      content = {'message': 'username or password incorrect'}
+      return Response(content, status=status.HTTP_403_FORBIDDEN,c)
 
-    token = get_random_string(length=32)
 
+    token = get_random_string(length=50)
     u.token = token
+
+    print(token)
 
     template = loader.get_template('Main.html')
 
-    context = {
-      'token': token,
-    }
-
-    return render_to_response('Main.html')
+    request.session['token'] = token
+    return redirect(template.render(request),c)
 
   else:
-    print("wrong")
+    content = {'message': 'username or password incorrect'}
+    return Response(content, status=status.HTTP_403_FORBIDDEN,c)
 
 
 
+  def main(request):
+    token = request.session.pop('token', None)
+
+
+
+
+
+
+
+#t = loader.get_template('myapp/index.html')
+#c = {'foo': 'bar'}
+#return HttpResponse(t.render(c, request), content_type='application/xhtml+xml')
+
+
+#return HttpResponse("Username already in use.",c)
+
+#content = {'please move along': 'nothing to see here'}
+#return Response(content, status=status.HTTP_404_NOT_FOUND)
 
 
 
