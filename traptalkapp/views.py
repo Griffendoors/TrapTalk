@@ -46,14 +46,14 @@ def signup(request):
 
   if User.objects.filter(username__exact = username).exists():
       data = {'message': 'username in use '}
-      response = JsonResponse({'status':'false','message':data}, status=200)
+      response = JsonResponse({'status':'false','data':data}, status=200)
       return response
 
   u = User(username = username, password = password)
   u.save()
 
   data = {'message': 'success'}
-  response = JsonResponse({'status':'false','message':data}, status=200)
+  response = JsonResponse({'status':'false','data':data}, status=200)
   return response
    
   
