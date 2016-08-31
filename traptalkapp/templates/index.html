@@ -183,9 +183,13 @@
 
                         success : function(data){
                             alert('signup success function reached');
-                            alert('fuck you: ' + data.message);
-                            alert('blep: ' + data["message"]);
-                            alert('blep: ' + data['message']);
+                            var temp = JSON.parse(data);
+                            alert('temp: ' + temp);
+                            alert('tmsg: ' + temp.message);
+                            alert('t[0]: ' + temp[0]);
+                            alert('t[0]m: ' + temp[0].message);
+                            alert('t[m]: ' + temp['message']);
+ 
                         },
                           error: function (request, status, error) {
                               alert('signup error function reached');
