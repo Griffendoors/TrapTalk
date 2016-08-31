@@ -139,25 +139,11 @@
                         },
 
                         success : function(data){
-                            alert('signin success function reached')
-                            alert('data: ' + data);
-                            var token = sessionStorage.getItem('token');
-                            alert('token: ' + token);
-
-                            for (var i = 0; i < data.length; i++) {
-                                for (var prop in data[i]) {
-                                    if (data[i].hasOwnProperty(prop)) {
-                                        var key = prop;
-                                        break;
-                                    }
-                                }
-                                alert('data.key: ' + key);
-                            }                            
+                            alert('signin success function reached')                        
 
                         },
                           error: function (xhr, status, error) {
                               alert('signin error function reached');
-                              alert('xhr resp txt: ' + xhr.responseText);
                            }
 
                       },"json");
@@ -196,29 +182,13 @@
 
                         success : function(data){
                             alert('signup success function reached');
-                            $.each(data, function(key, items) {
-                                var label = items.label;
-                                var value = items.value;
-                                alert('label: ' + label + ', ' + 'value: ' + value);
-                            });
-
-
-
+                            alert(data);
+                            alert(data['message']);
 
                         },
                           error: function (request, status, error) {
-                                alert('request resp txt: ' + request.responseText);
                               alert('signup error function reached');
-                              alert('error status: ' + status);
-                                for (var i = 0; i < error.length; i++) {
-                                    for (var prop in error[i]) {
-                                        if (error[i].hasOwnProperty(prop)) {
-                                            var key = prop;
-                                            break;
-                                        }
-                                    }
-                                    alert('error.key: ' + key);
-                            }  
+  
                            }
                       },"json");
 

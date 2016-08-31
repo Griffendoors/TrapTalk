@@ -28,14 +28,19 @@ def signup(request):
 
 
   if User.objects.filter(username__exact = username).exists():
-    content = {'message': 'username already in use'}
-    return HttpResponse(content = content, status = 200)
+    response = HttpResponse()
+    response['message'] = 'username already in use'
+    response.status_code = 200
+    return response
 
 
   u = User(username = username, password = password)
   u.save()
-  content = {'message': 'success'}
-  return HttpResponse(content = content, status = 200)
+
+  response = HttpResponse()
+  response['message'] = 'username already in use'
+  response.status_code = 200
+  return response
     
   
 def signin(request):
