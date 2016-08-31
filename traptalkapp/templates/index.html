@@ -114,11 +114,12 @@
             if(selected === 1){
 
                 if(document.getElementById("loginUN").value === ""){
-                    alert("Username field empty!")
+                    alert("Username field empty!");
                     return;
                 }
                 if(document.getElementById("loginPW").value === ""){
-                    alert("Password field empty!")
+                    alert("Password field empty!");
+                    return;
                 }
                     
                 var un = document.getElementById("loginUN").value;
@@ -137,24 +138,17 @@
                                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
                             }
                         },
-
                         success : function(data){
                             alert('signin success function reached')                        
 
                         },
-                          error: function (xhr, status, error) {
+                        error: function (xhr, status, error) {
                               alert('signin error function reached');
-                           }
+                        }
 
-                      },"json");
+                },"json");
 
-                }
-
-
-
-
-
-
+            }
             else{
                 if(document.getElementById("signupUN").value === ""){
                     alert("Username field empty!")
@@ -182,31 +176,23 @@
                         },
 
                         success : function(data){
-                            alert('signup success function reached');
-                            //var temp = $.parseJSON(data['data']);
-                           // alert('gg: ' + temp)
-                           // for (var key in data) {
-                            //    if (data.hasOwnProperty(key)) {
-                            //        alert(data[key]);
-//
-                              //  }
-                           // }
-                            alert('fuck: '+ data['message']);
+                            if(data['message'] === 'Username in use'){
+                                alert(data);
+                            }
+                            else if(data['message'] === 'Signup Success'){
+                                alert(data);
+                                document.getElementById("signupUN").value = "";
+                                document.getElementById("signupPW").value = "";
+                            }
  
                         },
-                          error: function (request, status, error) {
-                              alert('signup error function reached');
-  
-                           }
-                      },"json");
+                        error: function (request, status, error) {
 
-                }
 
+                        }
+                },"json");
+            }
         });
-
-
-
-
      });
 
 

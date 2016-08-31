@@ -20,22 +20,6 @@ def index(request):
   #200 Returned here automatically
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def signup(request):
 
   c = {}
@@ -45,38 +29,16 @@ def signup(request):
   password = request.POST.get("password")
 
   if User.objects.filter(username__exact = username).exists():
-      response = JsonResponse({'status':'false','message': 'username in use '}, status=200)
+      response = JsonResponse({'status':'false','message': 'Username in use'}, status=200)
       return response
 
   u = User(username = username, password = password)
   u.save()
 
-  response = JsonResponse({'status':'false','message': 'success'}, status=200)
+  response = JsonResponse({'status':'false','message': 'Signup Success'}, status=200)
   return response
    
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def signin(request):
