@@ -186,10 +186,11 @@
                             //var temp = $.parseJSON(data);
                             for (var key in data) {
                                 if (data.hasOwnProperty(key)) {
-                                    alert(key);
+                                    alert(key.value);
 
                                 }
                             }
+                            alert(data.data);
  
                         },
                           error: function (request, status, error) {
