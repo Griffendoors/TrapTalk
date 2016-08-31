@@ -172,7 +172,6 @@
                         type: "POST",
                         url : "https://traptalk.herokuapp.com/signup/",
                         data: {username: un, password: pw},
-                        contentType: "application/json",
                         dataType : "json",
 
 
@@ -185,7 +184,8 @@
                         success : function(data){
                             alert('signup success function reached');
                             alert('fuck you: ' + data.message);
-
+                            alert('blep: ' + data["message"]);
+                            alert('blep: ' + data['message']);
                         },
                           error: function (request, status, error) {
                               alert('signup error function reached');

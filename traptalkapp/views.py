@@ -10,6 +10,7 @@ from django.utils.crypto import get_random_string
 from django.shortcuts import render_to_response
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
+from django.core import serializers
 
 
 
@@ -28,17 +29,18 @@ def signup(request):
 
 
   if User.objects.filter(username__exact = username).exists():
-      content = {'message': 'username in use '}
-      return HttpResponse(content = content, status= 200)
+      d = {'message': 'username in use '}
+      data = serializers.serialize('json', d)
+      return HttpResponse(content = data, ontent_type='application/json', status= 200)
 
 
   u = User(username = username, password = password)
   u.save()
 
-  content = {'message': 'Success '}
-  return HttpResponse(content = content, status= 200)
-  return response
-    
+  d = {'message': 'Success '}
+  data = serializers.serialize('json', d)
+  return HttpResponse(content = data, ontent_type='application/json',  status= 200)
+   
   
 def signin(request):
   c = {}
