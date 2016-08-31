@@ -28,7 +28,7 @@ def signup(request):
 
 
   if User.objects.filter(username__exact = username).exists():
-    content = {'messagefuck': 'username already in use'}
+    content = {'message': 'username already in use'}
     return HttpResponse(content = content, status = 200)
 
 
@@ -50,7 +50,7 @@ def signin(request):
     u = User.objects.get(username__exact = username)
 
     if(u.password != password):
-      content = {'messageFUCK': 'username or password incorrect'}
+      content = {'message': 'username or password incorrect'}
       return HttpResponse(content = content, status= 403)
 
 
