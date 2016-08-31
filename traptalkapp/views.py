@@ -30,7 +30,7 @@ def signup(request):
   if User.objects.filter(username__exact = username).exists():
     response = HttpResponse()
     response['message'] = 'username already in use'
-    response.status_code = 200
+    response.status_code = 404
     return response
 
 
@@ -39,7 +39,7 @@ def signup(request):
 
   response = HttpResponse()
   response['message'] = 'username already in use'
-  response.status_code = 200
+  response.status_code = 404
   return response
     
   

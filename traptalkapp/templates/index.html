@@ -185,6 +185,14 @@
                             alert(data);
                             alert(data['message']);
 
+                            $.each(data, function() {
+                              $.each(this, function(k, v) {
+                                alert('k: '+k + ', ' + 'v: ' + v);
+                              });
+                            });
+
+
+
                         },
                           error: function (request, status, error) {
                               alert('signup error function reached');
