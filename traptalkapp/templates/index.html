@@ -139,11 +139,15 @@
                             }
                         },
                         success : function(data){
-                            alert('signin success function reached')                        
+                            alert('signin success function reached');
+                            session_start();
+                            alert('d: ' + data['token']);
+
 
                         },
                         error: function (xhr, status, error) {
                               alert('signin error function reached');
+                              alert(xhr.status);
                         }
 
                 },"json");

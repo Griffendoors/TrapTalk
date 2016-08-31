@@ -29,13 +29,13 @@ def signup(request):
   password = request.POST.get("password")
 
   if User.objects.filter(username__exact = username).exists():
-      response = JsonResponse({'status':'false','message': 'Username in use'}, status=404)
+      response = JsonResponse({'status':'false','message': 'Username in use'}, status=200)
       return response
 
   u = User(username = username, password = password)
   u.save()
 
-  response = JsonResponse({'status':'false','message': 'Signup Success'}, status=404)
+  response = JsonResponse({'status':'false','message': 'Signup Success'}, status=200)
   return response
    
   
@@ -53,23 +53,22 @@ def signin(request):
     u = User.objects.get(username__exact = username)
 
     if(u.password != password):
-      content = {'message': 'username or password incorrect'}
-      return HttpResponse(content = content, status= 403)
+      response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+      return response
 
 
     token = get_random_string(length=50)
     u.token = token
 
-    print(token)
-
     template = loader.get_template('main.html')
 
     request.session['token'] = token
+
     return redirect(template.render(request))
 
   else:
-    content = {'message': 'username or password incorrect'}
-    return HttpResponse(content = content, status = 403)
+    response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+    return response
 
 
 
