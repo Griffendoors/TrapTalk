@@ -177,10 +177,10 @@
 
                         success : function(data){
                             if(data['message'] === 'Username in use'){
-                                alert(data);
+                                alert(data['message']);
                             }
                             else if(data['message'] === 'Signup Success'){
-                                alert(data);
+                                alert(data['message']);
                                 document.getElementById("signupUN").value = "";
                                 document.getElementById("signupPW").value = "";
                             }
