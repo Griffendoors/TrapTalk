@@ -60,7 +60,7 @@ def signin(request):
     token = get_random_string(length=50)
     u.token = token
 
-    template = loader.get_template('main.html')
+    template = loader.get_template('Main.html')
 
     request.session['token'] = token
 
@@ -69,18 +69,6 @@ def signin(request):
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

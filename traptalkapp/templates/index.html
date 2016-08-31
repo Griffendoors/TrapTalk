@@ -146,8 +146,12 @@
 
                         },
                         error: function (xhr, status, error) {
-                              alert('signin error function reached');
-                              alert(xhr.status);
+                              if(xhr.status === 403){
+                                alert('Incorrect username or Password');
+                              }
+                              else{
+                                alert('Server error: '+xhr.status)
+                              }
                         }
 
                 },"json");
