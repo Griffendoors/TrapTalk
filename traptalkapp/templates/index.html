@@ -196,7 +196,10 @@
 
                         success : function(data){
                             alert('signup success function reached');
-                            alert(data['message']);
+                            $.each(data, function(key, items) {
+                                var label = items.label;
+                                var value = items.value;
+                            }
 
 
 
