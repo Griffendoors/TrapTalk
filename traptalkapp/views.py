@@ -66,7 +66,11 @@ def signin(request):
 
     #return redirect(template.render(request))
 
-    return redirect('main.html')
+    location = 'main.html'
+    response = HttpResponse(location, status=200)
+    response['Location'] = location
+    return response
+   #return redirect('main.html')
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
