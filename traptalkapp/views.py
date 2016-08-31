@@ -29,13 +29,13 @@ def signup(request):
   password = request.POST.get("password")
 
   if User.objects.filter(username__exact = username).exists():
-      response = JsonResponse({'status':'false','message': 'Username in use'}, status=200)
+      response = JsonResponse({'status':'false','message': 'Username in use'}, status=404)
       return response
 
   u = User(username = username, password = password)
   u.save()
 
-  response = JsonResponse({'status':'false','message': 'Signup Success'}, status=200)
+  response = JsonResponse({'status':'false','message': 'Signup Success'}, status=404)
   return response
    
   
