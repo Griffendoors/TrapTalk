@@ -183,7 +183,7 @@
 
                         success : function(data){
                             alert('signup success function reached');
-                            var temp = JSON.parse(data);
+                            var temp = $.parseJSON(data);
                             alert('temp: ' + temp);
                             alert('tmsg: ' + temp.message);
                             alert('t[0]: ' + temp[0]);
