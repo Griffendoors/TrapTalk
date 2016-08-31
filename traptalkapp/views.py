@@ -66,7 +66,7 @@ def signin(request):
 
     #return redirect(template.render(request))
 
-    return redirect('Main.html')
+    return redirect('traptalkapp.views.main')
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
@@ -76,4 +76,5 @@ def signin(request):
 
 
   def main(request):
+    print('yosza')
     token = request.session.pop('token', None)
