@@ -45,12 +45,15 @@ def signup(request):
   password = request.POST.get("password")
 
   if User.objects.filter(username__exact = username).exists():
-      response = JsonResponse({'status':'false','data':'username in use '}, status=200)
+      data = {'message': 'username in use '}
+      response = JsonResponse({'status':'false',data}, status=200)
       return response
 
   u = User(username = username, password = password)
   u.save()
-  response = JsonResponse({'status':'false','data':'success'}, status=200)
+
+  data = {'message': 'success'}
+  response = JsonResponse({'status':'false',data}, status=200)
   return response
    
   
