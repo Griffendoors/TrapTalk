@@ -15,7 +15,7 @@ from django.http import JsonResponse
 
 
 def index(request):
-  template = loader.get_template('index.html')
+  template = loader.get_template('traptalk/index.html')
   return HttpResponse(template.render(request))
   #200 Returned here automatically
 
@@ -60,7 +60,7 @@ def signin(request):
     token = get_random_string(length=50)
     u.token = token
 
-    template = loader.get_template('main.html')
+    template = loader.get_template('traptalk/main.html')
 
     request.session['token'] = token
 
