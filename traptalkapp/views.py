@@ -60,17 +60,11 @@ def signin(request):
     token = get_random_string(length=50)
     u.token = token
 
-    #template = loader.get_template('main.html')
+    template = loader.get_template('main.html')
 
     request.session['token'] = token
 
-    #return redirect(template.render(request))
-
-    location = 'main.html'
-    response = HttpResponse(location, status=200)
-    response['Location'] = location
-    return response
-   #return redirect('main.html')
+    return HttpResponseRedirect(template.render(request))
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
