@@ -12,7 +12,8 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.core import serializers
 from django.http import JsonResponse
-
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 def index(request):
   template = loader.get_template('traptalk/index.html')
@@ -63,13 +64,17 @@ def signin(request):
 
     request.session['token'] = token
 
-    return HttpResponseRedirect('traptalkapp/main.html')
+    return HttpResponseRedirect(reverse('main.view'));
 
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
 
+
+
+def main(request):
+  return render(request, 'traptalkapp/main.html');
 
 
 
