@@ -64,7 +64,7 @@ def signin(request):
 
     request.session['token'] = token
 
-    return HttpResponseRedirect(template.render(request))
+    return redirect(template.render(request))
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
