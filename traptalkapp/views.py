@@ -60,11 +60,12 @@ def signin(request):
     token = get_random_string(length=50)
     u.token = token
 
-    #template = loader.get_template('traptalk/main.html')
 
     request.session['token'] = token
 
-    return redirect('main')
+    template = loader.get_template('traptalk/index.html')
+    return HttpResponse(template.render(request))
+
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
@@ -73,8 +74,5 @@ def signin(request):
 
 
 
-def main(request):
-  print('hello');
-  token = request.session.pop('token', None)
-  template = loader.get_template('traptalk/index.html')
-  return HttpResponse(template.render(request))
+
+#token = request.session.pop('token', None)
