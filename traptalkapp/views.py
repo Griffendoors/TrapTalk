@@ -64,7 +64,7 @@ def signin(request):
 
     request.session['token'] = token
 
-    return HttpResponseRedirect(reverse('main.view'));
+    return HttpResponseRedirect(reverse('main'));
 
 
   else:
