@@ -81,3 +81,7 @@ def main(request):
 
   template = loader.get_template('traptalk/main.html')
   return HttpResponse(template.render(request))
+
+  #pass username around to, cross check, use to populate friends lists etv
+  #sesion token not being updated
+  
