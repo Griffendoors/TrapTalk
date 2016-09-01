@@ -74,7 +74,7 @@ def signin(request):
 
 
 def main(request):
-  return render(request, 'traptalk/main.html');
+  return redirect('traptalk/main.html');
 
 
 
