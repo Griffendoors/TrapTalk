@@ -74,7 +74,8 @@ def signin(request):
 
 
 def main(request):
-  return HttpResponseRedirect('templates/traptalk/main.html')
+  template = loader.get_template('traptalk/main.html')
+  return HttpResponseRedirect(template)
 
 
 
