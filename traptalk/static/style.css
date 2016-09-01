@@ -49,8 +49,6 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-
-
 }
 
 /**switch to login tab**/
@@ -205,16 +203,71 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-	border-radius: 15px;
 }
+
+
+/**Control header panel top**/
+#headerbar.main{
+	background-color: #d1d1e0;
+	width: 100%;
+	height: 5%;
+
+}
+
+/**Header art**/
+#header.main{
+	width: 150px;
+	height: 50px;
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	float:left;
+}
+
+/**logout Button**/
+#logout.main{
+	border-radius: 10px;
+	background-color: #b3c6ff;
+	height: 50;
+	width: 150;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	float: right;
+}
+
+
+/**text of logout button**/
+#logout.main p{
+	text-align: center;
+	height: 30;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+}
+
 
 
 /**Main outer div**/
-#outer.main{
+#outer.index{
 	background-color: #3366ff;
-	width: 100%;
-	height: 100%;
+	width: 300px;
+	height: 400px;
 
 
 }
+
+
+
 
