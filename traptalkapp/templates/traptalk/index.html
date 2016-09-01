@@ -144,12 +144,8 @@
                             }
                         },
                         success : function(data){
-                            alert('token: ' + data['message']);
-                            var token = data['message'];
-                            
-                            sessionStorage.setItem('token', token);
+                            sessionStorage.setItem('token', data['message'];);
                             window.location.replace("main");
-
 
                         },
                         error: function (xhr, status, error) {
@@ -157,7 +153,7 @@
                                 alert('Incorrect username or Password');
                               }
                               else{
-                                alert('Server error: '+xhr.status)
+                                alert('Server error: '+xhr.status);
                               }
                         }
 
@@ -201,9 +197,8 @@
                             }
  
                         },
-                        error: function (request, status, error) {
-
-
+                        error: function (xhr, status, error) {
+                            alert('Server error: '+ xhr.status);
                         }
                 },"json");
             }
