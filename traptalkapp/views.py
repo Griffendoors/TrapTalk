@@ -64,7 +64,7 @@ def signin(request):
 
     request.session['token'] = token
 
-    return redirect('traptalk')
+    return redirect('main')
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
