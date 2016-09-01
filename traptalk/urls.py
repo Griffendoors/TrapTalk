@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^$', traptalkapp.views.index, name='index'),
     url('signup$', traptalkapp.views.signup, name='signup'),
     url('signin$', traptalkapp.views.signin, name='signin'),
-    url('main$', traptalkapp.views.main, name='main'),
+    #url('main$', traptalkapp.views.main, name='main'),
     url(r'^admin/', include(admin.site.urls)),
 ]
