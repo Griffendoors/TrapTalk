@@ -75,8 +75,8 @@ def signin(request):
 
 def main(request):
   template = loader.get_template('traptalk/index.html')
-  return HttpResponse(template.render())
-  #return render_to_response('traptalk/index.html')
+  #return HttpResponse(template.render())
+  return render_to_response('traptalk/index.html')
 
 
 
