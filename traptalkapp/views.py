@@ -74,7 +74,7 @@ def signin(request):
 
 
 def main(request):
-  return redirect('traptalkapp/traptalk/main.html');
+  return redirect('templates/traptalk/main.html');
 
 
 
