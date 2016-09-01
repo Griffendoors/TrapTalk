@@ -64,7 +64,7 @@ def signin(request):
 
     request.session['token'] = token
 
-    return redirect('traptalk/main.html')
+    return redirect('traptalk')
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
@@ -74,4 +74,7 @@ def signin(request):
 
 
 def main(request):
+  print('hello');
   token = request.session.pop('token', None)
+  template = loader.get_template('traptalk/index.html')
+  return HttpResponse(template.render(request))
