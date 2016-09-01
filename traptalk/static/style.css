@@ -210,7 +210,8 @@
 #headerbar.main{
 	background-color: #d1d1e0;
 	width: 100%;
-	height: 5%;
+	height: 50px;
+	position: relative;
 
 }
 
