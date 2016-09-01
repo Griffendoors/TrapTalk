@@ -73,4 +73,6 @@ def signin(request):
 
 
 
-#def main(request):
+def main(request):
+  template = loader.get_template('traptalk/main.html')
+  return HttpResponse(template.render(request))
