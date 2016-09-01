@@ -60,11 +60,11 @@ def signin(request):
 
     token = get_random_string(length=50)
     u.token = token
+    u.save()
 
 
-    request.session['token'] = token
-
-    return HttpResponseRedirect(reverse('main'));
+    response = JsonResponse({'status':'false','message': token}, status=200)
+    return response
 
 
   else:
@@ -74,11 +74,3 @@ def signin(request):
 
 
 def main(request):
-  template = loader.get_template('traptalk/index.html')
-  #return HttpResponse(template.render())
-  return render_to_response('traptalk/index.html')
-
-
-
-
-#token = request.session.pop('token', None)

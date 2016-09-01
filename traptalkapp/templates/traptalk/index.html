@@ -36,6 +36,11 @@
      $( document ).ready( function(){
 
 
+        $.ajaxSetup ({
+            cache: false
+        });
+
+
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
@@ -139,10 +144,11 @@
                             }
                         },
                         success : function(data){
-                            alert('signin success function reached');
+                            alert('token: ' + data['message']);
+                            var token = data['message'];
                             
-                            //session_start();
-                            alert('d: ' + data['token']);
+                            sessionStorage.setItem('token', token);
+                            window.location.replace("main.html");
 
 
                         },
