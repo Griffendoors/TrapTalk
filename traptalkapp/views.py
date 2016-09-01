@@ -63,8 +63,7 @@ def signin(request):
 
     request.session['token'] = token
 
-    template = loader.get_template('traptalk/index.html')
-    return template.render(request)
+    return HttpResponseRedirect('traptalkapp/main.html')
 
 
   else:
