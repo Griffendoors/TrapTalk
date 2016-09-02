@@ -213,13 +213,11 @@
 	width: 120px;
 	height: 40px;
 	background-color: #b3c6ff;
-	position: absolute;
 	margin-left:0;
 	margin-top:0; 
 	margin-bottom:0;  
 	margin-right:auto;
 	border-radius: 10px;
-	display: inline;
 }
 
 /**logout Button**/
@@ -232,8 +230,6 @@
 	margin-right:0;
 	border-radius: 10px;
 	background-color: #b3c6ff;
-	position: absolute;
-	display: inline;
 }
 
 
