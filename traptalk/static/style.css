@@ -209,7 +209,7 @@
 }
 
 /**Header art**/
-#headerBar.main #header {
+#header.main{
 	width: 120px;
 	height: 40px;
 	margin-left:0;
@@ -217,8 +217,7 @@
 	margin-bottom: auto;  
 	margin-right:auto;
 	border-radius: 10px;
-
-	position: absolute;
+	
   	top: 0;
   	left: 0;
   	bottom: 0;
@@ -226,7 +225,7 @@
 }
 
 /**logout Button**/
-#headerBar.main #logout {
+#logout.main{
 	width: 120px;
 	height: 40px;
 	margin-left:auto;
@@ -238,7 +237,6 @@
 	display: inline;
 	float: right;
 
-  	position: absolute;
   	top: 0;
   	left: 0;
   	bottom: 0;
