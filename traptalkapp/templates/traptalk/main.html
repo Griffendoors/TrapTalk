@@ -31,7 +31,22 @@
 
 <script type="text/javascript">
 
-     $( document ).ready( function(){
+    $( document ).ready( function(){
+
+
+
+	$('#toSend').bind("enterKey",function(e){
+
+		var text = document.getElementById("toSend").value;
+		$('#received').append(text);
+		$('#toSend').val("");
+		
+	});
+	$('toSend').keyup(function(e){
+	if(e.keyCode == 13){
+		$(this).trigger("enterKey");
+	}
+	});
 
 
      	var token = sessionStorage.getItem('token');
