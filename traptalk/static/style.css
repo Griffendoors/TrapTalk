@@ -238,6 +238,10 @@
 /**text of logout button**/
 #logout.main p{
 	text-align: center;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	margin: auto;
 	font-family: "Tahoma";
 
