@@ -217,6 +217,12 @@
 	margin-bottom: auto;  
 	margin-right:auto;
 	border-radius: 10px;
+
+	position: absolute;
+  	top: 0;
+  	left: 0;
+  	bottom: 0;
+  	right: 0;
 }
 
 /**logout Button**/
@@ -231,7 +237,15 @@
 	background-color: #b3c6ff;
 	display: inline;
 	float: right;
+
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	bottom: 0;
+  	right: 0;
 }
+
+
 
 
 /**text of logout button**/
