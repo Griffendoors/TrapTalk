@@ -194,17 +194,11 @@
 }
 
 /**MAIN PAGE**/
-/**Whole Main Page, Background etc.
+/**Whole Main Page, Background etc.**/
 .main{
 	background-color: #d1d1e0;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
 }
-**/
+
 
 /**Control header panel top**/
 #headerbar.main{
