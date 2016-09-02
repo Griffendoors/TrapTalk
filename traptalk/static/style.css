@@ -225,8 +225,8 @@
 	width: 120px;
 	height: 40px;
 	margin-left:auto;
-	margin-top:0; 
-	margin-bottom:0;  
+	margin-top:auto; 
+	margin-bottom:auto;  
 	margin-right:0;
 	border-radius: 10px;
 	background-color: #b3c6ff;
@@ -247,15 +247,15 @@
 
 
 
-/**Main outer div
+/**Main outer div**/
 #outer.index{
 	background-color: #3366ff;
-	width: 300px;
+	width: 100%;
 	height: 400px;
 
 
 }
-**/
+
 
 
 
