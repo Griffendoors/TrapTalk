@@ -283,7 +283,7 @@
 /**received box**/
 #innerRight.main #received {
 	background-color: #d1d1e0;
-	width: 100%;
+	width: 95%;
 	height: 80%;
 }
 
@@ -291,7 +291,7 @@
 /**type in chat box**/
 #innerRight.main #toSend {
 	background-color: #d1d1e0;
-	width: 100%;
+	width: 95%;
 	height: 10%;
 }
 
