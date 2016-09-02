@@ -246,12 +246,11 @@
 
 
 /**Main outer div**/
-#outer.index{
+#outer.main{
 	background-color: #3366ff;
 	width: 100%;
-	height: 4000px;
-	position: absolute;
-
+	height: 100%;
+	border-radius: 10px;
 }
 
 
