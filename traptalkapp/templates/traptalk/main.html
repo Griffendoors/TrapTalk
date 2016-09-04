@@ -13,6 +13,7 @@
 <body>
 <div class = "main" id = "headerbar">
 	<img src="{% static 'header.png' %}"  alt="TrapTalk" class = "main" id = "header">
+	<div class = "main" id = "addFriend"><p>Add Friend</p></div>
 	<div class = "main" id = "logout"><p>Log Out</p></div>
 </div>
 
@@ -31,11 +32,22 @@
 
 <script type="text/javascript">
 
-    $( document ).ready( function(){
+    $( document ).ready(function(){
 
      	var token = sessionStorage.getItem('token');
      	var username = sessionStorage.getItem('username');
 
+
+		$( document ).ready(loadFriends());
+
+		function loadFriends(){
+			var friends = [];
+			//api call with uname and token
+			//friends[] = list of friends
+			if(friends.length === 0){
+
+			}
+		}
 
 
 		$("#toSend").keypress(function(e) {

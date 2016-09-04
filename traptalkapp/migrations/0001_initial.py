@@ -7,7 +7,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = False
+    initial = True
 
     dependencies = [
     ]
@@ -22,9 +22,5 @@ class Migration(migrations.Migration):
                 ('token', models.CharField(max_length=255)),
             ]
         ),
-        #options={
-            #'db_table': 'tblclients',
-         #   'managed': True,
-       # },
     ]
 

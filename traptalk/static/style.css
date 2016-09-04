@@ -224,6 +224,37 @@
   	right: 0;
 }
 
+
+
+
+
+/**addfriend Button**/
+#logout.main{
+	width: 150px;
+	height: 100%;
+
+	background-color: #b3c6ff;
+
+  	display: inline-block;
+    margin:0 auto;
+}
+
+
+
+
+/**text of addfriend button**/
+#logout.main p{
+	text-align: center;
+
+	font-family: "Tahoma";
+
+
+}
+
+
+
+
+
 /**logout Button**/
 #logout.main{
 	width: 150px;
