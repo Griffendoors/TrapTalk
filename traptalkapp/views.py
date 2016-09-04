@@ -54,7 +54,7 @@ def signin(request):
     u = User.objects.get(username__exact = username)
 
     if(u.password != password):
-      response = JsonResponse({'status':'false','message': 'Username or Password incorrect', 'username': username}, status=403)
+      response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
 
 
@@ -63,7 +63,7 @@ def signin(request):
     u.save()
 
 
-    response = JsonResponse({'status':'false','message': token}, status=200)
+    response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
     return response
 
 
