@@ -36,23 +36,16 @@
      	var token = sessionStorage.getItem('token');
      	var username = sessionStorage.getItem('username');
 
-		//$('#toSend').bind("enterKey",function(e){
-
-			//var text = document.getElementById("toSend").value;
-
-			//sendMessage(text);
-			//$('#toSend').val("");
-
-			
-			
-			
-		//});
 
 
 		$("#toSend").keypress(function(e) {
     		if(e.which == 13) {
-        		alert('You pressed enter!');
-   
+        		
+   			var text = document.getElementById("toSend").value;
+
+			sendMessage(text);
+			$('#toSend').val("");
+
     		}
 		});
 
