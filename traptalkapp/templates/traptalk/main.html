@@ -20,7 +20,7 @@
 
 <div class = "main" id = "outer">
    <div class = "main" id = "innerLeft">
-   	
+   		<div class = "main" id = "noFriends"><p>Speights No Mates</p></div>
    </div>
    <div class = "main" id = "innerRight">
             <textarea class = "main" id = "received" readonly="readonly"></textarea>
@@ -46,7 +46,9 @@
 			//api call with uname and token
 			//friends[] = list of friends
 			if(friends.length === 0){
-
+				$('#noFriends').css({
+					'display: inline'
+				});
 			}
 		}
 
