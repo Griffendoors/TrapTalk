@@ -38,6 +38,7 @@
      	var username = sessionStorage.getItem('username');
 
 
+
 		$( document ).ready(loadFriends());
 
 		function loadFriends(){
@@ -48,6 +49,36 @@
 
 			}
 		}
+
+        $('#addFriend')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#b3c6ff'
+            });
+        });
+
+         $('#logout')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#b3c6ff'
+            });
+        });
+
+
+
+
+
+
 
 
 		$("#toSend").keypress(function(e) {
