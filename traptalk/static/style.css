@@ -205,6 +205,8 @@
 	background-color: #d1d1e0;
 	width: 100%;
 	height: 50px;
+	font-family: "Tahoma";
+	text-align: center;
 
 }
 
@@ -220,8 +222,6 @@
 
 
 
-
-
 /**addfriend Button**/
 #addFriend.main{
 	width: 150px;
@@ -231,19 +231,10 @@
 
   	display: inline-block;
     margin:0 auto;
+
+    float right
 }
 
-
-
-
-/**text of addfriend button**/
-#addFriend.main p{
-	text-align: center;
-
-	font-family: "Tahoma";
-
-
-}
 
 
 
@@ -262,16 +253,6 @@
 }
 
 
-
-
-/**text of logout button**/
-#logout.main p{
-	text-align: center;
-
-	font-family: "Tahoma";
-
-
-}
 
 
 
