@@ -229,13 +229,13 @@
 
 
 /**addfriend Button**/
-#logout.main{
+#addFriend.main{
 	width: 150px;
 	height: 100%;
 
 	background-color: #b3c6ff;
 
-  	display: inline;
+  	display: inline-block;
     margin:0 auto;
 }
 
@@ -243,7 +243,7 @@
 
 
 /**text of addfriend button**/
-#logout.main p{
+#addFriend.main p{
 	text-align: center;
 
 	font-family: "Tahoma";
