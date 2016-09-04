@@ -146,6 +146,8 @@
                         success : function(data){
                             sessionStorage.setItem('token', data['message']);
                             sessionStorage.setItem('username', data['username']);
+                            alert(token)
+                            alert(username)
                             window.location.replace("main");
 
                         },
