@@ -33,24 +33,40 @@
 
     $( document ).ready( function(){
 
-
-
-	$('#toSend').bind("enterKey",function(e){
-
-		var text = document.getElementById("toSend").value;
-		$('#received').append(text);
-		$('#toSend').val("");
-		
-	});
-	$('toSend').keyup(function(e){
-	if(e.keyCode == 13){
-		$(this).trigger("enterKey");
-	}
-	});
-
-
      	var token = sessionStorage.getItem('token');
-     	//alert(token);
+     	var username = sessionStorage.getItem('username');
+
+		//$('#toSend').bind("enterKey",function(e){
+
+			//var text = document.getElementById("toSend").value;
+
+			//sendMessage(text);
+			//$('#toSend').val("");
+
+			
+			
+			
+		//});
+
+
+		$("#toSend").keypress(function(e) {
+    		if(e.which == 13) {
+        		alert('You pressed enter!');
+   
+    		}
+		});
+
+
+
+		function sendMessage(message){
+
+			var text = username + ": " + message;
+
+			$('#received').append(text);
+
+		}
+
+
 
         $.ajaxSetup ({
             cache: false
