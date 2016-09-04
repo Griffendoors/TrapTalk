@@ -1,15 +1,4 @@
-/**INDEX PAGE**/
-/**Whole Index Page, Background etc.**/
-.index{
-	background-color: #d1d1e0;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	border-radius: 15px;
-}
+
 
 /**Main outer div**/
 #outer.index{
