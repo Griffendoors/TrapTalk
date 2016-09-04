@@ -76,7 +76,11 @@ def signin(request):
 def main(request):
 
   token = request.session.get('token')
-  print(token)
+  username = request.session.get('username')
+  
+  get_object_or_404(User, username__exact = username, token__exact = token)
+
+
 
 
   template = loader.get_template('traptalk/main.html')
