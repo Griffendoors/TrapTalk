@@ -43,12 +43,29 @@
 
 		function loadFriends(){
 			var friends = [];
+			friends[0] = "Bill";
+
 			//api call with uname and token
 			//friends[] = list of friends
 			if(friends.length === 0){
 				$('#noFriends').css({ 
 					'display': 'inline' 
 				});
+			}
+			else{
+
+				for(var i = 0; i< friends.length; i++){
+					var $newDiv = $("<div/>")   
+	                 .attr("id", "friend")  
+	                 .addClass("main")  
+	                 .html("<p>"+ freinds[i] + "</p>");
+
+					$("#innerLeft").append($newDiv);
+				}
+
+
+
+
 			}
 		}
 
