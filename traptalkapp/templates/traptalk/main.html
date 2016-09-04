@@ -62,7 +62,7 @@
             });
         });
 
-         $('#logout')
+         $('#addFriend')
           .mousedown(function() {
             $( this ).css({
                 'background-color': '#d1d1e0'
@@ -87,7 +87,7 @@
    			var text = document.getElementById("toSend").value;
 
 			sendMessage(text);
-			$('#received').val("");
+			$('#toSend').val("");
 
     		}
 		});
@@ -96,7 +96,7 @@
 
 		function sendMessage(message){
 
-			var text = username + ": " + message + "<br />";
+			var text = "<br />" + username + ": " + message + "<br />";
 
 			$('#received').append(text);
 
