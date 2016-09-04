@@ -303,6 +303,8 @@
 	height: 100px;
 	display: block;
 	background-color: #507cff;
+	max-width: 100%;
+    overflow-x: hidden;
 }
 
 
