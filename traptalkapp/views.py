@@ -77,7 +77,10 @@ def main(request):
 
   token = request.session.get('token')
   username = request.session.get('username')
-  
+
+  print('\n\ntoken: ', token)
+  print('username: ', username, '\n\n')
+
   get_object_or_404(User, username__exact = username, token__exact = token)
 
 
