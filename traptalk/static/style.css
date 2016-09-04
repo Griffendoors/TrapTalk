@@ -11,6 +11,10 @@
 	border-radius: 15px;
 }
 
+.body.index{
+	background-color: #d1d1e0;
+}
+
 /**Main outer div**/
 #outer.index{
 	background-color: #3366ff;
