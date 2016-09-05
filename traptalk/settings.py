@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'traptalk.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2nuon7j1roba9',
-        'USER': 'marhdapahgtbmu',
-        'PASSWORD': 'CgqvDL3Hb-udZUsJoGIcCFsDnD',
-        'HOST': 'postgres://marhdapahgtbmu:CgqvDL3Hb-udZUsJoGIcCFsDnD@ec2-54-243-199-137.compute-1.amazonaws.com:5432/d2nuon7j1roba9',
+        'NAME': 'd4ulqa5thgt6nh',
+        'USER': 'bokcsirintroer',
+        'PASSWORD': 'mEXVWIIqyc71-E5SqmR4Sp5kuX',
+        'HOST': 'postgres://bokcsirintroer:mEXVWIIqyc71-E5SqmR4Sp5kuX@ec2-54-225-81-90.compute-1.amazonaws.com:5432/d4ulqa5thgt6nh',
         'PORT': '5432',
     }
 }
