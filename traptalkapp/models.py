@@ -24,5 +24,3 @@ class Message(models.Model):
 	sent = models.DateTimeField(auto_now_add=True, blank=True)
 	message_contents = models.CharField(max_length = 1000)
 	
-class Meta:
-        managed = True	
