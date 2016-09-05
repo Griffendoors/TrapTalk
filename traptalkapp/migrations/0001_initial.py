@@ -49,6 +49,10 @@ class Migration(migrations.Migration):
                 ('message_contents', models.CharField(max_length=1000)),
             ]
         ),
+        options={
+            #'db_table': 'tblclients',
+            'managed': True,
+        },
     ]
 
 
