@@ -8,19 +8,32 @@ class User(models.Model):
 	def __str__(self):
 		return 'User is: ' + self.username
 
+	class Meta:
+        managed = True
+
+
 
 class ValidToken(models.Model):
 	token = models.CharField(max_length = 50)
 	validFor = models.ForeignKey('User', on_delete=models.CASCADE)
 	issued = models.DateTimeField(auto_now_add=True, blank=True)
 
+	class Meta:
+        managed = True
+
 class Friend(models.Model):
 	friend_one = models.ForeignKey('User', related_name = 'adder', on_delete = models.CASCADE)
 	friend_two = models.ForeignKey('User', related_name = 'addee',  on_delete = models.CASCADE)
 	since = models.DateTimeField(auto_now_add=True, blank=True)
+
+	class Meta:
+        managed = True
 
 class Message(models.Model):
 	message_from = models.ForeignKey('User',  related_name = 'sender', on_delete = models.CASCADE)
 	message_to = models.ForeignKey('User', related_name = 'sendee',  on_delete = models.CASCADE)
 	sent = models.DateTimeField(auto_now_add=True, blank=True)
 	message_contents = models.CharField(max_length = 1000)
+
+	class Meta:
+        managed = True	
