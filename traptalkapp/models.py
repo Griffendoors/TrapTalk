@@ -10,7 +10,18 @@ class User(models.Model):
 		return 'User is: ' + self.username
 
 
-class ValidTokens(models.Model):
+class ValidToken(models.Model):
 	token = models.CharField(max_length = 50)
 	validFor = models.ForeignKey('User', on_delete=models.CASCADE)
 	issued = models.DateTimeField(auto_now_add=True, blank=True)
+
+class Friend(models.Model):
+	friend_one = models.ForeignKey('User,' on_delete = models.CASCADE)
+	friend_two = models.ForeignKey('User,' on_delete = models.CASCADE)
+	since = models.DateTimeField(auto_now_add=True, blank=True)
+
+class Message(models.Model):
+	message_from = models.ForeignKey('User,' on_delete = models.CASCADE)
+	message_to = models.ForeignKey('User,' on_delete = models.CASCADE)
+	sent = models.DateTimeField(auto_now_add=True, blank=True)
+	message_contents = models.CharField(max_length = 1000)
