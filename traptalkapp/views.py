@@ -85,6 +85,7 @@ def main(request):
     t = ValidToken.objects.get(validFor__exact = username)
 
     if(t.token != token):
+      print('1')
       raise Http404
 
     issued = t.issued
@@ -100,9 +101,11 @@ def main(request):
       return HttpResponse(template.render(request))
 
     else:
+      print('2')
       raise Http404
 
   else:
+    print('3')
     raise Http404
 
 
