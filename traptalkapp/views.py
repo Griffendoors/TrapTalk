@@ -97,8 +97,9 @@ def signout(request):
 
 def main(request):
 
-  token = request.POST.get("token")
-  username = request.POST.get("username")
+  token = request.session['token']
+  username = request.session['username']
+
 
   u = User.objects.get(username = username)
 
@@ -131,4 +132,5 @@ def main(request):
     raise Http404
 
 
-#must only have 1 token per user at a time - time stamp problems 
+def authenticated(username, token):
+  print('test')

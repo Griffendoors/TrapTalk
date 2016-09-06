@@ -130,29 +130,27 @@
 
 
     $('#logout').click(function(){
-      $.ajax({
-              type: "POST",
-              url : "https://traptalk.herokuapp.com/signout",
-              data: {username: data['username'], token: data['message']},
+        $.ajax({
+                type: "POST",
+                url : "https://traptalk.herokuapp.com/signout",
 
+                beforeSend : function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                },
+                success : function(data){
+                  sessionStorage.setItem('token', "");
+                  sessionStorage.setItem('username', "");
+                  window.location.replace("");
 
-              beforeSend : function(xhr, settings) {
-                  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                      xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                  }
-              },
-              success : function(data){
-                sessionStorage.setItem('token', "");
-                sessionStorage.setItem('username', "");
-                window.location.replace("");
+                },
+                error: function (xhr, status, error) {
+                    alert('Server error: '+xhr.status);
+                      
+                }
 
-              },
-              error: function (xhr, status, error) {
-                  alert('Server error: '+xhr.status);
-                    
-              }
-
-      },"json");
+        },"json");
     });
 
 

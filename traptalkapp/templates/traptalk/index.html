@@ -146,34 +146,10 @@
                             sessionStorage.setItem('username', "");
                         },
                         success : function(data){
-
-
-
-                            $.ajax({
-                                    type: "POST",
-                                    url : "https://traptalk.herokuapp.com/main",
-                                    data: {username: data['username'], token: data['message']},
-
-
-                                    beforeSend : function(xhr, settings) {
-                                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                                        }
-                                    },
-                                    success : function(data){
-                                        sessionStorage.setItem('token', data['message']);
-                                        sessionStorage.setItem('username', data['username']);
-                                         window.location.replace("main");
-                                    },
-                                    error: function (xhr, status, error) {
-                                        alert('Server error: '+xhr.status);
-                                          
-                                    }
-
-                            },"json");
-
+                            sessionStorage.setItem('token', data['message']);
+                            sessionStorage.setItem('username', data['username']);
+                            window.location.replace("main");
                            
-
                         },
                         error: function (xhr, status, error) {
                               if(xhr.status === 403){
