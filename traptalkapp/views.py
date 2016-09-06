@@ -61,7 +61,7 @@ def signin(request):
 
 
     token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = username)
+    t = ValidToken(token = token, validFor = u)
     t.save()
 
 
