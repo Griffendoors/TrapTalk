@@ -81,8 +81,11 @@ def main(request):
   token = request.session.get('token')
   username = request.session.get('username')
 
-  if ValidToken.objects.filter(validFor__exact = username).exists():
-    t = ValidToken.objects.get(validFor__exact = username)
+  u = User.objects.get(username__exact = username)
+
+
+  if ValidToken.objects.filter(validFor__exact = u).exists():
+    t = ValidToken.objects.get(validFor__exact = u)
 
     if(t.token != token):
       print('1')
