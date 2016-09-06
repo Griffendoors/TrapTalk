@@ -97,8 +97,8 @@ def signout(request):
 
 def main(request):
 
-  token = request.session['token']
-  username = request.session['username']
+  token = request.session["token"]
+  username = request.session["username"]
 
 
   u = User.objects.get(username = username)
