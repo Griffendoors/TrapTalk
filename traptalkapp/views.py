@@ -92,8 +92,8 @@ def signout(request):
 
 def main(request):
 
-    token = request.POST.get("token")
-    username = request.POST.get("username")
+  token = request.POST.get("token")
+  username = request.POST.get("username")
 
   print('iserma,e: ' , username)
 
