@@ -105,6 +105,9 @@ def main(request):
   token = request.session.get('token', 'False')
   username = request.session.get('username', 'False')
 
+  print('token: ' , token)
+  print('username: ' , username)
+
 
   u = User.objects.get(username = username)
 
