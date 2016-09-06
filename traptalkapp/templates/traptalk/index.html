@@ -37,7 +37,7 @@
 
 
         $.ajaxSetup ({
-            cache: true
+            cache: false
         });
 
 
@@ -148,7 +148,7 @@
                         success : function(data){
                             sessionStorage.setItem('token', data['message']);
                             sessionStorage.setItem('username', data['username']);
-                            window.location = "main";
+                            window.location.assign("main");
                            
                         },
                         error: function (xhr, status, error) {
