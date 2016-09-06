@@ -75,13 +75,18 @@ def signin(request):
     return response
 
 
+def signout(request):
+    response = JsonResponse({'status':'false','message': 'Sign Out Succesful'}, status=200)
+    return response
+
+
 
 def main(request):
 
   token = request.session.get('token')
   username = request.session.get('username')
 
-  u = User.objects.get(username__exact = username)
+  u = User.objects.filter(username__exact = username)
   print('blecp: ' , u.username)
 
 
