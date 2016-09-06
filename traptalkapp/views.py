@@ -95,10 +95,7 @@ def main(request):
   token = request.POST.get("token")
   username = request.POST.get("username")
 
-  print('iserma,e: ' , username)
-
   u = User.objects.get(username = username)
-  print('blecp: ' , u.username)
 
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
@@ -109,7 +106,7 @@ def main(request):
       raise Http404
 
     issued = t.issued
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(timezone.utc)
     difference = now - issued
     secondsDifference = difference.total_seconds()
     print('token from client: ', token)
