@@ -16,6 +16,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.timezone import utc
 import datetime
+from pprint import pprint
 
 def index(request):
   template = loader.get_template('traptalk/index.html')
@@ -97,6 +98,10 @@ def signout(request):
 
 def main(request):
 
+
+  
+  pprint (vars(request))
+
   token = request.session.get('token', 'False')
   username = request.session.get('username', 'False')
 
@@ -133,4 +138,22 @@ def main(request):
 
 
 def authenticated(username, token):
-  print('test')
+  u = User.objects.get(username = username)
+
+  if ValidToken.objects.filter(validFor__exact = u).exists():
+  t = ValidToken.objects.get(validFor__exact = u)
+
+  if(t.token != token):
+    print('1')
+    raise Http404
+
+  issued = t.issued
+  now = datetime.datetime.now(timezone.utc)
+  difference = now - issued
+  secondsDifference = difference.total_seconds()
+  print('token from client: ', token)
+  print('token from DB: ' , t.token)
+  print('timediff:' , secondsDifference)
+
+  if secondsDifference < 3600:
+    print('test')
