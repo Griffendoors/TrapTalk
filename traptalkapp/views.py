@@ -65,7 +65,8 @@ def signin(request):
     t.save()
 
 
-
+    print('hello' , username)
+    print('hello2' , token)
     response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
     return response
 
