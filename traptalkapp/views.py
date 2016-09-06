@@ -86,6 +86,8 @@ def main(request):
   token = request.session.get('token')
   username = request.session.get('username')
 
+  print(username)
+
   u = User.objects.get(username = username)
   print('blecp: ' , u.username)
 
