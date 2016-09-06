@@ -82,6 +82,7 @@ def main(request):
   username = request.session.get('username')
 
   u = User.objects.get(username__exact = username)
+  print('blecp: ' , u.username)
 
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
