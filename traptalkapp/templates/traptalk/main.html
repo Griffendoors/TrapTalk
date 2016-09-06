@@ -142,6 +142,8 @@
                   }
               },
               success : function(data){
+                sessionStorage.setItem('token', "");
+                sessionStorage.setItem('username', "");
                 window.location.replace("");
 
               },
