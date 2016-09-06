@@ -141,7 +141,7 @@ def authenticated(username, token):
   u = User.objects.get(username = username)
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
-  t = ValidToken.objects.get(validFor__exact = u)
+    t = ValidToken.objects.get(validFor__exact = u)
 
   if(t.token != token):
     print('1')
