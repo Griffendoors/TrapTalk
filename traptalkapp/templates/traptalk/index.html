@@ -146,7 +146,13 @@
                             //sessionStorage.setItem('username', "");
                         },
                         success : function(data){
+
+                            var token = data['message'];                           
+                            var username = data['username'];
+                            
                             sessionStorage.setItem('token', data['message']);
+
+
                             sessionStorage.setItem('username', data['username']);
                             window.location.assign("main/"+token+"/" +username);
                            
