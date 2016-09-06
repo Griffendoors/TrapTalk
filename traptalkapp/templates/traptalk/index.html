@@ -148,7 +148,7 @@
                         success : function(data){
                             sessionStorage.setItem('token', data['message']);
                             sessionStorage.setItem('username', data['username']);
-                            window.location.replace("main");
+                            window.location = "main";
                            
                         },
                         error: function (xhr, status, error) {
