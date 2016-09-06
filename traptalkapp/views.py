@@ -1,5 +1,5 @@
 from django.template import loader
-from .models import User
+from .models import User, ValidToken, Friend, Message
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -14,6 +14,8 @@ from django.core import serializers
 from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.utils.timezone import utc
+import datetime
 
 def index(request):
   template = loader.get_template('traptalk/index.html')
@@ -59,8 +61,9 @@ def signin(request):
 
 
     token = get_random_string(length=50)
-    u.token = token
-    u.save()
+    t = ValidToken(token = token, validFor = username)
+    t.save()
+
 
 
     response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
@@ -78,12 +81,21 @@ def main(request):
   token = request.session.get('token')
   username = request.session.get('username')
 
-  #print('\n\ntoken: ', token)
-  #print('username: ', username, '\n\n')
+  if ValidToken.objects.filter(validFor__exact = username).exists():
+    u = ValidToken.objects.get(validFor__exact = username)
 
-  #get_object_or_404(User, username__exact = username, token__exact = token)
+    if(u.token != token):
+      #deny
+
+    issued = u.issued
+    now = datetime.datetime.now()
+    difference = now - issued
+    secondsDifference = difference.total_seconds()
+    print(secondsDifference)
 
 
+  else:
+    #deny
 
 
   template = loader.get_template('traptalk/main.html')
