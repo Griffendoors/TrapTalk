@@ -82,25 +82,27 @@ def main(request):
   username = request.session.get('username')
 
   if ValidToken.objects.filter(validFor__exact = username).exists():
-    u = ValidToken.objects.get(validFor__exact = username)
+    t = ValidToken.objects.get(validFor__exact = username)
 
-    if(u.token != token):
-      #deny
+    if(t.token != token):
+      raise Http404
 
     issued = u.issued
     now = datetime.datetime.now()
     difference = now - issued
     secondsDifference = difference.total_seconds()
-    print(secondsDifference)
+    print('token from client: ', token)
+    print('token from DB: ' , t.token)
+    print('timediff:' , secondsDifference)
 
+    if secondsDifference < 3600:
+      template = loader.get_template('traptalk/main.html')
+      return HttpResponse(template.render(request))
+
+    else:
+      raise Http404
 
   else:
-    #deny
+    raise Http404
 
 
-  template = loader.get_template('traptalk/main.html')
-  return HttpResponse(template.render(request))
-
-  #pass username around to, cross check, use to populate friends lists etv
-  #sesion token not being updated
-  
