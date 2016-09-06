@@ -163,7 +163,7 @@
                                     success : function(data){
                                         sessionStorage.setItem('token', data['message']);
                                         sessionStorage.setItem('username', data['username']);
-                                         //window.location.replace("main");
+                                         window.location.replace("main");
                                     },
                                     error: function (xhr, status, error) {
                                         alert('Server error: '+xhr.status);
