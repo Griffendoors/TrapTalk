@@ -64,9 +64,6 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-
-    print('hello' , username)
-    print('hello2' , token)
     response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
     return response
 
@@ -77,6 +74,17 @@ def signin(request):
 
 
 def signout(request):
+
+
+    
+    token = request.POST.get("token")
+    username = request.POST.get("username")
+
+    u = User.objects.get(username__exact = username)
+
+    ValidToken.objects.filter(token = token, validFor = u).delete()
+
+
     response = JsonResponse({'status':'false','message': 'Sign Out Succesful'}, status=200)
     return response
 
@@ -84,8 +92,8 @@ def signout(request):
 
 def main(request):
 
-  token = request.session.get('token')
-  username = request.session.get('username')
+    token = request.POST.get("token")
+    username = request.POST.get("username")
 
   print('iserma,e: ' , username)
 
@@ -121,3 +129,4 @@ def main(request):
     raise Http404
 
 
+#must only have 1 token per user at a time - time stamp problems 

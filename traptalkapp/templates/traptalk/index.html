@@ -145,10 +145,32 @@
                         },
                         success : function(data){
                             sessionStorage.setItem('token', data['message']);
-                            alert(data['message']);
                             sessionStorage.setItem('username', data['username']);
-                            alert(data['username']);
-                            window.location.replace("main");
+
+
+                            $.ajax({
+                                    type: "POST",
+                                    url : "https://traptalk.herokuapp.com/main",
+                                    data: {username: data['username'], token: data['message']},
+
+
+                                    beforeSend : function(xhr, settings) {
+                                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                                        }
+                                    },
+                                    success : function(data){
+
+
+                                    },
+                                    error: function (xhr, status, error) {
+                                        alert('Server error: '+xhr.status);
+                                          
+                                    }
+
+                            },"json");
+
+                            //window.location.replace("main");
 
                         },
                         error: function (xhr, status, error) {
