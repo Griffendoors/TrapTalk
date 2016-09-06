@@ -87,7 +87,7 @@ def main(request):
     if(t.token != token):
       raise Http404
 
-    issued = u.issued
+    issued = t.issued
     now = datetime.datetime.now()
     difference = now - issued
     secondsDifference = difference.total_seconds()
