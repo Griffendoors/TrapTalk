@@ -71,7 +71,8 @@ def signin(request):
     t.save()
 
     response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
-    return response
+    #return response
+    return redirect('/main',response)
 
 
   else:
@@ -98,7 +99,8 @@ def signout(request):
 
 def main(request):
 
-
+  template = loader.get_template('traptalk/main.html')
+  return HttpResponse(template.render(request))
   
   pprint (vars(request))
 
