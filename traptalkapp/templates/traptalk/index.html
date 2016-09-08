@@ -1,14 +1,14 @@
-{% load staticfiles %}
+<!DOCTYPE html>
+
+
+
+<head>
+    <title>TrapTalk</title>  
+    {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 <link rel="shortcut icon" type="image/png" href="{% static 'favi.png' %}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-
-<!DOCTYPE html>
-
-<head>
-    <title>TrapTalk</title>  
 </head>
 <body>
 
@@ -157,9 +157,15 @@
                             //window.location.assign("main/"+token+"/" +username);
 
 
-                            
+
                            
                         },
+
+
+                        done : function(data){
+
+                        }
+
                         error: function (xhr, status, error) {
                               if(xhr.status === 403){
                                 alert('Incorrect username or Password');
@@ -167,7 +173,7 @@
                               else{
                                 alert('Server error: '+xhr.status);
                               }
-                        }
+                        }  //done, fail, always
 
                 },"json");
 
