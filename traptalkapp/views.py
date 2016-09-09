@@ -47,6 +47,7 @@ def signup(request):
 
 
 def signin(request):
+  return redirect('/main')
   c = {}
   c.update(csrf(request))
 
