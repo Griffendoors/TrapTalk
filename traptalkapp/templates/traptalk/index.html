@@ -131,108 +131,108 @@
 
 
 
-        // $('#submit').click(function(){
-        //     if(selected === 1){
+        $('#submit').click(function(){
+            if(selected === 1){
 
-        //         if(document.getElementById("loginUN").value === ""){
-        //             alert("Username field empty!");
-        //             return;
-        //         }
-        //         if(document.getElementById("loginPW").value === ""){
-        //             alert("Password field empty!");
-        //             return;
-        //         }
+                if(document.getElementById("loginUN").value === ""){
+                    alert("Username field empty!");
+                    return;
+                }
+                if(document.getElementById("loginPW").value === ""){
+                    alert("Password field empty!");
+                    return;
+                }
                     
-        //         var un = document.getElementById("loginUN").value;
-        //         var pw = document.getElementById("loginPW").value;
+                var un = document.getElementById("loginUN").value;
+                var pw = document.getElementById("loginPW").value;
 
 
 
-        //         $.ajax({
-        //                 type: "POST",
-        //                 url : "https://traptalk.herokuapp.com/signin",
-        //                 data: {username: un, password: pw},
+                $.ajax({
+                        type: "POST",
+                        url : "https://traptalk.herokuapp.com/signin",
+                        data: {username: un, password: pw},
 
 
-        //                 beforeSend : function(xhr, settings) {
-        //                     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        //                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        //                     }
-        //                     //sessionStorage.setItem('token', "");
-        //                     //sessionStorage.setItem('username', "");
-        //                 },
-        //                 success : function(data){
+                        beforeSend : function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                            //sessionStorage.setItem('token', "");
+                            //sessionStorage.setItem('username', "");
+                        },
+                        success : function(data){
 
-        //                    // var token = data['message'];                           
-        //                     //var username = data['username'];
+                           // var token = data['message'];                           
+                            //var username = data['username'];
                             
-        //                     //sessionStorage.setItem('token', data['message']);
+                            //sessionStorage.setItem('token', data['message']);
 
 
-        //                    // sessionStorage.setItem('username', data['username']);
-        //                     //window.location.assign("main/"+token+"/" +username);
+                           // sessionStorage.setItem('username', data['username']);
+                            //window.location.assign("main/"+token+"/" +username);
 
 
 
                            
-        //                 },
+                        },
 
 
-        //                 error: function (xhr, status, error) {
-        //                       if(xhr.status === 403){
-        //                         alert('Incorrect username or Password');
-        //                       }
-        //                       else{
-        //                         alert('Server error: '+xhr.status);
-        //                       }
-        //                 }  //done, fail, always
+                        error: function (xhr, status, error) {
+                              if(xhr.status === 403){
+                                alert('Incorrect username or Password');
+                              }
+                              else{
+                                alert('Server error: '+xhr.status);
+                              }
+                        }  //done, fail, always
 
-        //         },"json");
+                },"json");
 
-        //     }
-        //     else{
-        //         if(document.getElementById("signupUN").value === ""){
-        //             alert("Username field empty!")
-        //             return;
-        //         }
-        //         if(document.getElementById("signupPW").value === ""){
-        //             alert("Password field empty!")
-        //             return;
-        //         }
-        //         var un = document.getElementById("signupUN").value;
-        //         var pw = document.getElementById("signupPW").value;
-
-
-        //         $.ajax({
-        //                 type: "POST",
-        //                 url : "https://traptalk.herokuapp.com/signup",
-        //                 data: {username: un, password: pw},
-        //                 dataType : "json",
+            }
+            else{
+                if(document.getElementById("signupUN").value === ""){
+                    alert("Username field empty!")
+                    return;
+                }
+                if(document.getElementById("signupPW").value === ""){
+                    alert("Password field empty!")
+                    return;
+                }
+                var un = document.getElementById("signupUN").value;
+                var pw = document.getElementById("signupPW").value;
 
 
-        //                 beforeSend : function(xhr, settings) {
-        //                     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        //                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        //                     }
-        //                 },
+                $.ajax({
+                        type: "POST",
+                        url : "https://traptalk.herokuapp.com/signup",
+                        data: {username: un, password: pw},
+                        dataType : "json",
 
-        //                 success : function(data){
-        //                     if(data['message'] === 'Username in use'){
-        //                         alert(data['message']);
-        //                     }
-        //                     else if(data['message'] === 'Signup Success'){
-        //                         alert(data['message']);
-        //                         document.getElementById("signupUN").value = "";
-        //                         document.getElementById("signupPW").value = "";
-        //                     }
+
+                        beforeSend : function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        },
+
+                        success : function(data){
+                            if(data['message'] === 'Username in use'){
+                                alert(data['message']);
+                            }
+                            else if(data['message'] === 'Signup Success'){
+                                alert(data['message']);
+                                document.getElementById("signupUN").value = "";
+                                document.getElementById("signupPW").value = "";
+                            }
  
-        //                 },
-        //                 error: function (xhr, status, error) {
-        //                     alert('Server error: '+ xhr.status);
-        //                 }
-        //         },"json");
-        //     }
-        // });
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Server error: '+ xhr.status);
+                        }
+                },"json");
+            }
+        });
      });
 
 
