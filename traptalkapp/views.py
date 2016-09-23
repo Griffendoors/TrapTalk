@@ -72,15 +72,9 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-    #response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
-    #return response
-    #return redirect('/main')
-
-
-    response = redirect('/main')
-    response['username'] = username
-    response['token'] = token
-    return response
+    request.session['username'] = username
+    request.session['token'] = token
+    return redirect('/main')
 
 
 
@@ -107,17 +101,14 @@ def signout(request):
 
 def main(request):
 
-  print('checkpoint')
-  #return render_to_response('traptalk/main.html');
-  #template = loader.get_template('traptalk/main.html')
-  #return HttpResponse(template.render(request))
   
   pprint (vars(request))
 
-  #token = request.session.get("token")
-  #username = request.session.get("username")
-  token = request['token']
-  username = request['username']
+  fav_color = request.session.get('fav_color', 'red')
+
+  token = request.session.get("token", None)
+  username = request.session.get("username", None)
+
 
   print('token: ' , token)
   print('username: ' , username)
