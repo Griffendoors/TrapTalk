@@ -72,9 +72,17 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-    response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
+    #response = JsonResponse({'status':'false','message': token, 'username': username}, status=200)
     #return response
-    return redirect('/main')
+    #return redirect('/main')
+
+
+    response = redirect('/main')
+    response['username'] = username
+    response['token'] = token
+    return response
+
+
 
 
   else:
@@ -84,8 +92,6 @@ def signin(request):
 
 def signout(request):
 
-
-    
     token = request.POST.get("token")
     username = request.POST.get("username")
 
@@ -102,9 +108,9 @@ def signout(request):
 def main(request):
 
   print('checkpoint')
-  return render_to_response('traptalk/main.html');
-  template = loader.get_template('traptalk/main.html')
-  return HttpResponse(template.render(request))
+  #return render_to_response('traptalk/main.html');
+  #template = loader.get_template('traptalk/main.html')
+  #return HttpResponse(template.render(request))
   
   pprint (vars(request))
 
