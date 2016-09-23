@@ -114,8 +114,10 @@ def main(request):
   
   pprint (vars(request))
 
-  token = request.session.get("token")
-  username = request.session.get("username")
+  #token = request.session.get("token")
+  #username = request.session.get("username")
+  token = request['token']
+  username = request['username']
 
   print('token: ' , token)
   print('username: ' , username)
