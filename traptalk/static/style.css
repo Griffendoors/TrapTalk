@@ -169,7 +169,7 @@
 	margin: auto;
 }
 
-/**Go Button**/
+/**signup Button**/
 #signupButton.index{
 	border-radius: 10px;
 	background-color: #b3c6ff;
@@ -180,7 +180,7 @@
 	margin: auto;
 }
 
-/**Go Button**/
+/**login Button**/
 #loginButton.index{
 	border-radius: 10px;
 	background-color: #b3c6ff;
@@ -189,6 +189,7 @@
 	position: absolute;
 	top: 300;
 	margin: auto;
+	outline: none;
 }
 
 
