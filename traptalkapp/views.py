@@ -104,10 +104,9 @@ def main(request):
   
   pprint (vars(request))
 
-  fav_color = request.session.get('fav_color', 'red')
 
-  token = request.session.get("token")
-  username = request.session.get("username")
+  token = request.session.get('token')
+  username = request.session.get('username')
 
 
   print('token: ' , token)
