@@ -106,8 +106,8 @@ def main(request):
 
   fav_color = request.session.get('fav_color', 'red')
 
-  token = request.session.get("token", None)
-  username = request.session.get("username", None)
+  token = request.session.get("token")
+  username = request.session.get("username")
 
 
   print('token: ' , token)
