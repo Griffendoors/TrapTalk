@@ -179,13 +179,6 @@
 	top: 300;
 	margin: auto;
 	text-align: center;
-	height: 30;
-	position: absolute;
-	top: 10;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
 	font-family: "Tahoma";
 }
 
@@ -198,15 +191,7 @@
 	position: absolute;
 	top: 300;
 	margin: auto;
-	text-align: center;
-	height: 30;
-	position: absolute;
-	top: 10;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	font-family: "Tahoma";
+
 }
 
 
