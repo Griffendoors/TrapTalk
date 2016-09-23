@@ -170,7 +170,18 @@
 }
 
 /**Go Button**/
-#submit.index{
+#signupButton.index{
+	border-radius: 10px;
+	background-color: #b3c6ff;
+	height: 30;
+	width: 100;
+	position: absolute;
+	top: 300;
+	margin: auto;
+}
+
+/**Go Button**/
+#loginButton.index{
 	border-radius: 10px;
 	background-color: #b3c6ff;
 	height: 30;

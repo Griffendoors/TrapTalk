@@ -19,32 +19,20 @@
         <form  action="https://traptalk.herokuapp.com/signin">
             <input class = "index"  id = "loginUN" type="text" placeholder = "Username"><br>
             <input class = "index"  id = "loginPW" type="text" placeholder = "Password"><br>
-            
+            <input type="submit" value="Go" class = "index" id = "loginButton">
         </form>        
     </div>
     <div class = "index" id = "signupTab"><p>Sign Up</p></div>
     <div class = "index" id = "signupBox">
-        <form action="demo_form.asp">
+        <form action="null">
             <input class = "index" id = "signupUN" type="text" placeholder = "Username"><br>
             <input class = "index"  id = "signupPW" type="text" placeholder = "Password"><br>
         </form>
-        <div class = "index" id = "submit"><p>Go</p></div>
+        <div class = "index" id = "signupButton"><p>Go</p></div>
     </div>
     
 </div>
-    <!--<div class = "index" id = "submit"><p>Go</p></div>
 
-    
-    <form action="https://traptalk.herokuapp.com/signin">
-        First name:<br>
-        <input type="text" name="firstname" value="Mickey">
-        <br>
-        Last name:<br>
-        <input type="text" name="lastname" value="Mouse">
-        <br><br>
-        <input type="submit" value="Submit" id = "submit">
-    </form>
--->
 </div>
 
 
@@ -83,9 +71,6 @@
         }
 
 
-
-        var selected = 2;
-
         $('#loginTab').click(function() {
             $('#loginTab').css({
                 'background-color': '#b3c6ff'
@@ -99,7 +84,6 @@
             $('#loginBox *').css({
                 'z-index': '2'
             });   
-            selected = 1;
         });
 
         $('#signupTab').click(function() {
@@ -115,84 +99,11 @@
             $('#loginBox *').css({
                 'z-index': '1'
             });
-            selected =2;
-        });
-
-
-        $('#submit')
-          .mousedown(function() {
-            $( this ).css({
-                'background-color': '#d1d1e0'
-            });
-          })
-          .mouseup(function() {
-            $( this ).css({
-                'background-color': '#b3c6ff'
-            });
         });
 
 
 
-        $('#submit').click(function(){
-            if(selected === 1){
-
-                if(document.getElementById("loginUN").value === ""){
-                    alert("Username field empty!");
-                    return;
-                }
-                if(document.getElementById("loginPW").value === ""){
-                    alert("Password field empty!");
-                    return;
-                }
-                    
-                var un = document.getElementById("loginUN").value;
-                var pw = document.getElementById("loginPW").value;
-
-
-
-                $.ajax({
-                        type: "POST",
-                        url : "https://traptalk.herokuapp.com/signin",
-                        data: {username: un, password: pw},
-
-
-                        beforeSend : function(xhr, settings) {
-                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                            }
-                            //sessionStorage.setItem('token', "");
-                            //sessionStorage.setItem('username', "");
-                        },
-                        success : function(data){
-
-                           // var token = data['message'];                           
-                            //var username = data['username'];
-                            
-                            //sessionStorage.setItem('token', data['message']);
-
-
-                           // sessionStorage.setItem('username', data['username']);
-                            //window.location.assign("main/"+token+"/" +username);
-
-
-
-                           
-                        },
-
-
-                        error: function (xhr, status, error) {
-                              if(xhr.status === 403){
-                                alert('Incorrect username or Password');
-                              }
-                              else{
-                                alert('Server error: '+xhr.status);
-                              }
-                        }  //done, fail, always
-
-                },"json");
-
-            }
-            else{
+        $('#signupButton').click(function(){
                 if(document.getElementById("signupUN").value === ""){
                     alert("Username field empty!")
                     return;
@@ -233,7 +144,6 @@
                             alert('Server error: '+ xhr.status);
                         }
                 },"json");
-            }
         });
      });
 
