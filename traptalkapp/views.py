@@ -72,9 +72,11 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-    request.session['username'] = username
-    request.session['token'] = token
-    return HttpResponseRedirect('main')
+    response = redirect('/main')
+    response['username'] = username
+    response['token'] = token
+
+    return response
 
 
 
@@ -101,13 +103,16 @@ def signout(request):
 
 def main(request):
 
-  
-  pprint (vars(request))
+  pprint(vars(request))
 
+  username = request.GET.get('username')
+  token = request.GET.get('token')
 
-  token = request.session.get('token')
-  username = request.session.get('username')
+  print('token: ' , token)
+  print('username: ' , username)
 
+  username = request.POST.get('username')
+  token = request.POST.get('token')
 
   print('token: ' , token)
   print('username: ' , username)
