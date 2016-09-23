@@ -74,7 +74,7 @@ def signin(request):
 
     request.session['username'] = username
     request.session['token'] = token
-    return redirect('/main')
+    return HttpResponseRedirect('main')
 
 
 
