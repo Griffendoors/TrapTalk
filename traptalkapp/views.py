@@ -72,9 +72,12 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
+    request.session['username'] = username
+    request.session['token'] = token
+
     response = redirect('/main')
-    response['username'] = username
-    response['token'] = token
+    #response['username'] = username
+    #response['token'] = token
 
     return response
 
@@ -105,14 +108,10 @@ def main(request):
 
   pprint(vars(request))
 
-  username = request.GET.get('username')
-  token = request.GET.get('token')
 
-  print('token: ' , token)
-  print('username: ' , username)
+  username = request.session.get('username', None)
+  token = request.session.get('token', None)
 
-  username = request.POST.get('username')
-  token = request.POST.get('token')
 
   print('token: ' , token)
   print('username: ' , username)
