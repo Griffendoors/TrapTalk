@@ -47,6 +47,10 @@ def signup(request):
 
 
 def signin(request):
+
+
+  pprint(vars(request))
+
   c = {}
   c.update(csrf(request))
 
