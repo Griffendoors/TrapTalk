@@ -20,12 +20,13 @@ from pprint import pprint
 
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
+from django.template import RequestContext
 
 def index(request):
   #template = loader.get_template('traptalk/index.html')
  #return HttpResponse(template.render(request))
   #return render_to_response('traptalk/index.html');
-  return render_to_response('index.html', context_instance=RequestContext(request))
+  return render_to_response('traptalk/index.html', context_instance=RequestContext(request))
   #200 Returned here automatically
 
 
