@@ -48,7 +48,6 @@ def signup(request):
    
   
 
-@csrf_protect
 def signin(request):
 
 
