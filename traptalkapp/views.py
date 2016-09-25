@@ -18,6 +18,9 @@ from django.utils.timezone import utc
 import datetime
 from pprint import pprint
 
+from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render
+
 def index(request):
   #template = loader.get_template('traptalk/index.html')
  #return HttpResponse(template.render(request))
