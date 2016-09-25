@@ -59,8 +59,9 @@ def signin(request):
   username = request.POST.get("username")
   password = request.POST.get("password")
 
-
-
+  print username
+  print password
+  return render(request, 'main.html', c)
 
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
@@ -69,7 +70,7 @@ def signin(request):
       print '2'
       print u.password
       print password
-      response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403,c)
+      response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
 
 
