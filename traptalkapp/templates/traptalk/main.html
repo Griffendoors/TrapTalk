@@ -34,56 +34,6 @@
 
     $( document ).ready(function(){
 
-     	var token = sessionStorage.getItem('token');
-     	var username = sessionStorage.getItem('username');
-
-
-
-		$( document ).ready(loadFriends());
-
-		function loadFriends(){
-			var friends = [];
-			friends[0] = "Bill";
-			friends[1] = "Bill";
-			friends[2] = "Bill";
-			friends[3] = "Bill";
-			friends[4] = "Bill";
-			friends[5] = "Bill";
-			friends[6] = "Bill";
-			friends[7] = "Bill";
-			friends[8] = "Bill";
-			friends[9] = "Bill";
-			friends[10] = "Bill";
-			friends[11] = "Bill";
-
-
-
-
-
-			//api call with uname and token
-			//friends[] = list of friends
-			if(friends.length === 0){
-				$('#noFriends').css({ 
-					'display': 'inline' 
-				});
-			}
-			else{
-
-				for(var i = 0; i< friends.length; i++){
-					var $newDiv = $("<div/>")   
-	                 .attr("id", "friend")  
-	                 .addClass("main")  
-	                 .html("<p>"+ friends[i] + "</p>");
-
-					$("#innerLeft").append($newDiv);
-				}
-
-
-
-
-			}
-		}
-
         $('#addFriend')
           .mousedown(function() {
             $( this ).css({
@@ -121,11 +71,6 @@
             });
         });
 
-
-
-         function pressButton(){
-
-         }
 
 
 

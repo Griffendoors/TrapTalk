@@ -72,14 +72,15 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-    request.session['username'] = username
-    request.session['token'] = token
 
-    response = redirect('/main')
-    #response['username'] = username
-    #response['token'] = token
+    template = loader.get_template('traptalk/main.html')
+    return HttpResponse(template.render(request))
 
-    return response
+
+
+
+    #response = redirect('/main')
+    #return response
 
 
 
