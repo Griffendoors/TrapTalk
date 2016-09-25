@@ -62,7 +62,7 @@ def signin(request):
 
   print username
   print password
-  return render(request, 'main.html', c)
+  return render(request, 'traptalk/main.html', c)
 
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
