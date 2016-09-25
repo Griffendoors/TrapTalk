@@ -90,6 +90,9 @@ def signin(request):
 
 
   else:
+    print '3'
+    print username
+    print password
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
 
