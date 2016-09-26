@@ -26,8 +26,10 @@ def index(request):
   #template = loader.get_template('traptalk/index.html')
  #return HttpResponse(template.render(request))
   #return render_to_response('traptalk/index.html');
-  return render_to_response('traptalk/index.html', context_instance=RequestContext(request))
+  #return render_to_response('traptalk/index.html', context_instance=RequestContext(request))
   #200 Returned here automatically
+  template = loader.get_template('traptalk/index.html')
+  return HttpResponse(template.render(request))
 
 
 def signup(request):
@@ -51,21 +53,51 @@ def signup(request):
   
 
 def signin(request):
-
-
-
   c = {}
   c.update(csrf(request))
 
   username = request.POST.get("username")
   password = request.POST.get("password")
 
+
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
+
     if(u.password != password):
       response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
-  return render(request, 'traptalk/main.html', c)
+
+
+    token = get_random_string(length=50)
+    t = ValidToken(token = token, validFor = u)
+    t.save()
+
+    #request.session['token'] = token
+
+    ##template = loader.get_template('traptalk/index.html')
+    ##return HttpResponse(template.render(request))
+    #return render(request, 'traptalk/main.html', c)
+    response = redirect('/main')
+    return response
+
+  else:
+    response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+    return response
+
+
+
+  ##c = {}
+  ##c.update(csrf(request))
+
+  ##username = request.POST.get("username")
+  ##password = request.POST.get("password")
+
+  ##if User.objects.filter(username__exact = username).exists():
+    ##u = User.objects.get(username__exact = username)
+    ##if(u.password != password):
+     ## response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+     ## return response
+ ## return render(request, 'traptalk/main.html', c)
 
 
 
@@ -119,7 +151,8 @@ def signout(request):
 
 
 def main(request):
-
+  template = loader.get_template('traptalk/main.html')
+  return HttpResponse(template.render(request))
   pprint(vars(request))
 
 

@@ -11,7 +11,7 @@
     <title>TrapTalk</title>  
 </head>
 <body>
-
+<!--
 <div class = "index" id = "outer">
     <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
     <div class = "index" id = "loginTab"><p>Login</p></div>
@@ -34,7 +34,26 @@
 </div>
 
 </div>
+-->
 
+<div class = "index" id = "outer">
+    <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
+    <div class = "index" id = "loginTab"><p>Login</p></div>
+    <div class = "index" id = "loginBox">
+        <form  action="demo_form.asp">
+            <input class = "index"  id = "loginUN" type="text" placeholder = "Username"><br>
+            <input class = "index"  id = "loginPW" type="text" placeholder = "Password"><br>
+        </form>        
+    </div>
+    <div class = "index" id = "signupTab"><p>Sign Up</p></div>
+    <div class = "index" id = "signupBox">
+        <form action="demo_form.asp">
+            <input class = "index" id = "signupUN" type="text" placeholder = "Username"><br>
+            <input class = "index"  id = "signupPW" type="text" placeholder = "Password"><br>
+        </form>
+    </div>
+    <div class = "index" id = "submit"><p>Go</p></div>
+</div>
 
 
 <script type="text/javascript">
@@ -70,6 +89,8 @@
              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
 
+        var selected = 2;
+
 
         $('#loginTab').click(function() {
             $('#loginTab').css({
@@ -84,12 +105,13 @@
             $('#loginBox *').css({
                 'z-index': '2'
             });   
-            $('#signupButton *').css({
+            /**$('#signupButton *').css({
                 'display': 'none'
             });
             $('#loginButton *').css({
                 'display': 'block'
-            }); 
+            }); **/
+            selected = 1;
         });
 
         $('#signupTab').click(function() {
@@ -105,17 +127,70 @@
             $('#loginBox *').css({
                 'z-index': '1'
             });
+            /**
             $('#signupButton *').css({
                 'display': 'block'
             });
             $('#loginButton *').css({
                 'display': 'none'
-            }); 
+            }); **/
+            selected = 2;
+        });
+
+        $('#submit')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#b3c6ff'
+            });
         });
 
 
+        $('#submit').click(function(){
+            if(selected === 1){
 
-        $('#signupButton').click(function(){
+                if(document.getElementById("loginUN").value === ""){
+                    alert("Username field empty!");
+                    return;
+                }
+                if(document.getElementById("loginPW").value === ""){
+                    alert("Password field empty!");
+                    return;
+                }
+                    
+                var un = document.getElementById("loginUN").value;
+                var pw = document.getElementById("loginPW").value;
+
+
+
+                $.ajax({
+                        type: "POST",
+                        url : "https://traptalk.herokuapp.com/signin/",
+                        data: {username: un, password: pw},
+
+
+                        beforeSend : function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        },
+                        success : function(data, textStatus, jqXHR){
+                            var newDoc = document.open('text/html', 'replace');
+                            newDoc.write(data);
+                            newDoc.close();
+                        },
+                        error: function (xhr, status, error) {
+
+                        }
+
+                },"json");
+
+            }
+            else{
                 if(document.getElementById("signupUN").value === ""){
                     alert("Username field empty!")
                     return;
@@ -142,20 +217,16 @@
                         },
 
                         success : function(data){
-                            if(data['message'] === 'Username in use'){
-                                alert(data['message']);
-                            }
-                            else if(data['message'] === 'Signup Success'){
                                 alert(data['message']);
                                 document.getElementById("signupUN").value = "";
                                 document.getElementById("signupPW").value = "";
-                            }
  
                         },
                         error: function (xhr, status, error) {
                             alert('Server error: '+ xhr.status);
                         }
                 },"json");
+             }   
         });
      });
 
@@ -166,6 +237,29 @@
 </body>
 
 
+<!--
 
-
-
+$('#formName').on('submit', function(event) {
+        event.preventDefault(); // or return false, your choice
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data, textStatus, jqXHR) {
+                // if success, HTML response is expected, so replace current
+                if(textStatus === 'success') {
+                    // http://stackoverflow.com/a/1236378/4946681
+                    var newDoc = document.open('text/html', 'replace');
+                    newDoc.write(data);
+                    newDoc.close();
+                }
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            if(jqXHR.status == 0 || jqXHR == 302) {
+                alert('Your session has ended due to inactivity after 10 minutes.\nPlease refresh this page, or close this window and log back in to system.');
+            } else {
+                alert('Unknown error returned while saving' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''));
+            }
+        });
+    });
+-->

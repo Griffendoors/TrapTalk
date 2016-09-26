@@ -169,7 +169,7 @@
 	margin: auto;
 }
 
-/**signup Button**/
+/**signup Button
 #signupButton.index{
 	border-radius: 10px;
 	background-color: #b3c6ff;
@@ -182,7 +182,7 @@
 	font-family: "Tahoma";
 }
 
-/**login Button**/
+login Button
 #loginButton.index{
 	border-radius: 10px;
 	background-color: #b3c6ff;
@@ -194,6 +194,36 @@
 	text-align: center;
 	font-family: "Tahoma";
 }
+**/
+
+/**Go Button**/
+#submit.index{
+	border-radius: 10px;
+	background-color: #b3c6ff;
+	height: 30;
+	width: 100;
+	position: absolute;
+	top: 300;
+	margin: auto;
+}
+
+
+
+
+/**text of go button**/
+#submit.index p{
+	text-align: center;
+	height: 30;
+	position: absolute;
+	top: 10;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-family: "Tahoma";
+}
+
+
 
 
 /**MAIN PAGE**/
