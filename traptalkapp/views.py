@@ -69,22 +69,22 @@ def signin(request):
 
 
 
-      response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
-      return response
+      ##response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+      ##return response
 
 
 
-    if ValidToken.objects.filter(validFor__exact = u).exists():
-      ValidToken.objects.filter(validFor = u).delete()
+    ##if ValidToken.objects.filter(validFor__exact = u).exists():
+      ##ValidToken.objects.filter(validFor = u).delete()
 
 
-    token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = u)
-    t.save()
+    ##token = get_random_string(length=50)
+    ##t = ValidToken(token = token, validFor = u)
+    ##t.save()
 
 
-    template = loader.get_template('traptalk/main.html')
-    return HttpResponse(template.render(request))
+    ##template = loader.get_template('traptalk/main.html')
+    ##return HttpResponse(template.render(request))
 
 
 
@@ -95,12 +95,12 @@ def signin(request):
 
 
 
-  else:
-    print '3'
-    print username
-    print password
-    response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
-    return response
+  ##else:
+    ##print '3'
+    ##print username
+    ##print password
+    ##response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
+   ## return response
 
 
 def signout(request):
