@@ -20,7 +20,13 @@
 
 <div class = "main" id = "outer">
    <div class = "main" id = "innerLeft">
-   		<div class = "main" id = "noFriends"><p>Speights No Mates</p></div>
+      {% if friends %}
+        {% for friend in friends %}
+          <div class = "main" id = "friend"><h1>friend.friend_two</h1></div>
+        {% endfor %}
+      {% else %}
+        <p>Get some mates</p>
+      {% endif %}
    </div>
    <div class = "main" id = "innerRight">
             <textarea class = "main" id = "received" readonly="readonly"></textarea>
@@ -45,7 +51,6 @@
 
     $( document ).ready(function(){
 
-      alert(document.getElementById("test").value);
 
         $('#addFriend')
           .mousedown(function() {
@@ -111,6 +116,28 @@
     });
 
 
+    $('#addFriend').click(function(){
+        return;
+        $.ajax({
+                type: "POST",
+                url : "https://traptalk.herokuapp.com/signout",
+
+                beforeSend : function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                },
+                success : function(data){
+
+
+                },
+                error: function (xhr, status, error) {
+                    alert('Server error: '+xhr.status);
+                      
+                }
+
+        },"json");
+    });
 
 
 		$("#toSend").keypress(function(e) {
@@ -128,7 +155,7 @@
 
 		function sendMessage(message){
 
-			var text = "<br />" + username + ": " + message + "<br />";
+			var text = "<br />" + {{username}} + ": " + message + "<br />";
 
 			$('#received').append(text);
 
