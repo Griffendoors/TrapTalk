@@ -11,49 +11,24 @@
     <title>TrapTalk</title>  
 </head>
 <body>
-<!--
-<div class = "index" id = "outer">
-    <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
-    <div class = "index" id = "loginTab"><p>Login</p></div>
-    <div class = "index" id = "loginBox">
-        <form  action="https://traptalk.herokuapp.com/signin" method = "post"> {% csrf_token %}
-            <input class = "index"  id = "loginUN" type="text" placeholder = "Username" name = "username"><br>
-            <input class = "index"  id = "loginPW" type="text" placeholder = "Password" name = "password"><br>
-            <input type="submit" value="Go" class = "index" id = "loginButton" style="border:none" >
-        </form>        
+    <div class = "index" id = "outer">
+        <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
+        <div class = "index" id = "loginTab"><p>Login</p></div>
+        <div class = "index" id = "loginBox">
+            <form  action="demo_form.asp">
+                <input class = "index"  id = "loginUN" type="text" placeholder = "Username"><br>
+                <input class = "index"  id = "loginPW" type="text" placeholder = "Password"><br>
+            </form>        
+        </div>
+        <div class = "index" id = "signupTab"><p>Sign Up</p></div>
+        <div class = "index" id = "signupBox">
+            <form action="demo_form.asp">
+                <input class = "index" id = "signupUN" type="text" placeholder = "Username"><br>
+                <input class = "index"  id = "signupPW" type="text" placeholder = "Password"><br>
+            </form>
+        </div>
+        <div class = "index" id = "submit"><p>Go</p></div>
     </div>
-    <div class = "index" id = "signupTab"><p>Sign Up</p></div>
-    <div class = "index" id = "signupBox">
-        <form action="null">
-            <input class = "index" id = "signupUN" type="text" placeholder = "Username"><br>
-            <input class = "index"  id = "signupPW" type="text" placeholder = "Password"><br>
-        </form>
-        <div class = "index" id = "signupButton"><p>Go</p></div>
-    </div>
-    
-</div>
-
-</div>
--->
-
-<div class = "index" id = "outer">
-    <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
-    <div class = "index" id = "loginTab"><p>Login</p></div>
-    <div class = "index" id = "loginBox">
-        <form  action="demo_form.asp">
-            <input class = "index"  id = "loginUN" type="text" placeholder = "Username"><br>
-            <input class = "index"  id = "loginPW" type="text" placeholder = "Password"><br>
-        </form>        
-    </div>
-    <div class = "index" id = "signupTab"><p>Sign Up</p></div>
-    <div class = "index" id = "signupBox">
-        <form action="demo_form.asp">
-            <input class = "index" id = "signupUN" type="text" placeholder = "Username"><br>
-            <input class = "index"  id = "signupPW" type="text" placeholder = "Password"><br>
-        </form>
-    </div>
-    <div class = "index" id = "submit"><p>Go</p></div>
-</div>
 
 
 <script type="text/javascript">
@@ -105,12 +80,6 @@
             $('#loginBox *').css({
                 'z-index': '2'
             });   
-            /**$('#signupButton *').css({
-                'display': 'none'
-            });
-            $('#loginButton *').css({
-                'display': 'block'
-            }); **/
             selected = 1;
         });
 
@@ -127,13 +96,6 @@
             $('#loginBox *').css({
                 'z-index': '1'
             });
-            /**
-            $('#signupButton *').css({
-                'display': 'block'
-            });
-            $('#loginButton *').css({
-                'display': 'none'
-            }); **/
             selected = 2;
         });
 
@@ -184,7 +146,12 @@
                             newDoc.close();
                         },
                         error: function (xhr, status, error) {
-
+                            alert(xhr.status);
+                            alert(status);
+                            alert(error);
+                            if(xhr.status === 403){
+                                alert(status);
+                            }
                         }
 
                 },"json");

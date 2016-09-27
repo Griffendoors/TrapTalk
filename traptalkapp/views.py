@@ -72,67 +72,13 @@ def signin(request):
     t = ValidToken(token = token, validFor = u)
     t.save()
 
-    #request.session['token'] = token
 
-    ##template = loader.get_template('traptalk/index.html')
-    ##return HttpResponse(template.render(request))
-    #return render(request, 'traptalk/main.html', c)
     response = redirect('/main')
     return response
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
-
-
-
-  ##c = {}
-  ##c.update(csrf(request))
-
-  ##username = request.POST.get("username")
-  ##password = request.POST.get("password")
-
-  ##if User.objects.filter(username__exact = username).exists():
-    ##u = User.objects.get(username__exact = username)
-    ##if(u.password != password):
-     ## response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
-     ## return response
- ## return render(request, 'traptalk/main.html', c)
-
-
-
-      ##response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
-      ##return response
-
-
-
-    ##if ValidToken.objects.filter(validFor__exact = u).exists():
-      ##ValidToken.objects.filter(validFor = u).delete()
-
-
-    ##token = get_random_string(length=50)
-    ##t = ValidToken(token = token, validFor = u)
-    ##t.save()
-
-
-    ##template = loader.get_template('traptalk/main.html')
-    ##return HttpResponse(template.render(request))
-
-
-
-
-    #response = redirect('/main')
-    #return response
-
-
-
-
-  ##else:
-    ##print '3'
-    ##print username
-    ##print password
-    ##response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
-   ## return response
 
 
 def signout(request):
@@ -144,16 +90,17 @@ def signout(request):
 
     ValidToken.objects.filter(token = token, validFor = u).delete()
 
-
     response = JsonResponse({'status':'false','message': 'Sign Out Succesful'}, status=200)
     return response
 
 
 
 def main(request):
+  #pprint(vars(request))
+  
   template = loader.get_template('traptalk/main.html')
   return HttpResponse(template.render(request))
-  pprint(vars(request))
+
 
 
   username = request.session.get('username', None)
