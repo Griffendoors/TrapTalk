@@ -117,6 +117,11 @@ def signout(request):
     return response
 
 
+def addFriend(request):
+  pprint(vars(request))
+  return '<h1>hello</h1>'
+
+
 
 def main(request):
   #pprint(vars(request))
