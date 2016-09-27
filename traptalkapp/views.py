@@ -124,7 +124,7 @@ def addFriend(request):
 
 
   username = request.POST.get("username")
-  friendName = request.POST.get("friend")
+  friendName = request.POST.get("friendName")
 
   print(username)
   print(friendName)
