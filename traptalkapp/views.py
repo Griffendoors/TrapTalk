@@ -68,17 +68,42 @@ def signin(request):
       return response
 
 
-    token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = u)
-    t.save()
+    token = updateToken(username)
+
+    friends = Friend.objects.filter(friend_one=username)
+    sentMessages = Message.objects.filter(message_from=username).order_by('sent')
+    recvMessages = Message.objects.filter(message_to=username).order_by('sent')
+
+    context = {
+        'token': token,
+        'friends': friends,
+        'sentMessages': sentMessages,
+        'recvMessages': recvMessages,
+    }
+
+    template = loader.get_template('traptalk/main.html')
 
 
-    response = redirect('/main')
-    return response
+    return HttpResponse(template.render(context, request))
+
+
+    #response = redirect('/main')
+    #return response
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
+
+
+def updateToken(username):
+
+    if ValidToken.objects.filter(validFor__exact = Username).exists():
+      ValidToken.objects.filter(validFor = username).delete()
+
+    token = get_random_string(length=50)
+    t = ValidToken(token = token, validFor = username)
+    t.save()
+    return token
 
 
 def signout(request):
@@ -97,21 +122,10 @@ def signout(request):
 
 def main(request):
   #pprint(vars(request))
-  
-  template = loader.get_template('traptalk/main.html')
-  return HttpResponse(template.render(request))
 
 
 
-  username = request.session.get('username', None)
-  token = request.session.get('token', None)
 
-
-  print('token: ' , token)
-  print('username: ' , username)
-
-
-  u = User.objects.get(username = username)
 
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
