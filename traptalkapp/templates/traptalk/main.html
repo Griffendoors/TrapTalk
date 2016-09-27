@@ -25,10 +25,10 @@
       <span class="close">×</span>
       <h2>Add Friend</h2>
     </div>
-            <form  action="https://traptalk.herokuapp.com/addFriend" method = "POST">{% csrf_token %}
-                <input class = "main"  id = "friendInput" name = "friend" type="text" placeholder = "Username"><br>
-                <input type="submit" value="Submit">
+            <form  action="asp" method>
+                <input class = "main"  id = "friendInput" type="text" placeholder = "Username"><br>
             </form>  
+            <div class = "main" id = "submit"><p>submit</p></div>
     </div>
   </div>
 
@@ -53,7 +53,8 @@
 
     <div class = "main" id = "hidden">
       <form>
-          <input type="hidden" id = "test" value={{ token }}>
+          <input type="hidden" id = "token" value={{ token }}>
+          <input type="hidden" id = "username" value={{ username }}>
       </form>
     </div>
 
@@ -81,6 +82,47 @@ window.onclick = function(event) {
 
 
     $( document ).ready(function(){
+
+      $('#submit').click(function(){
+        if(document.getElementById("friendInput").value === ""){
+            alert("Username field is empty");
+            return;
+        }
+            
+        var username = document.getElementById("username").value;
+        var friendName = document.getElementById("friendInput").value;
+
+          $.ajax({
+                  type: "POST",
+                  url : "https://traptalk.herokuapp.com/addFriend",
+                  data: {username: username, friendName: friendName},
+
+
+                  beforeSend : function(xhr, settings) {
+                      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                      }
+                  },
+                  success : function(data, textStatus, jqXHR){
+                    alert(data['message'])
+                  },
+                  error: function (xhr, status, error) {
+                    alert('Server Error: ' + status + '; ' + error)
+                  }
+
+          },"json");
+                
+      });
+
+
+
+
+
+
+
+
+
+
 
       $('#addFriend').click(function(){
         modal.style.display = "block";
@@ -151,29 +193,6 @@ window.onclick = function(event) {
         },"json");
     });
 
-
-    $('#addFriend').click(function(){
-        return;
-        $.ajax({
-                type: "POST",
-                url : "https://traptalk.herokuapp.com/signout",
-
-                beforeSend : function(xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    }
-                },
-                success : function(data){
-
-
-                },
-                error: function (xhr, status, error) {
-                    alert('Server error: '+xhr.status);
-                      
-                }
-
-        },"json");
-    });
 
 
 		$("#toSend").keypress(function(e) {

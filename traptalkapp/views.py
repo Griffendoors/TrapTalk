@@ -119,7 +119,23 @@ def signout(request):
 
 def addFriend(request):
   pprint(vars(request))
-  return '<h1>hello</h1>'
+
+
+  username = request.POST.get("username")
+  friendName = request.POST.get("friend")
+  
+  if User.objects.filter(username__exact = friendName).exists():
+    response = JsonResponse({'status':'false','message': 'User with that I.D does not exist'}, status=200)
+    return response
+
+  friend = User.objects.get(username__exact = friendName)
+  user = User.objects.get(username__exact = username)
+  friendship = Friend(friend_one = user, friend_two = friend)
+  friendship.save()
+
+
+  response = JsonResponse({'status':'false','message': 'Friend Added Succesfully'}, status=200)
+  return response
 
 
 
