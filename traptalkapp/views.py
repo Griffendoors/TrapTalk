@@ -67,8 +67,9 @@ def signin(request):
       response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
 
-
-    token = updateToken(username)
+    token = get_random_string(length=50)
+    t = ValidToken(token = token, validFor = username)
+    t.save()
 
     friends = Friend.objects.filter(friend_one=username)
     sentMessages = Message.objects.filter(message_from=username).order_by('sent')
@@ -97,12 +98,10 @@ def signin(request):
 
 def updateToken(username):
 
-    #if ValidToken.objects.filter(validFor = username).exists():
-    ValidToken.objects.filter(validFor = username).delete()
+    if ValidToken.objects.filter(validFor = username).exists():
+      ValidToken.objects.filter(validFor = username).delete()
 
-    token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = username)
-    t.save()
+
     return token
 
 
