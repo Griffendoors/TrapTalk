@@ -69,8 +69,7 @@ def signin(request):
 
 
     token = updateToken(u)
-
-    friends = Friend.objects.filter(friend_one=u)
+    friends = Friend.objects.filter((friend_one=u) | (friend_two=u))
     sentMessages = Message.objects.filter(message_from=u).order_by('sent')
     recvMessages = Message.objects.filter(message_to=u).order_by('sent')
 
@@ -128,7 +127,7 @@ def addFriend(request):
 
   print(username)
   print(friendName)
-  
+
   if User.objects.filter(username__exact = friendName).exists():
     friend = User.objects.get(username__exact = friendName)
     user = User.objects.get(username__exact = username)
