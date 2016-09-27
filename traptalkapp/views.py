@@ -68,7 +68,7 @@ def signin(request):
       return response
 
 
-    t = updateToken(u)
+    token = updateToken(u)
 
     friends = Friend.objects.filter(friend_one=u)
     sentMessages = Message.objects.filter(message_from=u).order_by('sent')
