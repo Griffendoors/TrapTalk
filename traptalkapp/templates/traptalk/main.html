@@ -18,9 +18,6 @@
 </div>
 
 
-
-<button id="myBtn">Open Modal</button>
-
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -28,14 +25,14 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">×</span>
-      <h2>Modal Header</h2>
+      <h2>Add Friend</h2>
     </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+            <form  action="test">
+                <input class = "main"  id = "friendInput" type="text" placeholder = ""><br>
+                <input type="submit" value="Submit">
+            </form>  
     </div>
     <div class="modal-footer">
-      <h3>Modal Footer</h3>
     </div>
   </div>
 
@@ -73,7 +70,7 @@
 
 <script type="text/javascript">
 
-var modal = document.getElementById('myModal');
+var modal = document.getElementById('addFriend');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
