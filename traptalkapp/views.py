@@ -67,9 +67,8 @@ def signin(request):
       response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
 
-    token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = u)
-    t.save()
+
+    t = updateToken(u)
 
     friends = Friend.objects.filter(friend_one=u)
     sentMessages = Message.objects.filter(message_from=u).order_by('sent')
@@ -80,29 +79,27 @@ def signin(request):
         'friends': friends,
         'sentMessages': sentMessages,
         'recvMessages': recvMessages,
+        'username': username,
     }
 
     template = loader.get_template('traptalk/main.html')
 
-    print('token: ' ,token)
-
-
     return HttpResponse(template.render(context, request))
 
-
-    #response = redirect('/main')
-    #return response
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
     return response
 
 
-def updateToken(username):
+def updateToken(u):
 
-    if ValidToken.objects.filter(validFor = username).exists():
-      ValidToken.objects.filter(validFor = username).delete()
+    if ValidToken.objects.filter(validFor = u).exists():
+      ValidToken.objects.filter(validFor = u).delete()
 
+    token = get_random_string(length=50)
+    t = ValidToken(token = token, validFor = u)
+    t.save()
 
     return token
 
