@@ -146,11 +146,11 @@
                             newDoc.close();
                         },
                         error: function (xhr, status, error) {
-                            alert(xhr.status);
-                            alert(status);
-                            alert(error);
                             if(xhr.status === 403){
-                                alert(status);
+                                alert(error + ': Incorrect Username or Password!')
+                            }
+                            else{
+                                alert('Server Error: ' + status + '; ' + error)
                             }
                         }
 
