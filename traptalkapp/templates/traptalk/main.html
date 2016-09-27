@@ -30,7 +30,7 @@
 
     <div class = "main" id = "hidden">
       <form>
-          <input type="hidden" value={{ token }}>
+          <input type="hidden" id = "test" value={{ token }}>
       </form>
     </div>
 
@@ -44,6 +44,8 @@
 <script type="text/javascript">
 
     $( document ).ready(function(){
+
+      alert(document.getElementById("test").value);
 
         $('#addFriend')
           .mousedown(function() {
