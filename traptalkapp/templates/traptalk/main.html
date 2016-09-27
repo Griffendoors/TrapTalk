@@ -25,7 +25,7 @@
       <span class="close">×</span>
       <h2>Add Friend</h2>
     </div>
-            <form  action="https://traptalk.herokuapp.com/addFriend" method = "POST">
+            <form  action="https://traptalk.herokuapp.com/addFriend" method = "POST">{% csrf_token %}
                 <input class = "main"  id = "friendInput" name = "friend" type="text" placeholder = "Username"><br>
                 <input type="submit" value="Submit">
             </form>  
