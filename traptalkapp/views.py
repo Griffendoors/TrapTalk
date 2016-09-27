@@ -97,7 +97,7 @@ def signin(request):
 
 def updateToken(username):
 
-    if ValidToken.objects.filter(validFor__exact = Username).exists():
+    if ValidToken.objects.filter(validFor__exact = username).exists():
       ValidToken.objects.filter(validFor = username).delete()
 
     token = get_random_string(length=50)
