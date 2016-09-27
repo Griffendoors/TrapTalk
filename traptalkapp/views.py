@@ -68,12 +68,12 @@ def signin(request):
       return response
 
     token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = username)
+    t = ValidToken(token = token, validFor = u)
     t.save()
 
-    friends = Friend.objects.filter(friend_one=username)
-    sentMessages = Message.objects.filter(message_from=username).order_by('sent')
-    recvMessages = Message.objects.filter(message_to=username).order_by('sent')
+    friends = Friend.objects.filter(friend_one=u)
+    sentMessages = Message.objects.filter(message_from=u).order_by('sent')
+    recvMessages = Message.objects.filter(message_to=u).order_by('sent')
 
     context = {
         'token': token,
