@@ -39,7 +39,7 @@
    <div class = "main" id = "innerLeft">
       {% if friends %}
         {% for friend in friends %}
-          <div class = "main" id = "friend"><h1>{{friend.friend_two}}</h1></div>
+          <div class = "main" id = "friend"><h1>{{friend.friend_two.username}}</h1></div>
         {% endfor %}
       {% else %}
         <p>Get some mates</p>
