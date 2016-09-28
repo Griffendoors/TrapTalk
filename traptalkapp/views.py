@@ -154,6 +154,8 @@ def send(request):
 
   m = Message(message_from = sender, message_to = receiver, message_contents = messageText)
   m.save()
+  response = JsonResponse({'status':'false','message': 'Sent Succesfully'}, status=200)
+  return response
 
 
 def main(request):

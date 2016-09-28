@@ -220,7 +220,7 @@
       $.ajax({
               type: "POST",
               url : "https://traptalk.herokuapp.com/send",
-              data: {senderName: {{username}}, receiverName: "batman", messageText: text},
+              data: {senderName: "batman", receiverName: "griff", messageText: message},
               dataType : "json",
 
 
@@ -231,9 +231,7 @@
               },
 
               success : function(data){
-                      alert(data['message']);
-                      document.getElementById("signupUN").value = "";
-                      document.getElementById("signupPW").value = "";
+                alert("message sent");
 
               },
               error: function (xhr, status, error) {
