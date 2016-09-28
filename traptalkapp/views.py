@@ -23,7 +23,7 @@ from django.template import RequestContext
 
 def index(request):
   template = loader.get_template('traptalk/index.html')
-  return HttpResponse(template.render(request))
+  return HttpResponse(template.render(request), RequestContext(request))
 
 
 def signup(request):
