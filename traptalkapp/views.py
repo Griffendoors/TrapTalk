@@ -56,7 +56,7 @@ def main(request):
   if request.POST.get('username') and request.get('password'):
         logged = True
 
-  if logged == false:
+  if logged == False:
     response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
     return response
 
