@@ -53,7 +53,7 @@ def main(request):
 
   logged = False
 
-  if request.POST.get('username') and request.get('password'):
+  if request.POST.get('username') and request.POST.get('password'):
         logged = True
 
   if logged == False:
@@ -106,6 +106,16 @@ def signout(request):
 
 
 def addFriend(request):
+  logged = False
+
+  if request.POST.get('token'):
+        logged = True
+
+  if logged == False:
+    response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
+    return response
+
+
   username = request.POST.get("username")
   friendName = request.POST.get("friendName")
   token = request.POST.get("token")
@@ -126,10 +136,22 @@ def addFriend(request):
 
 
 def send(request):
+  logged = False
+
+  if request.POST.get('token'):
+        logged = True
+
+  if logged == False:
+    response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
+    return response
+
+
+  
   senderName = request.POST.get("senderName")
   receiverName = request.POST.get("receiverName")
   messageText = request.POST.get("messageText")
   token = request.POST.get("token")
+  username = request.POST.get("username")
 
   if(authorised(username,token) != True):
     response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
