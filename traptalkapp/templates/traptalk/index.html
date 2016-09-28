@@ -16,8 +16,8 @@
         <div class = "index" id = "loginTab"><p>Login</p></div>
         <div class = "index" id = "loginBox">
             <form  action="https://traptalk.herokuapp.com/signin" action = "post" id = "loginForm">{% csrf_token %}}
-                <input class = "index"  id = "loginUN" type="text" placeholder = "Username"><br>
-                <input class = "index"  id = "loginPW" type="text" placeholder = "Password"><br>
+                <input class = "index"  id = "loginUN" type="text" placeholder = "Username" name = "username"><br>
+                <input class = "index"  id = "loginPW" type="text" placeholder = "Password" name = "password"><br>
             </form>        
         </div>
         <div class = "index" id = "signupTab"><p>Sign Up</p></div>
