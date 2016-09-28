@@ -53,7 +53,7 @@ def main(request):
 
   logged = False
 
-  if request.POST['username'] and request.POST['password'] :
+  if request.POST.get('username') and request.get('password'):
         logged = True
 
   if logged == false:
