@@ -22,8 +22,9 @@ from django.shortcuts import render
 from django.template import RequestContext
 
 def index(request):
-  template = loader.get_template('traptalk/index.html')
-  return HttpResponse(template.render(request), RequestContext(request))
+  #template = loader.get_template('traptalk/index.html')
+  #return HttpResponse(template.render(request), RequestContext(request))
+  return render_to_response('index.html',context_instance=RequestContext(request))
 
 
 def signup(request):
