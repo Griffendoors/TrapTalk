@@ -12,7 +12,7 @@ import traptalkapp.views
 urlpatterns = [
     url(r'^$', traptalkapp.views.index, name='index'),
     url('signup$', traptalkapp.views.signup, name='signup'),
-    url('signin$', traptalkapp.views.signin, name='signin'),
+    url('main$', traptalkapp.views.main, name='main'),
     url('signout$', traptalkapp.views.signout, name='signout'),
     url('addFriend$', traptalkapp.views.addFriend, name='addFriend'),
     url('send$', traptalkapp.views.send, name='send'),

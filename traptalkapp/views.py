@@ -45,9 +45,21 @@ def signup(request):
   return response
   
 
-def signin(request):
+def main(request):
   c = {}
   c.update(csrf(request))
+
+
+
+  logged = False
+
+  if request.POST['username'] and request.POST['password'] :
+        logged = True
+
+  if logged == false:
+    response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
+    return response
+
 
   username = request.POST['username']
   password = request.POST['password']
