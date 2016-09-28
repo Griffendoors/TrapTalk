@@ -86,11 +86,8 @@ def signin(request):
 
 def signout(request):
   token = request.POST.get("token")
-  username = request.POST.get("username")
 
-  u = User.objects.get(username__exact = username)
-
-  ValidToken.objects.filter(token = token, validFor = u).delete()
+  ValidToken.objects.filter(token = token).delete()
 
   response = JsonResponse({'status':'false','message': 'Signout Succesful'}, status=200)
   return response
