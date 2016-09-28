@@ -97,6 +97,15 @@ def main(request):
 
 
 def signout(request):
+  logged = False
+
+  if request.POST.get('token'):
+        logged = True
+
+  if logged == False:
+    response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
+    return response
+
   token = request.POST.get("token")
 
   ValidToken.objects.filter(token = token).delete()
@@ -146,7 +155,7 @@ def send(request):
     return response
 
 
-  
+
   senderName = request.POST.get("senderName")
   receiverName = request.POST.get("receiverName")
   messageText = request.POST.get("messageText")
