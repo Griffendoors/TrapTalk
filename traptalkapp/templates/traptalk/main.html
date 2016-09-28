@@ -111,7 +111,7 @@
         $.ajax({
                 type: "POST",
                 url : "https://traptalk.herokuapp.com/addFriend",
-                data: {username: username, friendName: friendName},
+                data: {username: username, friendName: friendName, token: "{{ token }}"},
 
 
                 beforeSend : function(xhr, settings) {
@@ -124,6 +124,11 @@
                 },
                 error: function (xhr, status, error) {
                   alert('Server Error: ' + status + '; ' + error)
+                  alert('Server error: '+ xhr.status);
+                  alert(xhr['message']);
+                  alert(status['message']);
+                  alert(error['message']);
+                  window.location.href = "/";
                 }
 
         },"json");
@@ -174,7 +179,6 @@
 
 
     $('#logout').click(function(){
-        return;
         $.ajax({
                 type: "POST",
                 url : "https://traptalk.herokuapp.com/signout",
@@ -185,7 +189,8 @@
                     }
                 },
                 success : function(data){
-
+                  alert('signout succesful');
+                  window.location.href = "/";
 
                 },
                 error: function (xhr, status, error) {
@@ -220,7 +225,7 @@
       $.ajax({
               type: "POST",
               url : "https://traptalk.herokuapp.com/send",
-              data: {senderName: "batman", receiverName: "griff", messageText: message},
+              data: {senderName: "batman", receiverName: "griff", messageText: message, token: "{{ token }}"},
               dataType : "json",
 
 
@@ -236,6 +241,10 @@
               },
               error: function (xhr, status, error) {
                   alert('Server error: '+ xhr.status);
+                  alert(xhr['message']);
+                  alert(status['message']);
+                  alert(error['message']);
+                  window.location.href = "/";
               }
       },"json");
 

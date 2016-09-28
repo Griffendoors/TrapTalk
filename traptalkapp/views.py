@@ -49,17 +49,8 @@ def signin(request):
   c = {}
   c.update(csrf(request))
 
-
-  #username = forms.CharField(label='Your name', max_length=100)
-  #password = forms.CharField(label='Your name', max_length=100)
-
-  #FROM AJAX#username = request.POST.get("username")
-  #FROM AJAX#password = request.POST.get("password")
-
   username = request.POST['username']
   password = request.POST['password']
-  print(username)
-  print(password)
 
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
@@ -90,32 +81,28 @@ def signin(request):
     return response
 
 
-def updateToken(u):
-    if ValidToken.objects.filter(validFor = u).exists():
-      ValidToken.objects.filter(validFor = u).delete()
 
-    token = get_random_string(length=50)
-    t = ValidToken(token = token, validFor = u)
-    t.save()
-
-    return token
 
 
 def signout(request):
-    token = request.POST.get("token")
-    username = request.POST.get("username")
+  token = request.POST.get("token")
+  username = request.POST.get("username")
 
-    u = User.objects.get(username__exact = username)
+  u = User.objects.get(username__exact = username)
 
-    ValidToken.objects.filter(token = token, validFor = u).delete()
+  ValidToken.objects.filter(token = token, validFor = u).delete()
 
-    response = JsonResponse({'status':'false','message': 'Sign Out Succesful'}, status=200)
-    return response
+  response = JsonResponse({'status':'false','message': 'Signout Succesful'}, status=200)
+  return response
 
 
 def addFriend(request):
   username = request.POST.get("username")
   friendName = request.POST.get("friendName")
+  token = request.POST.get("token")
+  if(!authorised(username,token)):
+    response = JsonResponse({'status':'false','message': 'Session time out, please log in again'}, status=403)
+    return response
 
   if User.objects.filter(username__exact = friendName).exists():
     friend = User.objects.get(username__exact = friendName)
@@ -133,6 +120,11 @@ def send(request):
   senderName = request.POST.get("senderName")
   receiverName = request.POST.get("receiverName")
   messageText = request.POST.get("messageText")
+  token = request.POST.get("token")
+
+  if(!authorised(username,token)):
+    response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
+    return response
 
   sender = User.objects.get(username__exact = senderName)
   receiver = User.objects.get(username__exact = receiverName)
@@ -145,7 +137,7 @@ def send(request):
 
 #IF TOKEN VALID, UPDATES TOKEN IN VALID TOKENS
 #FALSE RETURN MEANS TOKEN INVALID OR TIMED OUT
-def authorise(username,token):
+def authorised(username,token):
   u = User.objects.get(username = username)
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
@@ -163,7 +155,7 @@ def authorise(username,token):
     print('timediff:' , secondsDifference)
 
     if secondsDifference < 3600:
-      print('test')
+      updateToken(u)
       return True
 
     else:
@@ -173,3 +165,13 @@ def authorise(username,token):
     return False
 
   return False
+
+def updateToken(u):
+  if ValidToken.objects.filter(validFor = u).exists():
+    ValidToken.objects.filter(validFor = u).delete()
+
+  token = get_random_string(length=50)
+  t = ValidToken(token = token, validFor = u)
+  t.save()
+
+  return token
