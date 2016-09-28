@@ -17,23 +17,16 @@ from django.http import HttpResponseRedirect
 from django.utils.timezone import utc
 import datetime
 from pprint import pprint
-
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.template import RequestContext
 
 def index(request):
-  #template = loader.get_template('traptalk/index.html')
- #return HttpResponse(template.render(request))
-  #return render_to_response('traptalk/index.html');
-  #return render_to_response('traptalk/index.html', context_instance=RequestContext(request))
-  #200 Returned here automatically
   template = loader.get_template('traptalk/index.html')
   return HttpResponse(template.render(request))
 
 
 def signup(request):
-
   c = {}
   c.update(csrf(request))
 
@@ -49,7 +42,6 @@ def signup(request):
 
   response = JsonResponse({'status':'false','message': 'Signup Success'}, status=200)
   return response
-   
   
 
 def signin(request):
@@ -59,14 +51,12 @@ def signin(request):
   username = request.POST.get("username")
   password = request.POST.get("password")
 
-
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
 
     if(u.password != password):
       response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
       return response
-
 
     token = updateToken(u)
 
@@ -83,9 +73,7 @@ def signin(request):
     }
 
     template = loader.get_template('traptalk/main.html')
-
     return HttpResponse(template.render(context, request))
-
 
   else:
     response = JsonResponse({'status':'false','message': 'Username or Password incorrect'}, status=403)
@@ -93,7 +81,6 @@ def signin(request):
 
 
 def updateToken(u):
-
     if ValidToken.objects.filter(validFor = u).exists():
       ValidToken.objects.filter(validFor = u).delete()
 
@@ -105,7 +92,6 @@ def updateToken(u):
 
 
 def signout(request):
-
     token = request.POST.get("token")
     username = request.POST.get("username")
 
@@ -118,16 +104,8 @@ def signout(request):
 
 
 def addFriend(request):
- # pprint(vars(request))
-
-
-
-
   username = request.POST.get("username")
   friendName = request.POST.get("friendName")
-
-  print(username)
-  print(friendName)
 
   if User.objects.filter(username__exact = friendName).exists():
     friend = User.objects.get(username__exact = friendName)
@@ -137,11 +115,8 @@ def addFriend(request):
     response = JsonResponse({'status':'false','message': 'Friend Added Succesfully'}, status=200)
     return response
 
-
   response = JsonResponse({'status':'false','message': 'User with that I.D does not exist'}, status=200)
   return response
-
-
 
 
 def send(request):
@@ -158,20 +133,16 @@ def send(request):
   return response
 
 
-def main(request):
-  #pprint(vars(request))
-
-
-
-
-
+#IF TOKEN VALID, UPDATES TOKEN IN VALID TOKENS
+#FALSE RETURN MEANS TOKEN INVALID OR TIMED OUT
+def authorise(username,token):
+  u = User.objects.get(username = username)
 
   if ValidToken.objects.filter(validFor__exact = u).exists():
     t = ValidToken.objects.get(validFor__exact = u)
 
     if(t.token != token):
-      print('1')
-      raise Http404
+      return False
 
     issued = t.issued
     now = datetime.datetime.now(timezone.utc)
@@ -182,35 +153,13 @@ def main(request):
     print('timediff:' , secondsDifference)
 
     if secondsDifference < 3600:
-      template = loader.get_template('traptalk/main.html')
-      return HttpResponse(template.render(request))
+      print('test')
+      return True
 
     else:
-      print('2')
-      raise Http404
+      return False
 
   else:
-    print('3')
-    raise Http404
+    return False
 
-
-def authenticated(username, token):
-  u = User.objects.get(username = username)
-
-  if ValidToken.objects.filter(validFor__exact = u).exists():
-    t = ValidToken.objects.get(validFor__exact = u)
-
-  if(t.token != token):
-    print('1')
-    raise Http404
-
-  issued = t.issued
-  now = datetime.datetime.now(timezone.utc)
-  difference = now - issued
-  secondsDifference = difference.total_seconds()
-  print('token from client: ', token)
-  print('token from DB: ' , t.token)
-  print('timediff:' , secondsDifference)
-
-  if secondsDifference < 3600:
-    print('test')
+  return False
