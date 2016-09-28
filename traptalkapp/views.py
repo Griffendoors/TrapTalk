@@ -48,8 +48,17 @@ def signin(request):
   c = {}
   c.update(csrf(request))
 
-  username = request.POST.get("username")
-  password = request.POST.get("password")
+
+  #username = forms.CharField(label='Your name', max_length=100)
+  #password = forms.CharField(label='Your name', max_length=100)
+
+  #FROM AJAX#username = request.POST.get("username")
+  #FROM AJAX#password = request.POST.get("password")
+
+  username = request.POST['username']
+  password = request.POST['password']
+  print(username)
+  print(password)
 
   if User.objects.filter(username__exact = username).exists():
     u = User.objects.get(username__exact = username)
