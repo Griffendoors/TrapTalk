@@ -100,7 +100,7 @@ def addFriend(request):
   username = request.POST.get("username")
   friendName = request.POST.get("friendName")
   token = request.POST.get("token")
-  if(!authorised(username,token)):
+  if(authorised(username,token) != True):
     response = JsonResponse({'status':'false','message': 'Session time out, please log in again'}, status=403)
     return response
 
@@ -122,7 +122,7 @@ def send(request):
   messageText = request.POST.get("messageText")
   token = request.POST.get("token")
 
-  if(!authorised(username,token)):
+  if(authorised(username,token) != True):
     response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
     return response
 
