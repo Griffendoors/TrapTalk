@@ -46,7 +46,17 @@
       {% endif %}
    </div>
    <div class = "main" id = "innerRight">
-            <textarea class = "main" id = "received" readonly="readonly"></textarea>
+            <textarea class = "main" id = "received" readonly="readonly">
+              {% if recvMessages %}
+                  <ul>
+                  {% for message in recvMessages %}
+                      <li>{{ message.message_contents }}</li>
+                  {% endfor %}
+                  </ul>
+              {% else %}
+                  <p>No Chat from this person</p>
+              {% endif %}
+            </textarea>
 
             <textarea class = "main" id = "toSend" placeholder = "Press Enter to send"></textarea>
    </div>
@@ -55,6 +65,9 @@
       <form>
           <input type="hidden" id = "token" value={{ token }}>
           <input type="hidden" id = "username" value={{ username }}>
+          <input type="hidden" id = "friends" value={{ friends }}>
+          <input type="hidden" id = "sentMessages" value={{ sentMessages }}>
+          <input type="hidden" id = "recvMessages" value={{ recvMessages }}>
       </form>
     </div>
 
@@ -67,66 +80,56 @@
 
 <script type="text/javascript">
 
-// MODAL CODE
-var modal = document.getElementById('modal');
-var span = document.getElementsByClassName("close")[0];
-span.onclick = function() { 
-  modal.style.display = "none"; 
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+  // MODAL CODE
+  var modal = document.getElementById('modal');
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function() { 
+    modal.style.display = "none"; 
+  }
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  $('#addFriend').click(function(){
+    modal.style.display = "block";
+  });
 
 
 
-    $( document ).ready(function(){
+  $( document ).ready(function(){
 
-      $('#submit').click(function(){
-        if(document.getElementById("friendInput").value === ""){
-            alert("Username field is empty");
-            return;
-        }
-            
-        var username = document.getElementById("username").value;
-        var friendName = document.getElementById("friendInput").value;
+    $('#submit').click(function(){
+      if(document.getElementById("friendInput").value === ""){
+          alert("Username field is empty");
+          return;
+      }
+          
+      var username = document.getElementById("username").value;
+      var friendName = document.getElementById("friendInput").value;
 
-          $.ajax({
-                  type: "POST",
-                  url : "https://traptalk.herokuapp.com/addFriend",
-                  data: {username: username, friendName: friendName},
-
-
-                  beforeSend : function(xhr, settings) {
-                      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                          xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                      }
-                  },
-                  success : function(data, textStatus, jqXHR){
-                    alert(data['message'])
-                  },
-                  error: function (xhr, status, error) {
-                    alert('Server Error: ' + status + '; ' + error)
-                  }
-
-          },"json");
-                
-      });
+        $.ajax({
+                type: "POST",
+                url : "https://traptalk.herokuapp.com/addFriend",
+                data: {username: username, friendName: friendName},
 
 
+                beforeSend : function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                },
+                success : function(data, textStatus, jqXHR){
+                  alert(data['message'])
+                },
+                error: function (xhr, status, error) {
+                  alert('Server Error: ' + status + '; ' + error)
+                }
 
+        },"json");
+              
+    });
 
-
-
-
-
-
-
-
-      $('#addFriend').click(function(){
-        modal.style.display = "block";
-      });
 
 
 
@@ -213,6 +216,30 @@ window.onclick = function(event) {
 			var text = "<br />" + "{{username}}" + ": " + message + "<br />";
 
 			$('#received').append(text);
+
+      $.ajax({
+              type: "POST",
+              url : "https://traptalk.herokuapp.com/send",
+              data: {senderName: {{username}}, receiverName: "batman", messageText: text},
+              dataType : "json",
+
+
+              beforeSend : function(xhr, settings) {
+                  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                  }
+              },
+
+              success : function(data){
+                      alert(data['message']);
+                      document.getElementById("signupUN").value = "";
+                      document.getElementById("signupPW").value = "";
+
+              },
+              error: function (xhr, status, error) {
+                  alert('Server error: '+ xhr.status);
+              }
+      },"json");
 
 		}
 

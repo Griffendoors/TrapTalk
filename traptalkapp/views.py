@@ -144,8 +144,16 @@ def addFriend(request):
 
 
 
+def send(request):
+  senderName = request.POST.get("senderName")
+  receiverName = request.POST.get("receiverName")
+  messageText = request.POST.get("messageText")
 
+  sender = User.objects.get(username__exact = senderName)
+  receiver = User.objects.get(username__exact = receiverName)
 
+  m = Message(message_from = sender, message_to = receiver, message_contents = messageText)
+  m.save()
 
 
 def main(request):
