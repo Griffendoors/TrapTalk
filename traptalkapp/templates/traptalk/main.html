@@ -39,7 +39,7 @@
    <div class = "main" id = "innerLeft">
       {% if friends %}
         {% for friend in friends %}
-          <div class = "main" id = "friend"><h1>{{friend.friend_two.username}}</h1></div>
+          <div class = "mainFriends" id = "friend"><h1>{{friend.friend_two.username}}</h1></div>
         {% endfor %}
       {% else %}
         Get some mates
@@ -100,7 +100,7 @@
 
   $( document ).ready(function(){
 
-    $('#friend').on('click', function(){
+    $('#mainFriends').on('click', function(){
       console.log($(this).index());
     });
 
@@ -168,17 +168,17 @@
         });
 
 
-        // $('#friend')
-        //   .mousedown(function() {
-        //     $( this ).css({
-        //         'background-color': '#d1d1e0'
-        //     });
-        //   })
-        //   .mouseup(function() {
-        //     $( this ).css({
-        //         'background-color': '#507cff'
-        //     });
-        // });
+         $('#mainFriends')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#507cff'
+            });
+        });
 
 
 
