@@ -81,9 +81,6 @@
 <script type="text/javascript">
 
 
-
-
-
   // MODAL CODE
   var modal = document.getElementById('modal');
   var span = document.getElementsByClassName("close")[0];
@@ -103,7 +100,7 @@
 
   $( document ).ready(function(){
 
-    $('#friend').click(function(){
+    $('#friend').on('click', function(){
       console.log($(this).index());
     });
 
