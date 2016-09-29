@@ -162,7 +162,7 @@ def send(request):
   token = request.POST.get("token")
   username = request.POST.get("username")
 
-  if(authorised(username,token) == False):
+  if(authorised(username,token) == True):
     response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
     return response
 
@@ -187,29 +187,21 @@ def authorised(username,token):
       return False
 
     issued = t.issued
-    print('issued', issued)
     now = datetime.datetime.now(timezone.utc)
-    print('now', now)
     difference = now - issued
-    print('difference', difference)
     secondsDifference = difference.total_seconds()
-    print('timediff:' , secondsDifference)
 
     if secondsDifference < 3600:
 
       updateToken(u)
-      print('1')
       return True
 
     else:
-      print('2')
       return False
 
   else:
-    print('3')
     return False
 
-  print('4')
   return False
 
 def updateToken(u):
