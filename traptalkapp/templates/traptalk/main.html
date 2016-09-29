@@ -109,7 +109,7 @@
       selectedFriendIndex = $(this).index();
       console.log(selectedFriendIndex);
 
-      var friendName = {% friends| slice:"selectedFriendIndex" %}
+      var friendName = {{ friends| slice: 'selectedFriendIndex' }}
       console.log(friendName);
 
       {% for message in recvMessages %}
