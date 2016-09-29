@@ -36,32 +36,16 @@
 
 
 <div class = "main" id = "outer">
-   <div class = "main" id = "innerLeft">
-      {% if friends %}
-        {% for friend in friends %}
-          <div class = "mainFriends" id = "friend"><h1>{{friend.friend_two.username}}</h1></div>
-        {% endfor %}
-      {% else %}
-        Get some mates
-      {% endif %}
-   </div>
-   <div class = "main" id = "innerRight">
-            <textarea class = "main" id = "received" readonly="readonly">
-             <!-- {% if recvMessages %}
-                  <ul>
-                  {% for message in recvMessages %}
-                      <li>{{ message.message_contents }}</li>
-                  {% endfor %}
-                  </ul>
-              {% else %}
-                  <p>No Chat from this person</p>
-              {% endif %} -->
-            </textarea>
 
+   <div class = "main" id = "innerLeft"></div>
+   <div class = "main" id = "innerRight">
+            <textarea class = "main" id = "received" readonly="readonly"></textarea>
             <textarea class = "main" id = "toSend" placeholder = "Press Enter to send"></textarea>
    </div>
 
     <div class = "main" id = "hidden">
+
+
       <form>
           <input type="hidden" id = "token" value={{ token }}>
           <input type="hidden" id = "username" value={{ username }}>
@@ -79,6 +63,22 @@
 </div>
 
 <script type="text/javascript">
+
+
+  function populateFriends(){
+    var un1 = "{{friend.friend_one.username}}";
+    var un2 = "{{friend.friend_two.username}}";
+
+    {% for friend in friends %}
+      if("{{username}}" === un1){
+        $("#innerLeft").append(<div class = "mainFriends" id = "{{friend.friend_two.username}}"></div>);
+      }
+      else{
+        $("#innerLeft").append(<div class = "mainFriends" id = "{{friend.friend_one.username}}"></div>);
+      }
+    {% endfor %}
+
+  }
 
 
   $( document ).ready(function(){
@@ -100,6 +100,15 @@
   });
 
 
+  populateFriends();
+
+
+
+
+
+
+
+
   var selectedFriendIndex = -1;
 
     $('.mainFriends').on('click', function(){
@@ -108,6 +117,8 @@
 
       selectedFriendIndex = $(this).index();
       console.log(selectedFriendIndex);
+
+      {% with "selectedFriendIndex" as i %} {{ mylist | slice: var }} {% endwith %}
 
       var friendName = {{ friends| slice: 'selectedFriendIndex' }}
       console.log(friendName);
