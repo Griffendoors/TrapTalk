@@ -162,7 +162,7 @@ def send(request):
   token = request.POST.get("token")
   username = request.POST.get("username")
 
-  if(authorised(username,token) != True):
+  if(authorised(username,token) == False):
     response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
     return response
 
