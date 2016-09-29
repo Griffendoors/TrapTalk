@@ -187,11 +187,12 @@ def authorised(username,token):
       return False
 
     issued = t.issued
+    print('issued', issued)
     now = datetime.datetime.now(timezone.utc)
+    print('now', now)
     difference = now - issued
+    print('difference', difference)
     secondsDifference = difference.total_seconds()
-    print('token from client: ', token)
-    print('token from DB: ' , t.token)
     print('timediff:' , secondsDifference)
 
     if secondsDifference < 3600:
