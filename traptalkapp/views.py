@@ -195,15 +195,20 @@ def authorised(username,token):
     print('timediff:' , secondsDifference)
 
     if secondsDifference < 3600:
+
       updateToken(u)
+      print('1')
       return True
 
     else:
+      print('2')
       return False
 
   else:
+    print('3')
     return False
 
+  print('4')
   return False
 
 def updateToken(u):

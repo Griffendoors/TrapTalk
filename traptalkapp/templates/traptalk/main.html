@@ -226,6 +226,8 @@
 			var text = "<br />" + "{{username}}" + ": " + message + "<br />";
 
 			$('#received').append(text);
+      
+
 
       $.ajax({
               type: "POST",
@@ -253,8 +255,7 @@
               }
       },"json");
 
-      document.getElementById("toSend").value = "";
-
+     document.getElementById("#toSend").value = "";
 		}
 
 
