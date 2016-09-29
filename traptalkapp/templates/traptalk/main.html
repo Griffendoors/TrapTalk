@@ -106,30 +106,10 @@
 
 
 
-
-
-
-  var selectedFriendIndex = -1;
-
     $('.mainFriends').on('click', function(){
       //console.log($(this).index());
       document.getElementById("received").value = "";
 
-      selectedFriendIndex = $(this).index();
-      console.log(selectedFriendIndex);
-
-      {% with "selectedFriendIndex" as i %} {{ mylist | slice: var }} {% endwith %}
-
-      var friendName = {{ friends| slice: 'selectedFriendIndex' }}
-      console.log(friendName);
-
-      {% for message in recvMessages %}
-        {% if message.message_from ==  friendName %}
-
-          $("#received").append({{message.message_contents}});
-
-          {% endif %}
-      {% endfor %}
 
     });
 
