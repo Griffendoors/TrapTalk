@@ -47,7 +47,7 @@
    </div>
    <div class = "main" id = "innerRight">
             <textarea class = "main" id = "received" readonly="readonly">
-              {% if recvMessages %}
+             <!-- {% if recvMessages %}
                   <ul>
                   {% for message in recvMessages %}
                       <li>{{ message.message_contents }}</li>
@@ -55,7 +55,7 @@
                   </ul>
               {% else %}
                   <p>No Chat from this person</p>
-              {% endif %}
+              {% endif %} -->
             </textarea>
 
             <textarea class = "main" id = "toSend" placeholder = "Press Enter to send"></textarea>
@@ -81,6 +81,9 @@
 <script type="text/javascript">
 
 
+  $( document ).ready(function(){
+    document.getElementById("received").value = "";
+
   // MODAL CODE
   var modal = document.getElementById('modal');
   var span = document.getElementsByClassName("close")[0];
@@ -97,11 +100,26 @@
   });
 
 
-
-  $( document ).ready(function(){
+  var selectedFriendIndex = -1;
 
     $('.mainFriends').on('click', function(){
-      console.log($(this).index());
+      //console.log($(this).index());
+      document.getElementById("received").value = "";
+
+      selectedFriendIndex = $(this).index();
+      console.log(selectedFriendIndex);
+
+      friendName = {{friends.selectedFriendIndex}}
+      console.log(friendName);
+
+      {% for message in recvMessages %}
+        {% if message.message_from ==  friendName %}
+
+          $("#received").append({{message.message_contents}});
+
+          {% endif %}
+      {% endfor %}
+
     });
 
     $('#submit').click(function(){
@@ -125,7 +143,8 @@
                     }
                 },
                 success : function(data, textStatus, jqXHR){
-                  alert(data['message'])
+                  alert(data['message']);
+                  modal.style.display = "none";
                 },
                 error: function (xhr, status, error) {
                   alert('Server Error: ' + status + '; ' + error)
