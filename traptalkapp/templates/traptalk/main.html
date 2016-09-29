@@ -80,9 +80,7 @@
 
 <script type="text/javascript">
 
-  $('#innerLeft').on('click', 'a', function() {
-    console.log($(this).index());
-  });
+
 
 
 
@@ -104,6 +102,10 @@
 
 
   $( document ).ready(function(){
+
+    $('#innerLeft').on('click', 'a', function() {
+      console.log($(this).index());
+    });
 
     $('#submit').click(function(){
       if(document.getElementById("friendInput").value === ""){
