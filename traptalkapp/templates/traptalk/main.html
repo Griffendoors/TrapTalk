@@ -66,17 +66,6 @@
 
 
   function populateFriends(){
-    var un1 = "{{friend.friend_one.username}}";
-    var un2 = "{{friend.friend_two.username}}";
-
-    {% for friend in friends %}
-      if("{{username}}" === un1){
-        $("#innerLeft").append(<div class = "mainFriends" id = "{{friend.friend_two.username}}"></div>);
-      }
-      else{
-        $("#innerLeft").append(<div class = "mainFriends" id = "{{friend.friend_one.username}}"></div>);
-      }
-    {% endfor %}
 
   }
 
@@ -241,7 +230,7 @@
       $.ajax({
               type: "POST",
               url : "https://traptalk.herokuapp.com/send",
-              data: {senderName: "batman", receiverName: "griff", messageText: message, token: "{{ token }}", username : "{{username}}"},
+              data: {senderName: "{{username}}", receiverName: "Batman"/**"{{currentFriend}}"**/, messageText: message, token: "{{ token }}", username : "{{username}}"},
               dataType : "json",
 
 
@@ -263,6 +252,8 @@
                   window.location.href = "/";
               }
       },"json");
+
+      document.getElementById("toSend").value = "";
 
 		}
 
