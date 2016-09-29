@@ -291,15 +291,6 @@
 
 }
 
-/**no mates box**/
-#innerLeft.main #noFriends {
-	background-color: #d1d1e0;
-	width: 100%;
-	height: 20%;
-	display: none;
-
-	margin:0 auto;
-}
 
 /**friend div section**/
 #innerLeft.main #friend {
