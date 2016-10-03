@@ -41,7 +41,7 @@
     {% if friends %}
       <ul>
       {% for friend in friends %}
-          <li><span name = "{{ friend.friend_two }}">{{ friend.friend_two }}</span></li>
+          <li><span name = "{{ friend.friend_two.username }}">{{ friend.friend_two.username }}</span></li>
       {% endfor %}
       </ul>
       {% else %}
