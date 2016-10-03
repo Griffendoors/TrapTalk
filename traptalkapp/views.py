@@ -191,7 +191,7 @@ def authorised(username,token):
     difference = now - issued
     secondsDifference = difference.total_seconds()
 
-    if secondsDifference < 36000:
+    if secondsDifference < 3600:
 
       updateToken(u)
       return True

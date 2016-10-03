@@ -37,15 +37,28 @@
 
 <div class = "main" id = "outer">
 
-   <div class = "main" id = "innerLeft"></div>
+   <div class = "main" id = "innerLeft">
+    {% if friends %}
+      <ul>
+      {% for friend in friends %}
+          <li><span name = "{{ friend.friend_two }}">{{ friend.friend_two }}</span></li>
+      {% endfor %}
+      </ul>
+      {% else %}
+      No Mates
+    {% endif %}
+
+
+   </div>
    <div class = "main" id = "innerRight">
             <textarea class = "main" id = "received" readonly="readonly"></textarea>
             <textarea class = "main" id = "toSend" placeholder = "Press Enter to send"></textarea>
    </div>
 
+
+
+
     <div class = "main" id = "hidden">
-
-
       <form>
           <input type="hidden" id = "token" value={{ token }}>
           <input type="hidden" id = "username" value={{ username }}>
