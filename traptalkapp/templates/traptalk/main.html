@@ -40,6 +40,9 @@
    <div class = "main" id = "innerLeft">
     {% if friends %}
       {% for friend in friends %}
+        {% if friend.friend_two.username == {{ username }}  %}
+          <div class = "" id = "" name = "{{ friend.friend_one.username }}">{{ friend.friend_one.username }}</div>
+        {% else %}
           <div class = "" id = "" name = "{{ friend.friend_two.username }}">{{ friend.friend_two.username }}</div>
       {% endfor %}
       {% else %}
@@ -97,24 +100,11 @@
   });
 
 
-  populateFriends();
-
-
-
-
-
-    $('.mainFriends').on('click', function(){
-      //console.log($(this).index());
-      document.getElementById("received").value = "";
-
-
-    });
-
-    $('#submit').click(function(){
-      if(document.getElementById("friendInput").value === ""){
-          alert("Username field is empty");
-          return;
-      }
+  $('#submit').click(function(){
+    if(document.getElementById("friendInput").value === ""){
+        alert("Username field is empty");
+        return;
+    }
           
       var username = document.getElementById("username").value;
       var friendName = document.getElementById("friendInput").value;
@@ -173,21 +163,6 @@
                 'background-color': '#b3c6ff'
             });
         });
-
-
-         $('.mainFriends')
-          .mousedown(function() {
-            $( this ).css({
-                'background-color': '#d1d1e0'
-            });
-          })
-          .mouseup(function() {
-            $( this ).css({
-                'background-color': '#507cff'
-            });
-        });
-
-
 
 
     $('#logout').click(function(){
