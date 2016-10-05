@@ -40,7 +40,7 @@
    <div class = "main" id = "innerLeft">
     {% if friends %}
       {% for friend in friends %}
-          <div class = "friendInput" id = "friend" name = "{{ friend.friend_two.username }}">{{ friend.friend_two.username }}</div>
+          <div class = "mainFriends" id = "friend" name = "{{ friend.friend_two.username }}">{{ friend.friend_two.username }}</div>
       {% endfor %}
       {% else %}
       No Mates
@@ -76,9 +76,6 @@
 <script type="text/javascript">
 
 
-  function populateFriends(){
-
-  }
 
 
   $( document ).ready(function(){
