@@ -327,7 +327,7 @@
 
 
 /**Indivudual friend boxed**/
-#innerLeft.main #friend {
+#innerLeft.main .mainFriends {
 	background-color: #3366ff;
 	border: 2px solid black;
 	overflow-x: auto;
