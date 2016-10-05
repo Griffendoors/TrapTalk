@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
 
-
+var selected = "Nothing";
 
 
   $( document ).ready(function(){
@@ -140,7 +140,10 @@
 
 
         $('.mainFriends').on('click', function () {
-            console.log(this.id);
+            //console.log(this.id);
+            selected = this.id;
+            document.getElementById("toSend").value = "";
+            document.getElementById("received").value = "";
         });
 
 
@@ -221,6 +224,11 @@
 
 
 		function sendMessage(message){
+      if(selected === "Nothing"){
+        alert("Select a Conversation first, Blood.");
+        return;
+      }
+
 
 			var text = "<br />" + "{{username}}" + ": " + message + "<br />";
 
@@ -233,7 +241,7 @@
       $.ajax({
               type: "POST",
               url : "https://traptalk.herokuapp.com/send",
-              data: {senderName: "{{username}}", receiverName: "{{username}}", messageText: message, token: "{{ token }}", username : "{{username}}"},
+              data: {senderName: "{{username}}", receiverName: selected, messageText: message, token: "{{ token }}", username : "{{username}}"},
               dataType : "json",
 
 
