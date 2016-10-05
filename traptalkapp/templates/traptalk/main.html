@@ -144,7 +144,9 @@ var selected = "Nothing";
 
             var messages = [];
                 {% for message in recvMessages %}
+                  {% if message.friend_two.username ==  selected || message.friend_one.username ==  selected %}
                     $( "#received" ).append(selected + ": " + '{{ message.message_contents }}' + '<br />' );
+                  {% endif %}
                 {% endfor %}
 
         });
