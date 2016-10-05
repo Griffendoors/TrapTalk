@@ -142,9 +142,11 @@ var selected = "Nothing";
             //document.getElementById("received").value = "";
 
 
+
+
             var messages = [];
                 {% for message in recvMessages %}
-                  {% if message.friend_two.username ==  selected or message.friend_one.username ==  selected %}
+                  {% if string(message.friend_two.username) ===  string(selected) or string(message.friend_one.username) ===  string(selected) %}
                     $( "#received" ).append(selected + ": " + '{{ message.message_contents }}' + '<br />' );
                   {% endif %}
                 {% endfor %}
