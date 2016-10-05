@@ -165,6 +165,18 @@
             });
         });
 
+         $('.mainFriends')
+          .mousedown(function() {
+            $( this ).css({
+                'background-color': '#d1d1e0'
+            });
+          })
+          .mouseup(function() {
+            $( this ).css({
+                'background-color': '#3366ff'
+            });
+        });
+
 
     $('#logout').click(function(){
         $.ajax({
