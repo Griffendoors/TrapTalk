@@ -127,10 +127,6 @@ var selected = "Nothing";
                 },
                 error: function (xhr, status, error) {
                   alert('Server Error: ' + status + '; ' + error)
-                  alert('Server error: '+ xhr.status);
-                  alert(xhr['message']);
-                  alert(status['message']);
-                  alert(error['message']);
                   window.location.href = "/";
                 }
 
@@ -143,7 +139,13 @@ var selected = "Nothing";
             //console.log(this.id);
             selected = this.id;
             document.getElementById("toSend").value = "";
-            //document.getElementById("received").value = "";
+            document.getElementById("received").value = "";
+
+
+            var messages = [];
+                {% for message in recvMessages %}
+                    $( "#received" ).append(selected + ": " + '{{ message.message_contents }}' + '<br />' );
+                {% endfor %}
 
         });
 
@@ -258,9 +260,6 @@ var selected = "Nothing";
               },
               error: function (xhr, status, error) {
                   alert('Server error: '+ xhr.status);
-                  alert(xhr['message']);
-                  alert(status['message']);
-                  alert(error['message']);
                   window.location.href = "/";
               }
       },"json");
