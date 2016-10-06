@@ -338,7 +338,7 @@
 
 /**sent messages in received messages box**/
 #received.main #sentMsg{
-	display: inline-block;
+	display: block;
 	border: 1px solid black;
 	background-color: #3366ff;
 	text-align: right;
@@ -350,7 +350,7 @@
 
 /**received messages in received messages box**/
 #received.main #recvMsg{
-	display: inline-block;
+	display: block;
 	border: 1px solid black;
 	background-color: #b3c6ff;
 	text-align: left;
