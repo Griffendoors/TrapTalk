@@ -74,14 +74,12 @@ def main(request):
     token = updateToken(u)
 
     friends = Friend.objects.filter(friend_one=u) | Friend.objects.filter(friend_two=u)
-    sentMessages = Message.objects.filter(message_from=u).order_by('sent')
-    recvMessages = Message.objects.filter(message_to=u).order_by('sent')
+    messages = Message.objects.filter(message_from=u).order_by('sent') | Message.objects.filter(message_to=u).order_by('sent')
 
     context = {
         'token': token,
         'friends': friends,
-        'sentMessages': sentMessages,
-        'recvMessages': recvMessages,
+        'messages': messages,
         'username': username,
     }
 

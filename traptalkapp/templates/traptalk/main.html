@@ -65,8 +65,7 @@
           <input type="hidden" id = "token" value={{ token }}>
           <input type="hidden" id = "username" value={{ username }}>
           <input type="hidden" id = "friends" value={{ friends }}>
-          <input type="hidden" id = "sentMessages" value={{ sentMessages }}>
-          <input type="hidden" id = "recvMessages" value={{ recvMessages }}>
+          <input type="hidden" id = "messages" value={{ messages }}>
       </form>
     </div>
 
@@ -137,7 +136,19 @@ var selected = "Nothing";
 
         $('.mainFriends').on('click', function () {
           selected = this.id;
-          getNewMessages();
+          //getNewMessages();   // dont want to call server every time click different friend, thats ridiculous. call get new only after send, just use template code here. 
+
+          document.getElementById("toSend").value = "";
+          $("#received").empty();
+
+          {% for message in messages %}
+            {% if message.message_from.username == username and message.message_to.username == selected %}
+              $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + message +"</div>");
+            {% elif message.message_to.username == username and message.message_from.username == selected %}
+              $('#received').append("<div class = 'main' id = 'recvMsg'>" + "{{message.message_from.username}}" + ": " + message +"</div>");
+            {% endif %}
+          {% endfor %}
+
         });
 
 
