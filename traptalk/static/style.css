@@ -287,7 +287,7 @@
 	overflow-y:auto;
 
 	font-family: "Tahoma";
-	text-align: center;
+	text-align: left;
 
 }
 
@@ -329,7 +329,7 @@
 /**Indivudual friend boxed**/
 #innerLeft.main .mainFriends {
 	background-color: #3366ff;
-	border: 2px solid black;
+	border: 1px solid black;
 	overflow-x: auto;
 	width: 100%;
 	height: 10%;
@@ -337,7 +337,6 @@
 
 
 /**sent messages in received messages box**/
-
 #received.main #sentMsg{
 	display: inline-block;
 	border: 1px solid black;
@@ -345,11 +344,21 @@
 	text-align: right;
 	float: right;
 	border-radius: 15px;
-
+	padding: 10;
 
 }
 
+/**received messages in received messages box**/
+#received.main #recvMsg{
+	display: inline-block;
+	border: 1px solid black;
+	background-color: #b3c6ff;
+	text-align: left;
+	float: left;
+	border-radius: 15px;
+	padding: 10;
 
+}
 
 
 
