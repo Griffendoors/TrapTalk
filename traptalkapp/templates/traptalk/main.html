@@ -149,9 +149,7 @@ var selected = "Nothing";
                 {% for message in recvMessages %}
                   {% if message.message_from.username ==  selected or message.message_to.username ==  selected %}
                     $( "#received" ).append(selected + ": " + '{{ message.message_contents }}' + '<br />' );
-                                console.log("selected: " + selected)
-                                console.log('{{message.message_from.username}}')
-                               console.log('{{message.message_to.usernam}}')
+
                   {% endif %}
                 {% endfor %}
 
@@ -240,10 +238,13 @@ var selected = "Nothing";
         return;
       }
 
+			//var text = "<br />"  "<br />";
 
-			var text = "<br />" + "{{username}}" + ": " + message + "<br />";
 
-			$('#received').append(text);
+
+
+
+			$('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + message +"</div>");
 
       document.getElementById("toSend").value = "";
 
