@@ -142,18 +142,18 @@ var selected = "Nothing";
           $("#received").empty();
 
           {% for message in messages %}
-            {% if message.message_from.username == username and message.message_to.username == selected %}
+            if('{{message.message_from.username}}' == '{{username}}' && '{{message.message_to.username}}' == selected){
               $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + message +"</div>");
               console.log('1');
-            {% elif message.message_to.username == username and message.message_from.username == selected %}
+            }
+            else if('{{message.message_to.username}}' == '{{username}}' && '{{message.message_from.username}}' == selected){
               $('#received').append("<div class = 'main' id = 'recvMsg'>" + "{{message.message_from.username}}" + ": " + message +"</div>");
-              console.log('2');
-            {% else %}
+              console.log('2');             
+            }
+            else{
               console.log('3');
-            {% endif %}
-
+            }
           {% endfor %}
-
         });
 
 
