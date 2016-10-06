@@ -203,10 +203,12 @@ def getParticularMessages(request):
   recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
 
   response_data = {}
+  response_data['status'] = 'false'
   response_data['sentMessages'] = sentMessages
   response_data['recvMessages'] = recvMessages
 
-  response = JsonResponse({'status':'false', response_data}, status=200)
+
+  response = JsonResponse(response_data, status=200)
   return response
 
 
