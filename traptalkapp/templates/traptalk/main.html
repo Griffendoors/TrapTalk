@@ -142,14 +142,12 @@ var selected = "Nothing";
 
 
 
-
-            var messages = [];
-
                 {% for message in recvMessages %}
-                  {% if message.message_from.username ==  selected %}
                     console.log('{{message}}')
+                  //{% if message.message_from.username ==  selected %}
+                    
 
-                  {% endif %}
+                  //{% endif %}
                 {% endfor %}
 
         });
