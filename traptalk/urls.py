@@ -16,7 +16,7 @@ urlpatterns = [
     url('signout$', traptalkapp.views.signout, name='signout'),
     url('addFriend$', traptalkapp.views.addFriend, name='addFriend'),
     url('send$', traptalkapp.views.send, name='send'),
-    url('getParticularMessages$', traptalkapp.getParticularMessages.send, name='getParticularMessages'),
+    url('getParticularMessages$', traptalkapp.views.getParticularMessages, name='getParticularMessages'),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
