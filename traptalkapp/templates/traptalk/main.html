@@ -140,10 +140,12 @@ var selected = "Nothing";
             document.getElementById("toSend").value = "";
             $("#received").empty();
 
-
+                console.log(selected);
 
                 {% for message in recvMessages %}
-                    console.log('{{message}}')
+                    console.log('{{message.message_contents}}');
+                    console.log('{{message.message_from.username}}');
+                    console.log('{{message.message_to.username}}');
                   //{% if message.message_from.username ==  selected %}
                     
 
