@@ -140,16 +140,27 @@ var selected = "Nothing";
             document.getElementById("toSend").value = "";
             $("#received").empty();
 
-                console.log(selected);
+                //console.log(selected);  //batman
+
+                console.log(typeof selected);
 
                 {% for message in recvMessages %}
-                    console.log('{{message.message_contents}}');
-                    console.log('{{message.message_from.username}}');
-                    console.log('{{message.message_to.username}}');
+                    //console.log('{{message.message_contents}}');  //To Griff from Robin Message 1   //To Griff from batman message 1
+                    //console.log('{{message.message_from.username}}'); // Robin     //batman
+                    //console.log('{{message.message_to.username}}'); //Griff     //griff
                   //{% if message.message_from.username ==  selected %}
                     
 
                   //{% endif %}
+
+                  console.log(typeof '{{message.message_contents}}');
+                  console.log(typeof '{{message.message_from.username}}');
+                  console.log(typeof '{{message.message_to.username}}');
+                  
+
+
+
+
                 {% endfor %}
 
         });
