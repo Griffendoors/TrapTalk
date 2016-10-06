@@ -175,6 +175,41 @@ def send(request):
   return response
 
 
+def getParticularMessages(request):
+  logged = False
+
+  if request.POST.get('token'):
+    logged = True
+
+  if logged == False:
+    response = JsonResponse({'status':'false','message': 'You must Log in to access this'}, status=403)
+    return response
+
+  token = request.POST.get("token")
+  username = request.POST.get("username")
+  selected = request.POST.get("selected")
+
+  if(authorised(username,token) == False):
+    response = JsonResponse({'status':'false','message': 'Session time out, please log in again.'}, status=403)
+    return response 
+
+  if User.objects.filter(username__exact = username).exists():
+    u = User.objects.get(username__exact = username)
+
+  if User.objects.filter(username__exact = selected).exists():
+    s = User.objects.get(username__exact = selected)
+
+  sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
+  recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
+
+  response_data = {}
+  response_data['sentMessages'] = sentMessages
+  response_data['recvMessages'] = recvMessages
+
+  response = JsonResponse({'status':'false', response_data}, status=200)
+  return response
+
+
 #IF TOKEN VALID, UPDATES TOKEN IN VALID TOKENS
 #FALSE RETURN MEANS TOKEN INVALID OR TIMED OUT
 def authorised(username,token):

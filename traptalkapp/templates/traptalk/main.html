@@ -83,7 +83,6 @@ var selected = "Nothing";
 
 
   $( document ).ready(function(){
-    //document.getElementById("received").value = "";
 
   // MODAL CODE
   var modal = document.getElementById('modal');
@@ -98,6 +97,7 @@ var selected = "Nothing";
   }
   $('#addFriend').click(function(){
     modal.style.display = "block";
+    getNewMessages();
   });
 
 
@@ -136,34 +136,39 @@ var selected = "Nothing";
 
 
         $('.mainFriends').on('click', function () {
-            selected = this.id;
+          selected = this.id;
+          getNewMessages();
+        });
+
+
+        function getNewMessages(){
             document.getElementById("toSend").value = "";
             $("#received").empty();
 
-                //console.log(selected);  //batman
+            $.ajax({
+                    type: "POST",
+                    url : "https://traptalk.herokuapp.com/getParticularMessages",
+                    data: {token: "{{ token }}", username: username, selected: selected},
+                    dataType : "json",
+                    beforeSend : function(xhr, settings) {
+                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        }
+                    },
+                    success : function(data){
+                      alert('updated Messages')
+                      alert(data['message']);
+                      alert(data['message'].sentMessages);
+                      alert(data['message'].recvMessages);
 
-                console.log(typeof selected);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Server error: '+xhr.status);
+                          
+                    }
 
-                {% for message in recvMessages %}
-                    //console.log('{{message.message_contents}}');  //To Griff from Robin Message 1   //To Griff from batman message 1
-                    //console.log('{{message.message_from.username}}'); // Robin     //batman
-                    //console.log('{{message.message_to.username}}'); //Griff     //griff
-                  //{% if message.message_from.username ==  selected %}
-                    
-
-                  //{% endif %}
-
-                  console.log(typeof '{{message.message_contents}}');
-                  console.log(typeof '{{message.message_from.username}}');
-                  console.log(typeof '{{message.message_to.username}}');
-                  
-
-
-
-
-                {% endfor %}
-
-        });
+            },"json");
+        }
 
 
         $('#addFriend')
@@ -231,12 +236,9 @@ var selected = "Nothing";
 
 		$("#toSend").keypress(function(e) {
     		if(e.which == 13) {
-        		
-   			var text = document.getElementById("toSend").value;
-
-			sendMessage(text);
-			$('#toSend').val("");
-
+          var text = document.getElementById("toSend").value;
+          sendMessage(text);
+          $('#toSend').val("");
     		}
 		});
 
@@ -247,8 +249,6 @@ var selected = "Nothing";
         alert("Select a Conversation first, Blood.");
         return;
       }
-
-			$('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + message +"</div>");
 
       document.getElementById("toSend").value = "";
 
@@ -277,7 +277,7 @@ var selected = "Nothing";
               }
       },"json");
 
-     
+    getNewMessages();
 		}
 
 
