@@ -170,11 +170,11 @@ var selected = "Nothing";
                     success : function(data){
 
                       alert(data['messages']);
-                      for (var j in data['messages'].0) {
+                      for (var j in data['messages']) {
                         alert('j: ' + j);
                       }
 
-                      for (var k in data[0]) {
+                      for (var k in data) {
                         alert('k: ' + k);
                       }
 

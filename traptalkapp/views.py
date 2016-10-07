@@ -210,8 +210,8 @@ def getParticularMessages(request):
   #response_data['recvMessages'] = recvMessages
 
 
-  response_data['messages'] = serializers.serialize('json', messages)
-
+  #response_data['messages'] = serializers.serialize('json', messages)
+  response_data['messages'] = messages
 
   return JsonResponse({'messages': list(response_data)})
 
