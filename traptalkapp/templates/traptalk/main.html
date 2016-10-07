@@ -173,12 +173,11 @@ var selected = "Nothing";
 
                       //alert(data['messages'].message['message_contents']);
 
-                      for(var x in data['messages']){
-                        console.log('x: ' + x);
-                        for(var y in x){
-                          console.log('y: ' + y);
-                        }
-                      }
+                      var tempData = $.parseJSON(data);
+                      $.each(tempData, function(k, v) {
+                      //display the key and value pair
+                      alert("key= " + k + "and value= "+ v);
+                      });
 alert(data['messages']);
                       // $.each(data['messages'], function(index,fields) {        
                       //   console.log(fields.message.message_contents);
