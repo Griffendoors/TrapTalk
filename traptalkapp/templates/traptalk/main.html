@@ -168,21 +168,9 @@ var selected = "Nothing";
                         }
                     },
                     success : function(data){
-                      //alert('updated Messages')
-                      
 
-                      //alert(data['messages'].message['message_contents']);
+                      alert(data['messages']);
 
-                      var tempData = $.parseJSON(data['messages']);
-                      $.each(tempData, function(k, v) {
-                      //display the key and value pair
-                      alert("key= " + k + "and value= "+ v);
-                      });
-alert(data['messages']);
-                      // $.each(data['messages'], function(index,fields) {        
-                      //   console.log(fields.message.message_contents);
-                      // });
-              //myList[1].children[0].childname;
 
                     },
                     error: function (xhr, status, error) {
