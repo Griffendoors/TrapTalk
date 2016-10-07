@@ -144,15 +144,11 @@ var selected = "Nothing";
           {% for message in messages %}
             if('{{message.message_from.username}}' == '{{username}}' && '{{message.message_to.username}}' == selected){
               $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + '{{message.message_contents}}' +"</div>");
-              console.log('1');
             }
             else if('{{message.message_to.username}}' == '{{username}}' && '{{message.message_from.username}}' == selected){
-              $('#received').append("<div class = 'main' id = 'recvMsg'>" + "{{message.message_from.username}}" + ": " + '{{message.message_contents}}' +"</div>");
-              console.log('2');             
+              $('#received').append("<div class = 'main' id = 'recvMsg'>" + "{{message.message_from.username}}" + ": " + '{{message.message_contents}}' +"</div>");           
             }
-            else{
-              console.log('3');
-            }
+            else{}
           {% endfor %}
         });
 
@@ -173,10 +169,12 @@ var selected = "Nothing";
                     },
                     success : function(data){
                       //alert('updated Messages')
-                      alert(data['messages']);
-                      $.each(data.messages, function(index,fields) {        
-                        console.log(fields.message.message_contents);
-                      });
+                      // alert(data['messages']);
+
+                      alert(data['messages'].fields);
+                      // $.each(data['messages'], function(index,fields) {        
+                      //   console.log(fields.message.message_contents);
+                      // });
 
 
                     },
