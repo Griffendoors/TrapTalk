@@ -20,6 +20,7 @@ from pprint import pprint
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.template import RequestContext
+from json import dumps, loads
 
 def index(request):
   #template = loader.get_template('traptalk/index.html')
