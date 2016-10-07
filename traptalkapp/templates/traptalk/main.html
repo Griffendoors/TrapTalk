@@ -164,7 +164,7 @@ var selected = "Nothing";
             $.ajax({
                     type: "POST",
                     url : "https://traptalk.herokuapp.com/getParticularMessages",
-                    data: {token: "{{ token }}", username: username, selected: selected},
+                    data: {token: "{{ token }}", username: "{{username}}", selected: selected},
                     dataType : "json",
                     beforeSend : function(xhr, settings) {
                         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -266,7 +266,7 @@ var selected = "Nothing";
         return;
       }
 
-     //document.getElementById("toSend").value = "";
+      document.getElementById("toSend").value = "";
 
 
 
