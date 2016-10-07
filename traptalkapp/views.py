@@ -210,10 +210,10 @@ def getParticularMessages(request):
   #response_data['recvMessages'] = recvMessages
 
 
-  #response_data['messages'] = serializers.serialize('json', messages)
+  #response_data['messages'] = serializers.serialize('json', list(messages))
   #response_data['messages'] = messages
 
-  return JsonResponse({'messages': list(messages)})
+  return JsonResponse({'messages': serializers.serialize('json', list(messages))})
 
   #result_list = list(my_queryset.values('first_named_field', 'second_named_field'))
   #return HttpResponse(json.dumps(result_list))
