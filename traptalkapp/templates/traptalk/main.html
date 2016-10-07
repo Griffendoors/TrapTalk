@@ -173,7 +173,7 @@ var selected = "Nothing";
 
                       //alert(data['messages'].message['message_contents']);
 
-                      var tempData = $.parseJSON(data);
+                      var tempData = $.parseJSON(data['messages']);
                       $.each(tempData, function(k, v) {
                       //display the key and value pair
                       alert("key= " + k + "and value= "+ v);
