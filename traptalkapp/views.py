@@ -20,7 +20,7 @@ from pprint import pprint
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.template import RequestContext
-from json import dumps, loads
+from django.core import serializers
 
 def index(request):
   #template = loader.get_template('traptalk/index.html')
@@ -204,17 +204,20 @@ def getParticularMessages(request):
   #sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
   #recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
 
-  #response_data = {}
+  response_data = {}
   #response_data['status'] = 'false'
   #response_data['sentMessages'] = sentMessages
   #response_data['recvMessages'] = recvMessages
 
 
-  response_data = list(messages.values('message_from', 'message_to', 'sent', 'message_contents'))
-  return HttpResponse(json.dumps(response_data))
+  response_data['messages'] = serializers.serialize('json', messages)
+
+  #result_list = list(my_queryset.values('first_named_field', 'second_named_field'))
+  #return HttpResponse(json.dumps(result_list))
 
 
   #response = JsonResponse(response_data, status=200)
+  return HttpResponse(JsonResponse(response_data), content_type="application/json")
   #return response
 
 
