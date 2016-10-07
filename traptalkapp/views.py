@@ -212,12 +212,15 @@ def getParticularMessages(request):
 
   response_data['messages'] = serializers.serialize('json', messages)
 
+
+  return JsonResponse({'messages': list(response_data)})
+
   #result_list = list(my_queryset.values('first_named_field', 'second_named_field'))
   #return HttpResponse(json.dumps(result_list))
 
 
   #response = JsonResponse(response_data, status=200)
-  return HttpResponse(JsonResponse(response_data), content_type="application/json")
+  #return HttpResponse(JsonResponse(response_data), content_type="application/json")
   #return response
 
 
