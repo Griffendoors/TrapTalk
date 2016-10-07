@@ -158,8 +158,8 @@ var selected = "Nothing";
 
 
         function getNewMessages(){
-            //document.getElementById("toSend").value = "";
-           // $("#received").empty();
+            document.getElementById("toSend").value = "";
+            $("#received").empty();
 
             $.ajax({
                     type: "POST",
@@ -266,7 +266,7 @@ var selected = "Nothing";
         return;
       }
 
-      document.getElementById("toSend").value = "";
+     //document.getElementById("toSend").value = "";
 
 
 
