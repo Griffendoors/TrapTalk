@@ -197,17 +197,24 @@ def getParticularMessages(request):
   if User.objects.filter(username__exact = selected).exists():
     s = User.objects.get(username__exact = selected)
 
-  sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
-  recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
 
-  response_data = {}
-  response_data['status'] = 'false'
-  response_data['sentMessages'] = sentMessages
-  response_data['recvMessages'] = recvMessages
+  messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
+
+  #sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
+  #recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
+
+  #response_data = {}
+  #response_data['status'] = 'false'
+  #response_data['sentMessages'] = sentMessages
+  #response_data['recvMessages'] = recvMessages
 
 
-  response = JsonResponse(response_data, status=200)
-  return response
+  response_data = list(messages.values('message_from', 'message_to', 'sent', 'message_contents'))
+  return HttpResponse(json.dumps(response_data))
+
+
+  #response = JsonResponse(response_data, status=200)
+  #return response
 
 
 #IF TOKEN VALID, UPDATES TOKEN IN VALID TOKENS

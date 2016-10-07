@@ -173,9 +173,8 @@ var selected = "Nothing";
                     },
                     success : function(data){
                       alert('updated Messages')
-                      alert(data['message']);
-                      alert(data['message'].sentMessages);
-                      alert(data['message'].recvMessages);
+                      alert(data['messages']);
+
 
                     },
                     error: function (xhr, status, error) {
