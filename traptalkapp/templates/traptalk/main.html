@@ -169,9 +169,9 @@ var selected = "Nothing";
                     },
                     success : function(data){
                       //alert('updated Messages')
-                      // alert(data['messages']);
+                      alert(data['messages']);
 
-                      alert(data['messages'].fields['message'].message_contents);
+                      alert(data['messages'].message['message_contents']);
                       // $.each(data['messages'], function(index,fields) {        
                       //   console.log(fields.message.message_contents);
                       // });
