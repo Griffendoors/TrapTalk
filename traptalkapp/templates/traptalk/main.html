@@ -168,11 +168,10 @@ var selected = "Nothing";
                         }
                     },
                     success : function(data){
-                      console.log(JSON.stringify(data));
-                      console.log(JSON.stringify(data['messages']));
 
                       alert(data['messages']);
-                      for (var j in data['messages'].message_contents) {
+
+                      for (var j in data['messages']) {
                         alert('j: ' + j);
                       }
 
