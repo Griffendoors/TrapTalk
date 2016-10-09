@@ -203,9 +203,9 @@ def getParticularMessages(request):
 
   for msg in messages:
     if msg.message_from == u:
-      msg.message_from = u.username
+      msg.update(message_from = u.username)
     else:
-      msg.message_from = s.username
+      msg.update(message_from = s.username)
   for msg in messages:
     msg.save()
 
