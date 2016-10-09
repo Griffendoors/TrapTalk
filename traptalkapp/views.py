@@ -200,8 +200,9 @@ def getParticularMessages(request):
 
 
   messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
+  #response = JsonResponse(dict(genres=list(Genre.objects.values('name', 'color'))))
 
-  return JsonResponse(messages.values('message_contents'))
+  return JsonResponse(dict(messages.values('message_contents')))
 
 
 
