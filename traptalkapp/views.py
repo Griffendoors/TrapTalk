@@ -199,7 +199,7 @@ def getParticularMessages(request):
     s = User.objects.get(username__exact = selected)
 
 
-  messages = ((Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))).only('message_from', 'message_to', 'sent', 'message_contents')
+  messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent')).values_list()
 
   #sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
   #recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
