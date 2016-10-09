@@ -198,8 +198,8 @@ def getParticularMessages(request):
   if User.objects.filter(username__exact = selected).exists():
     s = User.objects.get(username__exact = selected)
 
-  #messages = (Message.objects.values(message_from=u).order_by('sent') & Message.objects.values(message_to=s).order_by('sent'))| (Message.objects.values(message_to=u).order_by('sent') & Message.objects.values(message_from=s).order_by('sent'))
-  messages = (Message.objects.values('message_from', 'message_to', 'message_contents').order_by('sent'))
+  messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
+  #messages = (Message.objects.filter('message_from', 'message_to', 'message_contents').order_by('sent'))
   #response = JsonResponse(dict(genres=list(Genre.objects.values('name', 'color'))))
 
   #response_data = {}
