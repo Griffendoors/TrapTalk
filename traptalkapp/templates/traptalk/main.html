@@ -170,10 +170,12 @@ var selected = "Nothing";
                     success : function(data){
 
 
+                    alert(data['messages'])
 
-$.each(data['messages'], function(key, value){
-        alert( '2: ' + key + ': ' + value );
-    });
+
+//$.each(data['messages'], function(key, value){
+       // alert( '2: ' + key + ': ' + value );
+    //});
 
 
                     },

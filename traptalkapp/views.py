@@ -211,6 +211,7 @@ def getParticularMessages(request):
 
 
   response = serializers.serialize("json", messages)
+  pprint(messages)
   return HttpResponse(response, content_type='application/json')
 
 
