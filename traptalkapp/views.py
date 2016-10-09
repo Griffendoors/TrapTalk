@@ -212,8 +212,11 @@ def getParticularMessages(request):
 
   response = serializers.serialize("json", messages)
   response2 = serializers.serialize("json", messages)
+  response_data = {}
+  response_data['1'] = response
+  response_data['2'] = response2
 
-  return HttpResponse(response, response2, content_type='application/json')
+  return HttpResponse(response_data, content_type='application/json')
 
 
 
