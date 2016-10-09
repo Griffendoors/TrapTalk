@@ -205,7 +205,7 @@ def getParticularMessages(request):
   response_data = {}
   response_data['msgs'] = messages
 
-  return JsonResponse(response_data)
+  return JsonResponse(dict(response_data))
 
 
 
