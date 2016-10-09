@@ -212,7 +212,7 @@ def getParticularMessages(request):
 
   #response_data['messages'] = serializers.serialize('json', list(messages))
   #response_data['messages'] = messages
-  data = serializers.serialize('json', messages, fields=('message_contents'))
+  data = list(serializers.serialize('json', messages, fields=('message_contents')))
   return JsonResponse({'messages': serializers.serialize('json', data)})
 
 
