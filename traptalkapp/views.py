@@ -201,28 +201,9 @@ def getParticularMessages(request):
 
   messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
 
-  #sentMessages = Message.objects.filter(message_from=u, message_to=s).order_by('sent')
-  #recvMessages = Message.objects.filter(message_to=u, message_from=s).order_by('sent')
-
-  #response_data = {}
-  #response_data['status'] = 'false'
-  #response_data['sentMessages'] = sentMessages
-  #response_data['recvMessages'] = recvMessages
+  return JsonResponse(messages)
 
 
-  #response_data['messages'] = serializers.serialize('json', list(messages))
-  #response_data['messages'] = messages
-  data = list(serializers.serialize('json', messages, fields=('message_contents')))
-  return JsonResponse({'messages': serializers.serialize('json', data)})
-
-
-  #result_list = list(my_queryset.values('first_named_field', 'second_named_field'))
-  #return HttpResponse(json.dumps(result_list))
-
-
-  #response = JsonResponse(response_data, status=200)
-  #return HttpResponse(JsonResponse(response_data), content_type="application/json")
-  #return response  
 
 
 
