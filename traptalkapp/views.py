@@ -202,7 +202,7 @@ def getParticularMessages(request):
   messages = (Message.objects.values('message_from', 'message_to', 'message_contents').order_by('sent'))
   #response = JsonResponse(dict(genres=list(Genre.objects.values('name', 'color'))))
 
-  return JsonResponse(list(messages))
+  return JsonResponse(listherio(messages))
 
 
 
