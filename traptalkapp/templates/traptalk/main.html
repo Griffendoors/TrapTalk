@@ -169,10 +169,12 @@ var selected = "Nothing";
                     },
                     success : function(data){
 
-                      $.each(data, function(key, value){
-                        console.log( key + ': ' + value.fields.name );
-                      });
-                    }
+$.each(data, function(key, value){
+        alert( key + ': ' + value.fields.name );
+    });
+}
+
+                    },
                     error: function (xhr, status, error) {
                         alert('Server error: '+xhr.status);
                           
