@@ -201,7 +201,7 @@ def getParticularMessages(request):
 
   messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
 
-  return JsonResponse(messages)
+  return JsonResponse(messages.values('message_contents'))
 
 
 
