@@ -136,11 +136,11 @@ var selected = "Nothing";
 
 
         $('.mainFriends').on('click', function () {
-          if(this.id != selected){
+
             selected = this.id;
             document.getElementById("toSend").value = "";
             $("#received").empty();
-          }
+
 
           {% for message in messages %}
             if('{{message.message_from.username}}' == '{{username}}' && '{{message.message_to.username}}' == selected){

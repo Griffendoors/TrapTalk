@@ -268,3 +268,8 @@ $('#formName').on('submit', function(event) {
 - first line of conversation in friend div
 
 - login: authenticated with ajax, return token, call form.submit,  pass token with form submit to redirect
+
+- bug: click a friend, send message, click the same friend : the message dissapears. reclicking the friend clears the chat as the message is not stored in template storage, and getNewMessages() is not called as calling on every friend click would be ridic.
+ message reappears when api call is made for getParticularMessages as it is stored there.
+
+ - no friends - hide both main divs. display small clickable div - " add a friend to get started. " - display what is needed. 
