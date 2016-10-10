@@ -208,7 +208,7 @@ def getParticularMessages(request):
     messages.append(msg.message_contents)
     if msg.message_from == u:
       messagesUser.append(count)
-    count++  
+    count = count + 1 
 
 
   
