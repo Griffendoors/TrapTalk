@@ -198,23 +198,30 @@ def getParticularMessages(request):
   if User.objects.filter(username__exact = selected).exists():
     s = User.objects.get(username__exact = selected)
 
-  messages = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
+  messagesQuery = (Message.objects.filter(message_from=u).order_by('sent') & Message.objects.filter(message_to=s).order_by('sent'))| (Message.objects.filter(message_to=u).order_by('sent') & Message.objects.filter(message_from=s).order_by('sent'))
 
+  messages = []
+  messagesUser = []
+  count = 0
 
-  for msg in messages:
+  for msg in messagesQuery:
+    messages.append(msg.message_contents)
     if msg.message_from == u:
-      msg.object.update(message_from = u.username)
-    else:
-      msg.object.update(message_from = s.username)
-  for msg in messages:
-    msg.save()
+      messagesUser.append(count)
+    count++  
 
 
+  
+  response_data = {}
+  response_data['messages'] = messages
+  response_data['messagesUser'] = messagesUser
 
-  response = serializers.serialize("json", messages)
+  #response = serializers.serialize("json", response_data)
   
 
-  return HttpResponse(response, content_type='application/json')
+  #return HttpResponse(response, content_type='application/json')
+  response = JsonResponse(response_data, status=403)
+  return response
 
 
 
