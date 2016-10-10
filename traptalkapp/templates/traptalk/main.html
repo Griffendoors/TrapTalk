@@ -134,14 +134,13 @@ var selected = "Nothing";
     });
 
 
+
         $('.mainFriends').on('click', function () {
-          selected = this.id;
-          //getNewMessages();   // dont want to call server every time click different friend, thats ridiculous. call get new only after send, just use template code here. 
-
-          //document.getElementById("toSend").value = "";
-          //$("#received").empty();
-
-          getNewMessages();
+          if(this.id != selected){
+            selected = this.id;
+            document.getElementById("toSend").value = "";
+            $("#received").empty();
+          }
 
           {% for message in messages %}
             if('{{message.message_from.username}}' == '{{username}}' && '{{message.message_to.username}}' == selected){
