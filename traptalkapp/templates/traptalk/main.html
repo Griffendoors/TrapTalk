@@ -172,6 +172,9 @@ var selected = "Nothing";
                       var msgs = data['messages'];
                       var msgsUsr = data['messagesUser'];
 
+                      console.log(typeof(msgs));
+                      return;
+
                       for (i = 0; i < data['messages'].length; i++) { 
                         if(msgsUsr.indexof(i) != -1){
                           $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + msgs[i] +"</div>");
