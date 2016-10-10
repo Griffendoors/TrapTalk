@@ -174,11 +174,11 @@ var selected = "Nothing";
 
 
                       $.each(data['messages'], function(index, val){
-                        msgs.append(val);
+                        msgs.push(val);
                       });
 
                       $.each(data['messagesUser'], function(index, val){
-                        msgsUsr.append(val);
+                        msgsUsr.push(val);
                       });
 
                       for (i = 0; i < data['messages'].length; i++) { 
