@@ -169,9 +169,17 @@ var selected = "Nothing";
                     },
                     success : function(data){
 
-                      alert(data['messages']);
-                      alert(data['messagesUser']);
+                      var msgs = data['messages'];
+                      var msgsUsr = data['messagesUser'];
 
+                      for (i = 0; i < data['messages'].length; i++) { 
+                        if(msgsUsr.indexof(i) != -1){
+                          $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + msgs[i] +"</div>");
+                        }
+                        else{
+                          $('#received').append("<div class = 'main' id = 'recvMsg'>" + selected + ": " + msgs[i] +"</div>");
+                        }
+                      }
 
                     },
                     error: function (xhr, status, error) {
