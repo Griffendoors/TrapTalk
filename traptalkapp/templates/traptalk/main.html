@@ -169,9 +169,8 @@ var selected = "Nothing";
                     },
                     success : function(data){
 
-                    for(i in data) {
-                          console.log (i, data[i].fields['message_from'])
-                    }
+                      alert(data['messages']);
+                      alert(data['messagesUser']);
 
 
                     },
