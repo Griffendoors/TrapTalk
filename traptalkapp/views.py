@@ -220,7 +220,7 @@ def getParticularMessages(request):
   
 
   #return HttpResponse(response, content_type='application/json')
-  response = JsonResponse(response_data, status=403)
+  response = JsonResponse(response_data, status=200)
   return response
 
 
