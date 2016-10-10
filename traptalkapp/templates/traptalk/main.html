@@ -169,11 +169,17 @@ var selected = "Nothing";
                     },
                     success : function(data){
 
-                      var msgs = data['messages'];
-                      var msgsUsr = data['messagesUser'];
+                      var msgs = [];
+                      var msgsUsr = [];
 
-                      console.log(typeof(msgs));
-                      return;
+
+                      $.each(data['messages'], function(index, val){
+                        msgs.append(val);
+                      });
+
+                      $.each(data['messagesUser'], function(index, val){
+                        msgsUsr.append(val);
+                      });
 
                       for (i = 0; i < data['messages'].length; i++) { 
                         if(msgsUsr.indexof(i) != -1){
