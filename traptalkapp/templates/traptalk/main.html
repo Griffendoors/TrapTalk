@@ -182,7 +182,7 @@ var selected = "Nothing";
                       });
 
                       for (i = 0; i < data['messages'].length; i++) { 
-                        if(msgsUsr.indexOf(i) > -1)
+                        if(msgsUsr.indexOf(i) > -1){
                           $('#received').append("<div class = 'main' id = 'sentMsg'>" + "{{username}}" + ": " + msgs[i] +"</div>");
                         }
                         else{
