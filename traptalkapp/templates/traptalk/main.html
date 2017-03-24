@@ -83,6 +83,20 @@ var selected = "Nothing";
 
   $( document ).ready(function(){
 
+
+    function refresh() {
+    // make Ajax call here, inside the callback call:
+      console.log("1");
+      setTimeout(refresh, 5000);
+    // ...
+    }
+
+    // initial call, or just call refresh directly
+    setTimeout(refresh, 5000);
+
+
+
+
   // MODAL CODE
   var modal = document.getElementById('modal');
   var span = document.getElementsByClassName("close")[0];
@@ -342,6 +356,12 @@ var selected = "Nothing";
 
 
      });
+
+
+
+
+
+
 
 
 </script>
