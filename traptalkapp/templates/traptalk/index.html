@@ -13,6 +13,7 @@
 <body>
     <div class = "index" id = "outer">
         <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
+        
         <div class = "index" id = "loginTab"><p>Login</p></div>
         <div class = "index" id = "loginBox">
             <form  action="https://traptalk.herokuapp.com/main" method = "post" id = "loginForm">{% csrf_token %}
@@ -20,6 +21,7 @@
                 <input class = "index"  id = "loginPW" type="text" placeholder = "Password" name = "password"><br>
             </form>        
         </div>
+
         <div class = "index" id = "signupTab"><p>Sign Up</p></div>
         <div class = "index" id = "signupBox">
             <form action="no_form">
