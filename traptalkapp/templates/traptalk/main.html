@@ -85,14 +85,9 @@ var selected = "Nothing";
 
 
     function refresh() {
-    // make Ajax call here, inside the callback call:
-      console.log("1");
-      getNewMessages();
+      if(selected != "Nothing"){ getNewMessages();} 
       setTimeout(refresh, 5000);
-    // ...
     }
-
-    // initial call, or just call refresh directly
     setTimeout(refresh, 5000);
 
 
