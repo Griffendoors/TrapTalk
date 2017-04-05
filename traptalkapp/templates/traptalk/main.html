@@ -87,6 +87,7 @@ var selected = "Nothing";
     function refresh() {
     // make Ajax call here, inside the callback call:
       console.log("1");
+      getNewMessages();
       setTimeout(refresh, 5000);
     // ...
     }
@@ -289,7 +290,7 @@ var selected = "Nothing";
 
 		function sendMessage(message){
       if(selected === "Nothing"){
-        alert("Select a Conversation first, Blood.");
+        alert("Select a Conversation first.");
         return;
       }
 
