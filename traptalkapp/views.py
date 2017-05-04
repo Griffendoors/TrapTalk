@@ -45,7 +45,7 @@ def signup(request):
   response = JsonResponse({'status':'false','message': 'Signup Success'}, status=200)
   return response
   
-
+@csrf_exempt
 def main(request):
   c = {}
   c.update(csrf(request))
