@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.template import RequestContext
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
   #template = loader.get_template('traptalk/index.html')
