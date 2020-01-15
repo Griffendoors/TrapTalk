@@ -8,18 +8,18 @@
 <!DOCTYPE html>
 
 <head>
-    <title>TrapTalk</title>  
+    <title>TrapTalk</title>
 </head>
 <body>
     <div class = "index" id = "outer">
         <img src="{% static 'header.png' %}"  alt="TrapTalk" class = "index" id = "header">
-        
+
         <div class = "index" id = "loginTab"><p>Login</p></div>
         <div class = "index" id = "loginBox">
             <form  action="https://traptalk.herokuapp.com/main" method = "post" id = "loginForm">{% csrf_token %}
                 <input class = "index"  id = "loginUN" type="text" placeholder = "Username" name = "username"><br>
                 <input class = "index"  id = "loginPW" type="text" placeholder = "Password" name = "password"><br>
-            </form>        
+            </form>
         </div>
 
         <div class = "index" id = "signupTab"><p>Sign Up</p></div>
@@ -80,7 +80,7 @@
             });
             $('#loginBox *').css({
                 'z-index': '2'
-            });   
+            });
             selected = 1;
         });
 
@@ -127,7 +127,7 @@
 
                 document.getElementById('loginForm').submit();
                 return;
-                    
+
                 var un = document.getElementById("loginUN").value;
                 var pw = document.getElementById("loginPW").value;
 
@@ -191,13 +191,13 @@
                                 alert(data['message']);
                                 document.getElementById("signupUN").value = "";
                                 document.getElementById("signupPW").value = "";
- 
+
                         },
                         error: function (xhr, status, error) {
                             alert('Server error: '+ xhr.status);
                         }
                 },"json");
-             }   
+             }
         });
      });
 
@@ -206,44 +206,3 @@
 
 
 </body>
-
-
-
-<!-- TO DO
-
--before any action ie sending a message, check token is still valid. (or check in same call.)
--check token paths and no leaks (ie can type in url and access)
-- change redirects functions to use forms - refresh actually reverts html back
-- isseues with having username = friend_one || friend_two - > duplicates etc
-
-
-- form
-- remove not form code and make all work properly
-- token path
-- not json response?
-- signout code redirect to main
-- send only token not username between c and s
-
-
-- Diff between messages sent and just adding to recieved, and getting recieved. need to do both for visib, but not add dups.
-- Fucking timer shit
-- Populate recieved messages.
-
-- actions refresh lists ie friends and messages
-
-- send message, only send to server, server updates lists. client does another call, update screen.
-
-- press button to poll for new messages until have push server up
-
-
-- where is call stack error happening.
-
-- small time under message
-- first line of conversation in friend div
-
-- login: authenticated with ajax, return token, call form.submit,  pass token with form submit to redirect
-
-- bug: click a friend, send message, click the same friend : the message dissapears. reclicking the friend clears the chat as the message is not stored in template storage, and getNewMessages() is not called as calling on every friend click would be ridic.
- message reappears when api call is made for getParticularMessages as it is stored there.
-
- - no friends - hide both main divs. display small clickable div - " add a friend to get started. " - display what is needed. 
